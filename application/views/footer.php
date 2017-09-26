@@ -181,7 +181,7 @@
   (Load Extensions only on Local File Systems ! 
   The following part can be removed on Server for On Demand Loading) --> 
 
-
+ 
 
 
 
@@ -199,5 +199,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/scripts/extensions/revolution.extension.parallax.min.js');?>"></script> 
 <script type="text/javascript" src="<?php echo base_url('assets/scripts/extensions/revolution.extension.slideanims.min.js');?>"></script> 
 <script type="text/javascript" src="<?php echo base_url('assets/scripts/extensions/revolution.extension.video.min.js');?>"></script>
+
+
 </body>
 </html>

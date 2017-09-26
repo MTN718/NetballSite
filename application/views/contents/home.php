@@ -1,3 +1,25 @@
+ <?php if ($this->session->flashdata('success_msg') != "") { ?>
+    <div class="alert alert-success alert-dismissable" style="background-color: #00a65a !important;border-color: #008d4c;border-radius: 3px;padding-right: 35px;padding: 15px;margin-bottom: 20px;border: 1px solid transparent;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: #000;opacity: .2;position: relative;top: -2px;right: 0px;float: right;font-size: 21px;font-weight: 700;line-height: 1;color: #000;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: .2;">&times;</a>
+        <strong>Successfully</strong> <?php echo $this->session->flashdata('success_msg'); ?>
+    </div>
+    <?php } ?>
+    <?php if ($this->session->flashdata('error_msg') != "") { ?>
+    <div class="alert alert-warning alert-dismissable" style="background-color: #00a65a !important;border-color: #008d4c;border-radius: 3px;padding-right: 35px;padding: 15px;margin-bottom: 20px;border: 1px solid transparent;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: #000;opacity: .2;position: relative;top: -2px;right: 0px;float: right;font-size: 21px;font-weight: 700;line-height: 1;color: #000;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: .2;">&times;</a>
+        <strong>Warning!</strong> <?php echo $this->session->flashdata('error_msg'); ?>
+    </div>
+    <?php } ?>
+
+
+
+
+
+
+
+
+
+
   <!-- Banner
 ================================================== -->
   <!-- Revolution Slider -->
@@ -11,7 +33,7 @@
         <li data-index="rs-1" data-transition="fade" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="1000"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="800" data-fsslotamount="7" data-saveperformance="off">
 
           <!-- Background -->
-          <img src="<?php echo base_url('assets/images/slider-bg-01.jpg');?>" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina data-kenburns="on" data-duration="12000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="100" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0">
+          <img src="<?php echo base_url('assets/images/fullsize.jpg');?>" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina data-kenburns="on" data-duration="12000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="100" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0">
 
           <!-- Caption-->
           <div class="tp-caption custom-caption-2 tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0"
@@ -60,7 +82,7 @@
         <li data-index="rs-2" data-transition="fade" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="1000"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="800" data-fsslotamount="7" data-saveperformance="off">
 
           <!-- Background -->
-          <img src="<?php echo base_url('assets/images/slider-bg-02.jpg');?>"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina data-kenburns="on" data-duration="12000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="112" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0">
+          <img src="<?php echo base_url('assets/images/fullsize_distr.jpg');?>"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina data-kenburns="on" data-duration="12000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="112" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0">
 
           <!-- Caption-->
           <div class="tp-caption centered custom-caption-2 tp-shape tp-shapewrapper tp-resizeme rs-parallaxlevel-0"
@@ -103,6 +125,10 @@
             <!--<a href="#" class="button medium">Read More</a>-->
           </div>
         </li>
+
+
+
+
       </ul>
       <div class="tp-static-layers"></div>
     </div>

@@ -59,7 +59,6 @@ class Netball extends CI_Controller {
             $data['pageName'] = "CLUB_REGISTRATION_FORM";
             $this->load->view("content_handler", $data);
             
-
         }
         public function helpPassword()
         {
@@ -107,5 +106,9 @@ class Netball extends CI_Controller {
             
 
         }
+
+
+
+
 }
 ?>

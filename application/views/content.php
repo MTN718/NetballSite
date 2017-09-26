@@ -36,6 +36,9 @@ switch($pageName) {
     case "HELP_PASSWORD":
     include('contents/help-password.php');
     break;
+     case "CLUB_DETAILS":
+    include('contents/club-detail.php');
+    break;
     
 
 }
