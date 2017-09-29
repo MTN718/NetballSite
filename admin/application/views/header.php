@@ -12,6 +12,7 @@
 ================================================== -->
 <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css');?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/colors/main.css');?>" id="colors">
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/scripts/jquery-2.2.0.min.js"></script> 
 </head>
 
 

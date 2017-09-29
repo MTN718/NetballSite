@@ -36,9 +36,54 @@ switch($pageName) {
     case "HELP_PASSWORD":
     include('contents/help-password.php');
     break;
-     case "CLUB_DETAILS":
+    case "CLUB_DETAILS":
     include('contents/club-detail.php');
     break;
+
+
+
+
+
+    case "CLUB_DASHBOARD":
+    include('contents/club-dashboard.php');
+    break;
+    case "NEW_EVENT":
+    include('contents/new-event.php');
+    break;
+    case "EVENT_PACKAGE":
+    include('contents/new-event-package.php');
+    break;
+    case "CURRENT_EVENT":
+    include('contents/current-event.php');
+    break;
+    case "CLUB_PROFILE":
+    include('contents/club-profile.php');
+    break;
+
+
+    case "PLAYER_DASHBOARD":
+    include('contents/player-dashboard.php');
+    break;
+    case "CONTACT":
+    include('contents/contact.php');
+    break;
+    case "FAQ":
+    include('contents/faq.php');
+    break;
+
+    case "PRICING":
+    include('contents/pricing.php');
+    break;
+    case "PRIVACY":
+    include('contents/privacy.php');
+    break;
+    case "PARTNER":
+    include('contents/partner.php');
+    break;
+    case "WORKING":
+    include('contents/working.php');
+    break;
+
     
 
 }

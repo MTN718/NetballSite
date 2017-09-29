@@ -1,3 +1,11 @@
+<?php 
+
+$userdata = $this->session->userdata('admin_data');
+print_r($userdata);
+
+?>
+
+
   <!-- Banner
 ================================================== -->
   <!-- Revolution Slider -->

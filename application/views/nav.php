@@ -34,6 +34,19 @@
             <nav id="navigation" class="style-1">
               <ul id="responsive">
                 <li><a class="current" href="<?php echo site_url('netball/index');?>">Home</a></li>
+                <li><a href="#">Account</a>
+                  <ul>
+                    
+                    <li><a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim">Login</a></li>
+                    <li><a href="#" class="sign-in">Register</a></li>
+                    <li><a href="#">My Listings</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Bookmarks</a></li>
+                    <li><a href="#">Add Listing</a></li>
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="#">Invoice</a></li>
+                  </ul>
+                </li>
                 <li><a href="#">User Panel</a>
                   <ul>
                     <li><a href="<?php echo site_url('netball/admin');?>">Dashboard</a></li>
@@ -93,7 +106,8 @@
 
             
 
- <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-user"></i> Login</a> <a href="#" class="sign-in"><i class="sl sl-icon-login"></i> Sign Up</a> </div>
+ <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-user"></i> Login</a> 
+ <a href="<?php echo site_url();?>netball/registerAccType" class="sign-in"><i class="sl sl-icon-login"></i> Sign Up</a> </div>
         </div>
         <!-- Right Side Content / End --> 
         

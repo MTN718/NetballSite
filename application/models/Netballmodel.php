@@ -10,8 +10,86 @@ Class Netballmodel extends CI_Model
 
 
 
+//========================================================== Get Data Method ========================================//
 
-    //==========================================================
+
+    // Get Project data
+     public function getclubdatainfo($model_data)
+    {  
+        $id = $model_data['id'];
+
+        $this->db->select('*');
+        $this->db->where('no',$id);
+        $this->db->from('tbl_club');
+        return $this->db->get()->row();
+    }
+
+    // Get Event data
+     public function geteventinfolist($model_data)
+    {
+        $id = $model_data['id'];
+
+        $this->db->select('*');
+        $this->db->from('tbl_event');
+        $this->db->where('club_no',$id);
+        return $this->db->get()->result();
+    }
+
+
+    // Get Project data
+     public function getclubdatalist()
+    {  
+        $this->db->select('*');
+        $this->db->from('tbl_club');
+        return $this->db->get()->result();
+    } 
+
+    // Get Project data
+     public function getplayersdatainfo($model_data)
+    {  
+        $id = $model_data['id'];
+
+        $this->db->select('*');
+        $this->db->where('no',$id);
+        $this->db->from('tbl_player');
+        return $this->db->get()->row();
+    }
+
+    // Get Project data
+     public function getcountrylist()
+    {  
+        $this->db->select('*');
+        $this->db->from('tbl_countries');
+        return $this->db->get()->result();
+    } 
+
+      public function getpostionlist()
+    {  
+        $this->db->select('*');
+        $this->db->from('tbl_position');
+        return $this->db->get()->result();
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//================================================= Login  verify -===================================================//
+
 
 
 
@@ -21,42 +99,31 @@ Class Netballmodel extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_player');
         $this->db->where('name', $model_data['username']);
-        $result = $this->db->get();
+        $resultp = $this->db->get()->row();
+        if (!empty($resultp)) { 
+            if (password_verify($model_data['password'], $resultp->password)) {
+                return $resultp;
 
-        $numrows = $result->num_rows();
-
-        if ($numrows == 1) {
-            $row = $result->row();
-            if (password_verify($password, $row->password)) {
-                return $row;
-            } else {
-                return 0;
             }
-        } else {
-            return "NO_USER_FOUND";
         }
-    }
-
-
-    // check user exist or not 
-     public function checkUsernameclub($username)
-    {
+        else {
         $this->db->select('*');
         $this->db->from('tbl_club');
-        $this->db->where('name', $username);
-        $result = $this->db->get();
-        $numrows =$result->num_rows();
-        if ($numrows == 1) {
-            die("user name already exist");
-             // return false;
-          } 
+        $this->db->where('name', $model_data['username']);
+        $result = $this->db->get()->row();
+        if (!empty($result)) { 
+            if (password_verify($model_data['password'], $result->password)) {
+                return $result;
+            }
+        }
         else {
-            return true;
+            return "NO_USER_FOUND";
+            }
         }
     }
 
-     // check user exist or not 
-     public function checkUsernameplayer($username)
+    // check user exist or not 
+     public function checkUsername($username)
     {
         $this->db->select('*');
         $this->db->from('tbl_player');
@@ -64,18 +131,49 @@ Class Netballmodel extends CI_Model
         $result = $this->db->get();
         $numrows =$result->num_rows();
         if ($numrows == 1) {
-            die("user name already exist");
-             // return false;
-          } 
-        else {
-            return true;
+           return true;
         }
+
+        $this->db->select('*');
+        $this->db->from('tbl_club');
+        $this->db->where('name', $username);
+        $result = $this->db->get();
+        $numrows =$result->num_rows();
+        if ($numrows == 1) {
+             return true;
+        } 
+        return false;
+    }
+
+    // check Email for forget password
+     public function checkEmail($email_id)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_player');
+        $this->db->where('email', $email_id);
+        $result = $this->db->get();
+        $numrows =$result->num_rows();
+        if ($numrows == 1) {
+            return true;
+        } 
+        else {
+            $this->db->select('*');
+            $this->db->from('tbl_club');
+            $this->db->where('email', $email_id);
+            $result2 = $this->db->get();
+            $numrows2 =$result2->num_rows();
+            if ($numrows2 == 1) {
+                return true;
+            } 
+        }
+        return false;
     }
 
 
      // Add player Registration Form data 
      public function playerRegistrationFormdata($model_data)
     {
+        $image = $model_data['image'];
         $email = $model_data['email'];
         $temppassword = $model_data['newpwd']; 
         $value_type = $model_data['value_type'];
@@ -92,20 +190,16 @@ Class Netballmodel extends CI_Model
         $position2 = $model_data['position2'];
         $position3 = $model_data['position3'];
         $password = password_hash($temppassword, PASSWORD_BCRYPT);
-
-         $result = $this->checkUsernameclub($username);
-         $result = $this->checkUsernameplayer($username);
        
-    	$sql = "INSERT INTO tbl_player(`name`,`password`,`email`,`birthday`,`address`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`position1`,`position2`,`position3`)  VALUES('$username','$password','$email','$dateofbirth','$address','$city','$state','$postcode','$country','$phone','$mobile','$position1','$position2','$position3')";
+    	$sql = "INSERT INTO tbl_player(`name`,`password`,`email`,`birthday`,`address`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`position1`,`position2`,`position3`,`user_type`,`photo`)  VALUES('$username','$password','$email','$dateofbirth','$address','$city','$state','$postcode','$country','$phone','$mobile','$position1','$position2','$position3','$value_type','$image')";
     	$result = $this->db->query($sql);
-       
-     
     }
 
 
      // Add club Registration Form data 
      public function clubRegistrationFormdata($model_data)
     {
+        $image = $model_data['image'];
         $email = $model_data['email'];
         $clubname = $model_data['clubname'];
         $association = $model_data['association'];
@@ -121,14 +215,49 @@ Class Netballmodel extends CI_Model
         $value_type = $model_data['value_type'];
         $temppassword = $model_data['newpwd'];
         $password = password_hash($temppassword, PASSWORD_BCRYPT);
-
-         $result = $this->checkUsernameclub($username);
-         $result = $this->checkUsernameplayer($username);
        
-        	 $sql = "INSERT INTO tbl_club(`name`,`password`,`email`,`birthday`,`address`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`club_name`,`association_afiliated`)  VALUES('$username','$password','$email','$dateofbirth','$address','$city','$state','$postcode','$country','$phone','$mobile','$clubname','$association')";
-        	$result = $this->db->query($sql);
-        
-     
+        $sql = "INSERT INTO tbl_club(`name`,`password`,`email`,`stablishes_date`,`address`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`club_name`,`association_afiliated`,`user_type`,`photo`)  VALUES('$username','$password','$email','$dateofbirth','$address','$city','$state','$postcode','$country','$phone','$mobile','$clubname','$association','$value_type','$image')";
+        $result = $this->db->query($sql);
+        return $this->db->insert_id();
+    }
+
+
+     // Add club Account option
+     public function clubRegistrationPaypalAccount($model_data)
+    {
+        $club_id = $model_data['club_id'];
+        $email13 = $model_data['email13'];
+        $type = $model_data['type'];
+       
+        $sql = "INSERT INTO tbl_club_payment(`type`,`paypal`)  VALUES('$type','$email13')";
+        $result = $this->db->query($sql);
+        $payment_id = $this->db->insert_id();
+
+        $sql1 = "UPDATE tbl_club SET payment = '$payment_id' WHERE no='$club_id'";
+        $this->db->query($sql1);
+
+        return true;
+    }
+
+
+     // Add club Account option
+     public function clubRegistrationBankAccount($model_data)
+    {
+        $club_id = $model_data['club_id'];
+        $accountname = $model_data['accountname'];
+        $accountbsb = $model_data['accountbsb'];
+        $accountnumber = $model_data['accountnumber'];
+        $accountbb = $model_data['accountbb'];
+        $type = $model_data['type'];
+       
+        $sql = "INSERT INTO tbl_club_payment(`type`,`name`,`bsb`,`number`,`branch`)  VALUES('$type','$accountname','$accountbsb','$accountnumber','$accountbb')";
+        $result = $this->db->query($sql);
+        $payment_id = $this->db->insert_id();
+
+        $sql1 = "UPDATE tbl_club SET payment = '$payment_id' WHERE no='$club_id'";
+        $this->db->query($sql1);
+
+        return true;
     }
 
 
@@ -159,12 +288,137 @@ Class Netballmodel extends CI_Model
         if(empty($row)) {
             return "false";
         }
-        $email = $row->email;
 
-        $sql1 = "UPDATE users SET password = '$password' WHERE email='$email'";
+        $email = $row->email;
+        $sql1 = "UPDATE tbl_club SET password = '$password' WHERE email='$email'";
         $this->db->query($sql1);
+
+        $sql2 = "UPDATE tbl_player SET password = '$password' WHERE email='$email'";
+        $this->db->query($sql2);
+
+        $sql3 = "DELETE FROM token WHERE token='$token'";
+        $this->db->query($sql3);
+
         return "true";
     }
+
+
+
+//============================================ Add Model Data Method =======================================================//
+
+ // Add club Registration Form data 
+     public function addeventdata($model_data)
+    {
+        $id = $model_data['id'];
+        $title = $model_data['title'];
+        $date = $model_data['date'];
+        $venue = $model_data['venue'];
+        $starttime = $model_data['starttime'];
+        $finishtime = $model_data['finishtime'];
+        $requirements = $model_data['requirements'];
+        $fee = $model_data['fee'];
+        $image = $model_data['image'];
+        $package = $model_data['package'];
+       
+        $sql = "INSERT INTO tbl_event(`club_no`,`title`,`venue`,`date`,`starttime`,`endtime`,`special`,`fee`,`photo`,`package_id`)  VALUES('$id','$title','$venue','$date','$starttime','$finishtime','$requirements','$fee','$image','$package')";
+        $result = $this->db->query($sql);
+        return $this->db->insert_id();
+    }
+    
+
+     // Add club Registration Form data 
+     public function addeventdatawithoutimg($model_data)
+    {
+        $id = $model_data['id'];
+        $title = $model_data['title'];
+        $date = $model_data['date'];
+        $venue = $model_data['venue'];
+        $starttime = $model_data['starttime'];
+        $finishtime = $model_data['finishtime'];
+        $requirements = $model_data['requirements'];
+        $fee = $model_data['fee'];
+       
+        $sql = "INSERT INTO tbl_event(`club_no`,`title`,`venue`,`date`,`starttime`,`endtime`,`special`,`fee`)  VALUES('$id','$title','$venue','$date','$starttime','$finishtime','$requirements','$fee')";
+        $result = $this->db->query($sql);
+        return $this->db->insert_id();
+    }
+
+
+
+
+
+//================================================ Update Data Method =======================================================//
+
+      // Update club Form data 
+     public function updateclubdatawithoutimgInfo($model_data)
+    {
+        $id = $model_data['id'];
+        $email = $model_data['email'];
+        $clubname = $model_data['clubname'];
+        $association = $model_data['association'];
+        $username = $model_data['username'];
+        $dateofbirth = $model_data['dateofbirth'];
+        $address = $model_data['address'];
+        $city = $model_data['city'];
+        $state = $model_data['state'];
+        $postcode = $model_data['postcode'];
+        $country = $model_data['country'];
+        $phone = $model_data['phone'];
+        $mobile = $model_data['mobile'];
+
+         $sql = "UPDATE `tbl_club` SET `name` = '$username', `email` = '$email',`stablishes_date` = '$dateofbirth',`address` = '$address',`city` = '$city',
+            `state` = '$state',`postcode` = '$postcode',`country` = '$country',`club_name` = '$clubname',`association_afiliated` = '$association',`phone` = '$phone',`mobile` = '$mobile' WHERE no = '$id'";
+        $this->db->query($sql);
+    }
+
+      // Update club Form data 
+     public function updateclubdata($model_data)
+    {
+        $id = $model_data['id'];
+        $image = $model_data['image'];
+
+         $sql = "UPDATE `tbl_club` SET `photo` = '$image' WHERE no = '$id'";
+        $this->db->query($sql);
+    }
+
+
+
+     // Update club Form data 
+     public function updateplayerdatawithoutimgInfo($model_data)
+    {
+        $id = $model_data['id'];
+        $email = $model_data['email'];
+        $username = $model_data['username'];
+        $dateofbirth = $model_data['dateofbirth'];
+        $address = $model_data['address'];
+        $city = $model_data['city'];
+        $state = $model_data['state'];
+        $postcode = $model_data['postcode'];
+        $country = $model_data['country'];
+        $phone = $model_data['phone'];
+        $mobile = $model_data['mobile'];
+        $position1 = $model_data['position1'];
+        $position2 = $model_data['position2'];
+        $position3 = $model_data['position3'];
+
+         $sql = "UPDATE `tbl_player` SET `name` = '$username', `email` = '$email',`birthday` = '$dateofbirth',`address` = '$address',`city` = '$city',
+            `state` = '$state',`postcode` = '$postcode',`country` = '$country',`position1` = '$position1',`position2` = '$position2',`position3` = '$position3',`phone` = '$phone',`mobile` = '$mobile' WHERE no = '$id'";
+        $this->db->query($sql);
+    }
+
+     // Update club Form data 
+     public function updateplayerdata($model_data)
+    {
+        $id = $model_data['id'];
+        $image = $model_data['image'];
+
+         $sql = "UPDATE `tbl_player` SET `photo` = '$image' WHERE no = '$id'";
+        $this->db->query($sql);
+    }
+
+
+
+
 
 
 

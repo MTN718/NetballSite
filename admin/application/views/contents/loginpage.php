@@ -135,7 +135,7 @@
 
 
 
-<body class="hold-transition login-page" style="background: url(<?php echo base_url(); ?>assets/images/slider-bg-02.jpg) center top  #313540;background-size: cover;">
+<body class="hold-transition login-page" style="background: url(<?php echo base_url(); ?>assets/images/fullsize.jpg) center top  #313540;background-size: cover;">
 
 
 

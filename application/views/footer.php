@@ -4,26 +4,27 @@
     <!-- Main -->
     <div class="container">
       <div class="row">
-        <div class="col-md-5 col-sm-6"> <img class="footer-logo" src="<?php echo base_url('assets/images/logoinspire.jpg');?>" alt=""> <br>
+        <div class="col-md-5 col-sm-6"> 
+          <img class="footer-logo" src="<?php echo base_url('assets/images/logoinspire.jpg');?>" alt=""> <br>
           <br>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
         </div>
         <div class="col-md-4 col-sm-6 ">
           <h4>Helpful Links</h4>
           <ul class="footer-links">
-            <li><a href="#">Login</a></li>
+            <!-- <li><a id="footerlogin">Login</a></li> -->
             <li><a href="<?php echo site_url('netball/registerAccType');?>">Sign Up</a></li>
             <li><a href="#">My Account</a></li>
             <li><a href="#">Add Listing</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="<?php echo site_url('netball/pricing');?>">Pricing</a></li>
+            <li><a href="<?php echo site_url('netball/privacy');?>">Privacy Policy</a></li>
           </ul>
           <ul class="footer-links">
-            <li><a href="#">FAQ</a></li>
+            <li><a href="<?php echo site_url('netball/faq');?>">FAQ</a></li>
             <li><a href="#">Events</a></li>
-            <li><a href="#">Our Partners</a></li>
-            <li><a href="#">How It Works</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="<?php echo site_url('netball/partner');?>">Our Partners</a></li>
+            <li><a href="<?php echo site_url('netball/working');?>">How It Works</a></li>
+            <li><a href="<?php echo site_url('netball/contact');?>">Contact</a></li>
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -54,6 +55,10 @@
   
 </div>
 <!-- Wrapper / End --> 
+
+
+
+
 
 <!-- Scripts
 ================================================== --> 
@@ -199,6 +204,11 @@
 <script type="text/javascript" src="<?php echo base_url('assets/scripts/extensions/revolution.extension.parallax.min.js');?>"></script> 
 <script type="text/javascript" src="<?php echo base_url('assets/scripts/extensions/revolution.extension.slideanims.min.js');?>"></script> 
 <script type="text/javascript" src="<?php echo base_url('assets/scripts/extensions/revolution.extension.video.min.js');?>"></script>
+
+<link href="<?php echo base_url('assets/css/plugins/datedropper.css');?>" rel="stylesheet" type="text/css">
+<script src="<?php echo base_url('assets/scripts/datedropper.js');?>"></script>
+<script>$('#booking-date').dateDropper();</script> 
+</body>
 
 
 </body>
