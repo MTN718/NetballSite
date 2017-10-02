@@ -32,6 +32,7 @@ Class Netballmodel extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_event');
         $this->db->where('club_no',$id);
+        $this->db->order_by('date','DESC');
         return $this->db->get()->result();
     }
 

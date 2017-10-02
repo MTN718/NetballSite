@@ -188,7 +188,119 @@
 
  
 
+<!-- paypal payment gateway js -->
+<script>
+    paypal.Button.render({
 
+        env: 'sandbox', // sandbox | production
+
+        // PayPal Client IDs - replace with your own
+        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+        client: {
+            sandbox: 'AXvmWjS8gLnp9WomdZ6pKB9e1eAOX1ExYqvO70vNx40qIIND8YFj4evRJX5o5K4KpPSInT1QjJ2yVvr3',
+            production: '<insert production client id>'
+        },
+
+        // Show the buyer a 'Pay Now' button in the checkout flow
+        commit: true,
+
+        // payment() is called when the button is clicked
+        payment: function (data, actions) {
+            var finalamount = $("#finalamount").text();
+            var inputamount = $("#inputamount").val();
+            
+            if(finalamount >= inputamount) 
+            {
+                if(inputamount > 1) {
+                    // Make a call to the REST api to create the payment
+                    return actions.payment.create({
+                        transactions: [
+                            {
+                                amount: {total: inputamount, currency: 'USD'}
+                            }
+                        ]
+                    });
+                } else {
+                    window.alert('Error');
+                    exit();
+                }
+            }
+        },
+
+        // onAuthorize() is called when the buyer approves the payment
+        onAuthorize: function (data, actions) {
+            // Make a call to the REST api to execute the payment
+            return actions.payment.execute().then(function (data) {
+                console.log(data);
+
+                var invoice_id = $("#invoice_id").text();
+                var id = data.id;
+                var cart = data.cart;
+                var create_time = data.create_time;
+                var payment_method = data.payer.payment_method;
+                var email = data.payer.payer_info.email;
+                var first_name = data.payer.payer_info.first_name;
+                var middle_name = data.payer.payer_info.middle_name;
+                var last_name = data.payer.payer_info.last_name;
+                var country_code = data.payer.payer_info.country_code;
+                var line1 = data.payer.payer_info.shipping_address.line1;
+                var city = data.payer.payer_info.shipping_address.city;
+                var state = data.payer.payer_info.shipping_address.state;
+                var postal_code = data.payer.payer_info.shipping_address.postal_code;
+                var country_code = data.payer.payer_info.shipping_address.country_code;
+                var total = data.transactions[0].amount.total;
+                var currency = data.transactions[0].amount.currency;
+
+                console.log(invoice_id);
+                console.log(id);
+                console.log(cart);
+                console.log(create_time);
+                console.log(payment_method);
+                console.log(email);
+                console.log(first_name);
+                console.log(middle_name);
+                console.log(last_name);
+                console.log(country_code);
+                console.log(line1);
+                console.log(city);
+                console.log(state);
+                console.log(postal_code);
+                console.log(country_code);
+                console.log(total);
+                console.log(currency);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'savetransaction',
+                    data: {
+                        'invoice_id': invoice_id,
+                        'id': id,
+                        'cart': cart,
+                        'create_time': create_time,
+                        'payment_method': payment_method,
+                        'email': email,
+                        'first_name': first_name,
+                        'middle_name': middle_name,
+                        'last_name': last_name,
+                        'country_code': country_code,
+                        'line1': line1,
+                        'city': city,
+                        'state': state,
+                        'postal_code': postal_code,
+                        'country_code': country_code,
+                        'total': total,
+                        'currency': currency,
+                    },
+                    success: function (data) {
+                        window.alert('Payment Complete!');
+                        location.reload();
+                    }
+                });
+            });
+        }
+
+    }, '#paypal-button-container');
+</script>
 
 
 

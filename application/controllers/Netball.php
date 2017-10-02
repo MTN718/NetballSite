@@ -64,7 +64,6 @@ class Netball extends CI_Controller {
         );
         $data['clubdatainfo'] = $this->Netballmodel->getclubdatainfo($model_data);
         $data['eventinfos'] = $this->Netballmodel->geteventinfolist($model_data);
-
         $data['pageName'] = "CLUB_DETAILS";
         $this->load->view("content_handler", $data);
     }
@@ -451,7 +450,19 @@ class Netball extends CI_Controller {
 
 
 
+//=====================================Ajax Request =====================
+    public function eventfee()
+    {   
 
+        $event_id = $_POST["event_id"];
+
+        $this->db->select('*');
+        $this->db->where('no',$event_id);
+        $this->db->from('tbl_event');
+        $result = $this->db->get()->row()->fee;
+        
+        echo json_encode($result);
+    }
 
 
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2017 at 06:13 AM
+-- Generation Time: Sep 29, 2017 at 08:58 PM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.25
 
@@ -23,6 +23,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_about_us`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_about_us` (
+  `about_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  PRIMARY KEY (`about_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_about_us`
+--
+
+INSERT INTO `tbl_about_us` (`about_id`, `description`) VALUES
+(1, ' \r\n                                 rgregfsd        asddsaddsaxasdasdad\r\n                                                                                                                ');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_base_admin`
 --
 
@@ -38,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `tbl_base_admin` (
 --
 
 INSERT INTO `tbl_base_admin` (`no`, `user`, `pw`) VALUES
-(1, 'admin', '$2y$10$t9Tmijmw4ClRxEZpJB0uw.lHtV/H4WJqBBDO5rkmEqcTbpmWxYrxG');
+(1, 'admin', '$2y$10$bcIT5kiOD2tjeM79KvCueex671Iwm9uLdaLbymHuXw38NbOcMF/Sa');
 
 -- --------------------------------------------------------
 
@@ -114,6 +133,27 @@ INSERT INTO `tbl_club_payment` (`no`, `type`, `name`, `bsb`, `number`, `branch`,
 (1, 0, '', '', '', '', 'aaa@gmail.com'),
 (2, 0, '', '', '', '', 'ssabc@gmail.com'),
 (3, 0, '', '', '', '', 'sada@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_contact_us`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_contact_us` (
+  `contact_us_id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `address` longtext NOT NULL,
+  PRIMARY KEY (`contact_us_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_contact_us`
+--
+
+INSERT INTO `tbl_contact_us` (`contact_us_id`, `email`, `phone`, `address`) VALUES
+(1, 'info@gmail.com', '12345678944', ' \r\n                                        12345 address line1, country.                                                                      ');
 
 -- --------------------------------------------------------
 
@@ -411,6 +451,43 @@ INSERT INTO `tbl_event` (`no`, `title`, `venue`, `date`, `starttime`, `endtime`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_faqs`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_faqs` (
+  `faq_id` int(11) NOT NULL AUTO_INCREMENT,
+  `question` varchar(255) NOT NULL,
+  `answer` longtext NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`faq_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_how_its_work`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_how_its_work` (
+  `how_its_work_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  `image1` varchar(255) NOT NULL,
+  `image2` varchar(255) NOT NULL,
+  `image3` varchar(255) NOT NULL,
+  `description1` longtext NOT NULL,
+  PRIMARY KEY (`how_its_work_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_how_its_work`
+--
+
+INSERT INTO `tbl_how_its_work` (`how_its_work_id`, `description`, `image1`, `image2`, `image3`, `description1`) VALUES
+(1, ' dsfdccsdfadsxsddcsvdsvd ', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_player`
 --
 
@@ -466,6 +543,77 @@ INSERT INTO `tbl_position` (`position_id`, `position_title`) VALUES
 (2, '2'),
 (3, '3'),
 (4, '4');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pricing_policy`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_pricing_policy` (
+  `pricing_policy_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  PRIMARY KEY (`pricing_policy_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_pricing_policy`
+--
+
+INSERT INTO `tbl_pricing_policy` (`pricing_policy_id`, `description`) VALUES
+(1, '  asdasdasdsadsda                                       dsfdsadscadsacd                                    ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_privacy_policy`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_privacy_policy` (
+  `privacy_policy_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  PRIMARY KEY (`privacy_policy_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_privacy_policy`
+--
+
+INSERT INTO `tbl_privacy_policy` (`privacy_policy_id`, `description`) VALUES
+(1, '                                                                 dasdasdasd                 tttryrtye                                    sdsasa   vccxbfbvbgfffb                                                                                                                                                ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_social_link`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_social_link` (
+  `social_link_id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(225) NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  PRIMARY KEY (`social_link_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_term_condition`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_term_condition` (
+  `term_condition_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  PRIMARY KEY (`term_condition_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_term_condition`
+--
+
+INSERT INTO `tbl_term_condition` (`term_condition_id`, `description`) VALUES
+(1, ' sadaaaaaaaadsadasd\r\n                               sadasdsadas          fdagervdsvaevsdsc                                    ');
 
 -- --------------------------------------------------------
 
