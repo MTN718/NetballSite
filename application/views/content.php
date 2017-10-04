@@ -39,6 +39,21 @@ switch($pageName) {
     case "CLUB_DETAILS":
     include('contents/club-detail.php');
     break;
+    case "PRICING":
+    include('contents/pricing.php');
+    break;
+    case "PRIVACY":
+    include('contents/privacy.php');
+    break;
+    case "PARTNER":
+    include('contents/partner.php');
+    break;
+    case "WORKING":
+    include('contents/working.php');
+    break;
+    case "TERMANDCONDITION":
+    include('contents/term_condition.php');
+    break;
 
 
 
@@ -59,6 +74,11 @@ switch($pageName) {
     case "CLUB_PROFILE":
     include('contents/club-profile.php');
     break;
+    case "VIEW_CURRENT_EVENT":
+    include('contents/view_current_event.php');
+    break;
+
+
 
 
     case "PLAYER_DASHBOARD":
@@ -71,18 +91,8 @@ switch($pageName) {
     include('contents/faq.php');
     break;
 
-    case "PRICING":
-    include('contents/pricing.php');
-    break;
-    case "PRIVACY":
-    include('contents/privacy.php');
-    break;
-    case "PARTNER":
-    include('contents/partner.php');
-    break;
-    case "WORKING":
-    include('contents/working.php');
-    break;
+
+   
 
     
 

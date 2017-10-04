@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
  <!-- Footer
 ================================================== -->
   <div id="footer"> 
@@ -7,21 +10,21 @@
         <div class="col-md-5 col-sm-6"> 
           <img class="footer-logo" src="<?php echo base_url('assets/images/logoinspire.jpg');?>" alt=""> <br>
           <br>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+          <p><?php if (!empty($aboutusinfo->description)) echo $aboutusinfo->description; ?>.</p>
         </div>
         <div class="col-md-4 col-sm-6 ">
           <h4>Helpful Links</h4>
           <ul class="footer-links">
             <!-- <li><a id="footerlogin">Login</a></li> -->
             <li><a href="<?php echo site_url('netball/registerAccType');?>">Sign Up</a></li>
-            <li><a href="#">My Account</a></li>
-            <li><a href="#">Add Listing</a></li>
+            <!-- <li><a href="#">My Account</a></li> -->
+            <li><a href="<?php echo site_url('netball/terms_condition');?>">Terms & Condition</a></li>
             <li><a href="<?php echo site_url('netball/pricing');?>">Pricing</a></li>
             <li><a href="<?php echo site_url('netball/privacy');?>">Privacy Policy</a></li>
           </ul>
           <ul class="footer-links">
             <li><a href="<?php echo site_url('netball/faq');?>">FAQ</a></li>
-            <li><a href="#">Events</a></li>
+            <!-- <li><a href="#">Events</a></li> -->
             <li><a href="<?php echo site_url('netball/partner');?>">Our Partners</a></li>
             <li><a href="<?php echo site_url('netball/working');?>">How It Works</a></li>
             <li><a href="<?php echo site_url('netball/contact');?>">Contact</a></li>
@@ -30,15 +33,44 @@
         </div>
         <div class="col-md-3  col-sm-12">
           <h4>Contact Us</h4>
-          <div class="text-widget"> <span>12345 address line1, country. </span> <br>
-            Phone: <span>(123) 456-789 </span><br>
-            E-Mail:<span> <a href="#">info@gmail.com</a> </span><br>
+          <div class="text-widget"> <span><?php if (!empty($contactusinfo->address)) echo $contactusinfo->address; ?></span> <br>
+            Phone: <span><?php if (!empty($contactusinfo->phone)) echo $contactusinfo->phone; ?></span><br>
+            E-Mail:<span> <a href="#"><?php if (!empty($contactusinfo->email)) echo $contactusinfo->email; ?></a> </span><br>
           </div>
           <ul class="social-icons margin-top-20">
-            <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-            <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-            <li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
+
+
+
+             <?php
+              $fade = "";
+              $service = "";
+              $index = 0;
+              foreach ($sociallinkdatalist as $sociallinkdata) { 
+
+                if($index == 0) {
+                  $service = "facebook";
+                  $fade = "icon-facebook";
+                }
+                else if($index == 1) {
+                  $service = "twitter";
+                  $fade = "icon-twitter";
+                }
+                else if($index == 2) {
+                  $service = "gplus";
+                  $fade = "icon-gplus";
+                }
+                else if($index == 3) {
+                  $service = "vimeo";
+                  $fade = "icon-vimeo";
+                }
+                 else if($index == 4) {
+                 break;
+                }
+              ?>
+
+                <li><a class="<?php echo $service; ?>" href="<?php if (!empty($sociallinkdata->link)) echo $sociallinkdata->link; ?>" target="new"><i class="<?php echo $fade; ?>"></i></a></li>
+            <?php $index++; } ?>
+
           </ul>
         </div>
       </div>
@@ -304,6 +336,11 @@
 
 
 
+<script type="text/javascript">            
+    $(document).on('click', '#errorcheckout', function () {
+        $('#errorcheckoutdata').css("display", "block");
+    });
+</script>
 
 
 <!-- REVOLUTION SLIDER SCRIPT --> 

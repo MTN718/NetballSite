@@ -158,49 +158,78 @@
         <div class="col-md-12">
           <div class="simple-slick-carousel dots-nav">
 
-            <!-- Listing Item -->
-            <div class="carousel-item"> <a href="#" class="listing-item-container compact">
-              <div class="listing-item"> <img src="<?php echo base_url('assets/images/listing-item-01.jpg');?>" alt="">
-                <div class="listing-badge now-open">Now Open</div>
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="3.5"></div>
-                  <h3>Feature 1</h3>
-                  <span>Lorem Ipsum, is simply</span> </div>
-                <span class="like-icon"></span> </div>
-              </a> </div>
-            <!-- Listing Item / End -->
+            <?php 
+              $i = 0;
+              foreach ($topevents as $events) { 
+              $currentdate = date('Y-m-d');
+              $eventdate1 = strtotime($events->date);
+              $eventdate = date ('Y-m-d',$eventdate1);
+              $showdate = date ('M d,Y',$eventdate1);
 
-            <!-- Listing Item -->
-            <div class="carousel-item"> <a href="#" class="listing-item-container compact">
+              if($eventdate > $currentdate) { 
+            ?>
+              <!-- Listing Item -->
+            <div class="carousel-item"> <a href="<?php echo site_url('netball/clubdetails?no=').$events->club_no; ?>" class="listing-item-container compact">
+              <div class="listing-item"> <img src="<?php echo base_url('assets/images');?>/<?php echo $events->photo ?>" alt="">
+                <div class="listing-badge now-open">Now Open</div>
+                <div class="listing-item-details">
+                  <ul>
+                    <li><?php echo $showdate; ?></li>
+                  </ul>
+                </div>
+                <div class="listing-item-content">
+                  <div class="numerical-rating" data-rating="<?php echo $events->reg_player_count; ?>"></div>
+                  <h3><?php echo $events->title ?></h3>
+                  <span><?php echo $events->special ?></span> 
+                </div>
+              </div>
+              </a> 
+            </div>
+            <!-- Listing Item / End -->
+            <?php 
+              $i++;      
+            } } ?>
+
+
+
+
+
+
+
+
+            <?php 
+              $i = 0;
+              foreach ($topevents as $events) { 
+              $currentdate = date('Y-m-d');
+              $eventdate1 = strtotime($events->date);
+              $eventdate = date ('Y-m-d',$eventdate1);
+              $showdate = date ('M d,Y',$eventdate1);
+
+              if($eventdate < $currentdate) { 
+            ?>
+            <div class="carousel-item"> <a href="<?php echo site_url('netball/clubdetails?no=').$events->club_no; ?>" class="listing-item-container compact">
               <div class="listing-item"> <img src="<?php echo base_url('assets/images/listing-item-02.jpg');?>" alt="">
                 <div class="listing-item-details">
                   <ul>
-                    <li>Friday, August 10</li>
+                    <li><?php echo $showdate; ?></li>
                   </ul>
                 </div>
                 <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="5.0"></div>
-                  <h3>Feature 2</h3>
-                  <span>Lorem Ipsum, is simply</span> </div>
-                <span class="like-icon"></span> </div>
-              </a> </div>
-            <!-- Listing Item / End -->
+                  <div class="numerical-rating" data-rating="<?php echo $events->reg_player_count; ?>"></div>
+                  <h3><?php echo $events->title; ?></h3>
+                  <span>Venue: <?php echo $events->venue; ?></span> 
+                </div>
+              </div>
+              </a> 
+            </div>
+            <?php 
+              $i++;              
+              if($i == 3)
+                break;
+            } } ?>
 
-            <!-- Listing Item -->
-            <div class="carousel-item"> <a href="#" class="listing-item-container compact">
-              <div class="listing-item"> <img src="<?php echo base_url('assets/images/listing-item-03.jpg');?>" alt="">
-                <div class="listing-item-details">
-                  <ul>
-                    <li>Starting from $59 per night</li>
-                  </ul>
-                </div>
-                <div class="listing-item-content">
-                  <div class="numerical-rating" data-rating="2.0"></div>
-                  <h3>Feature 1</h3>
-                  <span>Lorem Ipsum, is simply</span> </div>
-                <span class="like-icon"></span> </div>
-              </a> </div>
-            <!-- Listing Item / End -->
+
+
 
           </div>
         </div>
@@ -214,42 +243,39 @@
       <div class="col-md-12">
         <h3 class="headline centered margin-bottom-35 margin-top-70">Top Clubs <span>Browse listings in popular Games</span></h3>
       </div>
-      <div class="col-md-4">
 
-        <!-- Image Box -->
-        <a href="#" class="img-box" data-background-image="<?php echo base_url('assets/images/popular-location-01.jpg');?>">
-          <img src="<?php echo base_url('assets/images/popular-location-01.jpg');?>">
-        <div class="img-box-content visible">
-          <h4>Football</h4>
-          <span>14 Listings</span> </div>
-        </a> </div>
-      <div class="col-md-8">
 
-        <!-- Image Box -->
-        <a href="#" class="img-box" data-background-image="<?php echo base_url('assets/images/popular-location-02.jpg');?>">
-          <img src="<?php echo base_url('assets/images/popular-location-02.jpg');?>">
-        <div class="img-box-content visible">
-          <h4>Cricket</h4>
-          <span>24 Listings</span> </div>
-        </a> </div>
-      <div class="col-md-8">
 
-        <!-- Image Box -->
-        <a href="#" class="img-box" data-background-image="<?php echo base_url('assets/images/popular-location-03.jpg');?>">
-          <img src="<?php echo base_url('assets/images/popular-location-03.jpg');?>">
-        <div class="img-box-content visible">
-          <h4>Volleyball </h4>
-          <span>22 Listings</span> </div>
-        </a> </div>
-      <div class="col-md-4">
+      <?php 
+        $i=1;
+        foreach ($topclubs as $club) { 
+      ?>
 
-        <!-- Image Box -->
-        <a href="#" class="img-box" data-background-image="<?php echo base_url('assets/images/popular-location-04.jpg');?>">
-          <img src="<?php echo base_url('assets/images/popular-location-04.jpg');?>" >
+
+
+        <?php if($i == 1) { ?>
+          <div class="col-md-4">
+        <?php } else if($i == 2) { ?>
+           <div class="col-md-8">   
+        <?php } else if($i == 3) { ?>
+          <div class="col-md-8">
+        <?php } else if($i == 4) { ?>
+          <div class="col-md-4">
+        <?php } ?>
+
+
+          <!-- Image Box -->
+        <a href="<?php echo site_url('netball/clubdetails?no=').$club->no; ?>" class="img-box" data-background-image="<?php echo base_url('images');?>/<?php echo $club->photo; ?>">
+          <img src="<?php echo base_url('images');?>/<?php echo $club->photo; ?>">
         <div class="img-box-content visible">
-          <h4>Badminton</h4>
-          <span>9 Listings</span> </div>
-        </a> </div>
+          <h4><?php echo $club->club_name; ?></h4>
+          <span><?php echo $club->reg_count; ?> Listings</span> </div>
+        </a> 
+
+      </div>
+
+      <?php $i++; } ?>
+
     </div>
   </div>
   <!-- Container / End -->

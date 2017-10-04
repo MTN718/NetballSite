@@ -27,18 +27,21 @@
           <h4>Event Listings</h4>
           <ul>
 
-<?php if(isset($eventList) and !empty($eventList))  foreach ($eventList as $event) { ?>
+        <?php if(isset($eventList) and !empty($eventList))  foreach ($eventList as $event) { ?>
             <li data-row-id="<?php echo $event->no;?>"  id="eventAction<?php echo $event->no;?>">
               <div class="list-box-listing">
                 <div class="list-box-listing-img"><a href="#">
-                  <img src="../admin/assets/images/event/<?php if(!empty($event->photo)) echo $event->photo; ?>" alt=""></a></div>
+                  <img src="../../../images/event/<?php if(!empty($event->photo)) echo $event->photo; ?>" alt=""></a></div>
                 <div class="list-box-listing-content">
                   <div class="inner">
                     <h3><?php if(!empty($event->title)) echo $event->title; ?></h3>
-                    <span>Lorem Ipsum, is simply</span>
-                    <h3> Club Name </h3>
-                    <?php $club_data = $this->adminmodel->getclubdata($event->club_no); ?>
-                    <span><?php if(!empty($club_data->club_name)) echo $club_data->club_name; ?></span>
+                    <h5> Club Name :
+                      <?php $club_data = $this->adminmodel->getclubdata($event->club_no); ?>
+                      <span><?php if(!empty($club_data->club_name)) echo $club_data->club_name; ?></span>
+                    </h5>
+                    <h5>Venue :<span><?php if(!empty($event->venue)) echo $event->venue; ?></span></h5>  
+                    <h5>Date :<span><?php if(!empty($event->date)) echo $event->date; ?></span></h5>
+                     <h5>Time :<span><?php if(!empty($event->starttime)) echo $event->starttime; ?> to <?php if(!empty($event->endtime)) echo $event->endtime; ?></span></h5>  
                     <div class="star-rating" data-rating="2.0">
                       <div class="rating-counter">(17 reviews)</div>
                     <span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div>

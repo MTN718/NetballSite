@@ -62,8 +62,8 @@
                                 <?php if(isset($eventinfos) and !empty($eventinfos))  foreach ($eventinfos as $event) { ?>
                                 <li data-row-id="<?php echo $event->no;?>"  id="eventAction<?php echo $event->no;?>">
                                   <div class="list-box-listing">
-                                    <div class="list-box-listing-img"><a href="#">
-                                      <img src="../admin/assets/images/event/<?php if(!empty($event->photo)) echo $event->photo; ?>" alt=""></a></div>
+                                    <div class="list-box-listing-img"><a>
+                                      <img src="<?php echo base_url(); ?>images/event/<?php if(!empty($event->photo)) echo $event->photo; ?>" alt=""></a></div>
                                       <div class="list-box-listing-content">
                                           <div class="inner">
                                             <h3><?php if(!empty($event->title)) echo $event->title; ?></h3>
@@ -87,32 +87,43 @@
     </div>
     <!-- Content / End --> 
     <!-- Widgets -->
+
     <div class="col-lg-3 col-md-4">
         <div class="sidebar">
             <!-- Widget -->
             <div class="widget margin-bottom-40">
+
+                <h3 id="errorcheckoutdata" style="display: none; color: red;">You are not a player. please login as a player</h3>
                 <!-- Row -->
-                <div class="row with-forms"> 
-                    <!-- Type -->
-                    <div class="col-md-12">
-                        <select data-placeholder="All Categories" id="event" class="chosen-select" style="display: none;" required="required">
-                            <option value="">Select Event</option>
-                            <?php if(isset($eventinfos) and !empty($eventinfos))  foreach ($eventinfos as $event) { 
+                <form method="post" class="form-horizontal" action="<?php echo site_url();?>/netball/addeventproposal">
 
-                                $event_date = strtotime($event->date);
-                                $event_date = date('Y-m-d',$event_date);
-                                $current_date = date('Y-m-d');
+                    <?php if($this->session->userdata('login_data')) { 
+                        $userInfo = $this->session->userdata('login_data');
+                        
+                        $player_id = $userInfo->no;
+                    ?>
+                    <input type="hidden" name="playerid" value="<?php if (!empty($player_id)) echo $player_id; ?>">
+                    <input type="hidden" name="club_id" value="<?php if (!empty($clubdatainfo->no)) echo $clubdatainfo->no; ?>">
+                    <?php } ?>
 
-                                print_r($event_date);
-
-                                if($event_date > $current_date) {
-                                    ?>
-                                    <option value="<?php echo $event->no; ?>"><?php if(!empty($event->title)) echo $event->title; ?></option>
-                                    <?php } } ?>
-                                </select>
+                    <div class="row with-forms"> 
+                        <!-- Type -->
+                        <div class="col-md-12">
+                            <select data-placeholder="All Categories" name="eventid" id="event" class="chosen-select" style="display: none;" required="required">
+                                <option value="">Select Event</option>
+                                <?php if(isset($eventinfos) and !empty($eventinfos))  foreach ($eventinfos as $event) { 
+                                    $event_date = strtotime($event->date);
+                                    $event_date = date('Y-m-d',$event_date);
+                                    $current_date = date('Y-m-d');
+                                    print_r($event_date);
+                                    if($event_date > $current_date) {
+                                        ?>
+                                        <option value="<?php echo $event->no; ?>"><?php if(!empty($event->title)) echo $event->title; ?></option>
+                                        <?php } } ?>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Row / End --> 
+                            <!-- Row / End --> 
 
                         <!-- <div class="row with-forms"> 
                             <div class="col-md-12">
@@ -124,18 +135,29 @@
                         <div class="row with-forms"> 
                             <!-- Type -->
                             <div class="col-md-12">
-                                <input type="text" id="event_fee" placeholder="Proposal" disabled="disabled" value="">
+                                <input type="text" id="event_fee" placeholder="Proposal" disabled="disabled" value="" required="required">
                             </div>
                         </div>
                         <!-- Row / End -->  <br>
-                        <div id="paypal-button-container"></div>
-                    </div>
-                    <!-- Widget / End --> 
+                        <!--  <div id="paypal-button-container"></div> -->
+                        <div class="col-md-12">
+                            <?php if(!$this->session->userdata('login_data')) { ?>
+                                <a href="#sign-in-dialog" class="button border fw margin-top-10 popup-with-zoom-anim" style="width: 100%; text-align: center;">Login</a>
+                            <?php } else { ?>
+                                <?php if($userInfo->user_type == "player") { ?>                                
+                                    <input type="submit" class="button border fw margin-top-10" name="button" value="Checkout" style="width: 100%;" />
+                                <?php } else { ?>                                    
+                                    <input type="button" id="errorcheckout" class="button border fw margin-top-10" name="button" value="Checkout" style="width: 100%;" />
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- Sidebar / End -->   
-    </div>
+    </div>  
+</div>
 </div>
 </div>
 

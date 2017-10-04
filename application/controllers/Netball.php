@@ -17,12 +17,26 @@ class Netball extends CI_Controller {
     public function index()
     {
         $data['pageName'] = "HOME";
+
+
+        $data['topclubs'] = $this->Netballmodel->gettopclubs();
+        $data['topevents'] = $this->Netballmodel->gettopevents();
+
+
+
+
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data); 
     }
 
     public function club()
     {
         $data['clubdatalists'] = $this->Netballmodel->getclubdatalist();
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
         $data['pageName'] = "CLUB";
         $this->load->view("content_handler", $data);
     }
@@ -35,18 +49,27 @@ class Netball extends CI_Controller {
     public function accountSignUp()
     {
         $data['pageName'] = "ACCOUNT_SIGNUP";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function clubRegistration()
     {
         $data['pageName'] = "CLUB_REGISTRATION";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function clubRegistrationForm()
     {
         $data['countrylist'] = $this->Netballmodel->getcountrylist();
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $data['pageName'] = "CLUB_REGISTRATION_FORM";
         $this->load->view("content_handler", $data);
     }
@@ -54,15 +77,24 @@ class Netball extends CI_Controller {
     public function helpPassword()
     {
         $data['pageName'] = "HELP_PASSWORD";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     } 
 
     public function clubdetails()
     {   
+        $userInfo = $this->session->userdata('login_data');
+        
         $model_data = array(
             'id'=> $this->input->get('no'),
         );
+
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
         $data['clubdatainfo'] = $this->Netballmodel->getclubdatainfo($model_data);
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $data['eventinfos'] = $this->Netballmodel->geteventinfolist($model_data);
         $data['pageName'] = "CLUB_DETAILS";
         $this->load->view("content_handler", $data);
@@ -72,6 +104,9 @@ class Netball extends CI_Controller {
     {
         $data['postionlist'] = $this->Netballmodel->getpostionlist();
         $data['countrylist'] = $this->Netballmodel->getcountrylist();
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
         $data['pageName'] = "PLAYER_REGISTRATION";
         $this->load->view("content_handler", $data);
     }
@@ -79,18 +114,27 @@ class Netball extends CI_Controller {
     public function profile()
     {
         $data['pageName'] = "PROFILE";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function registerAccType()
     {
         $data['pageName'] = "ACCOUNT_TYPE";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function resetNewPassword()
     {
-        $data['token'] = $this->input->get('token');         
+        $data['token'] = $this->input->get('token');  
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();     
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();  
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $data['pageName'] = "RESET_NEW_PASS";
         $this->load->view("content_handler", $data);
     }
@@ -100,50 +144,89 @@ class Netball extends CI_Controller {
 
     {
         $data['pageName'] = "RESET_PASS";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function resetPasswordComplete()
     {
         $data['pageName'] = "RESET_PASS_COMPLETE";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function contact()
     {
         $data['pageName'] = "CONTACT";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function faq()
     {
         $data['pageName'] = "FAQ";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo(); 
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
+        $data['faqsinfolist'] = $this->Netballmodel->getfaqsinfolist();
         $this->load->view("content_handler", $data);
     }
 
     public function privacy()
     {
         $data['pageName'] = "PRIVACY";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['privacyinfo'] = $this->Netballmodel->getprivacyinfo(); 
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function pricing()
     {
         $data['pageName'] = "PRICING";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['pricinginfo'] = $this->Netballmodel->getpricinginfo(); 
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function partner()
     {
         $data['pageName'] = "PARTNER";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
         $this->load->view("content_handler", $data);
     }
 
     public function working()
     {
         $data['pageName'] = "WORKING";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
+        $data['howitworkinfo'] = $this->Netballmodel->gethowitworkinfo();
         $this->load->view("content_handler", $data);
     }
+
+     public function terms_condition()
+    {
+        $data['pageName'] = "TERMANDCONDITION";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['termconditioninfo'] = $this->Netballmodel->gettermconditioninfo(); 
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
+        $this->load->view("content_handler", $data);
+    }
+
 
 
 
@@ -188,17 +271,28 @@ class Netball extends CI_Controller {
         $this->load->view("dashboard_content_handler", $data);
     }
 
-    public function clubProfile()
+    public function clubProfile($tab="profile")
     {
-         $this->is_logged_in();
+        $this->is_logged_in();
         $userInfo = $this->session->userdata('login_data');
-         $model_data = array(
+        $model_data = array(
             'id' => $userInfo->no
         );
-
+        $data['tab'] = $tab;
         $data['countrylist'] = $this->Netballmodel->getcountrylist();
         $data['clubdatainfo'] = $this->Netballmodel->getclubdatainfo($model_data);  
         $data['pageName'] = "CLUB_PROFILE";
+        $this->load->view("dashboard_content_handler", $data);
+    }
+
+    public function view_current_event()
+    {
+        $model_data = array(
+            'id'=> $this->input->get('no'),
+        );
+        $data['eventinfo'] = $this->Netballmodel->geteventinfo($model_data);
+        $data['registerplayerinfos'] = $this->Netballmodel->geteventregisterplayerinfos($model_data);
+        $data['pageName'] = "VIEW_CURRENT_EVENT";
         $this->load->view("dashboard_content_handler", $data);
     }
 
@@ -212,16 +306,19 @@ class Netball extends CI_Controller {
 //========================================== Club Dashboard =============================================================
 
     // Club Dashboard
-    public function playerdashboard()
+    public function playerdashboard($tab="profile")
     {   
         $this->is_logged_in();
          $userInfo = $this->session->userdata('login_data');
          $model_data = array(
             'id' => $userInfo->no
         );
+        $data['tab'] = $tab;
         $data['postionlist'] = $this->Netballmodel->getpostionlist(); 
         $data['countrylist'] = $this->Netballmodel->getcountrylist(); 
         $data['playerdatainfo'] = $this->Netballmodel->getplayersdatainfo($model_data);
+        $data['playereventlist'] = $this->Netballmodel->getplayereventlist($model_data);
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist(); 
         $data['pageName'] = "PLAYER_DASHBOARD";
         $this->load->view("dashboard_player_content_handler", $data);
     }
@@ -232,7 +329,7 @@ class Netball extends CI_Controller {
     // player registration
      public function playerRegistrationFormdata()
     {
-         $config['upload_path'] = './images/';
+        $config['upload_path'] = './images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 0;
         $config['max_width'] = 0;
@@ -328,7 +425,7 @@ class Netball extends CI_Controller {
         if (!$this->upload->do_upload('image')) {
             
              $model_data = array(
-             'image' => $data1['upload_data']['file_name'],   
+             'image' => "",   
              'email' => $this->input->post('email'),
              'newpwd' => $this->input->post('password'),
              'confrimpassword' => $this->input->post('password_two'),
@@ -675,6 +772,7 @@ class Netball extends CI_Controller {
                 'requirements' => $this->input->post('requirements'),
                 'fee' => $this->input->post('fee'),
             );
+            $data['eventpackagelist'] = $this->Netballmodel->geteventpackagelist();
             $data['pageName'] = "EVENT_PACKAGE";
             $this->load->view("dashboard_content_handler", $data);
         }   
@@ -692,6 +790,7 @@ class Netball extends CI_Controller {
                 'requirements' => $this->input->post('requirements'),
                 'fee' => $this->input->post('fee'),
             );
+            $data['eventpackagelist'] = $this->Netballmodel->geteventpackagelist();
             $data['pageName'] = "EVENT_PACKAGE";
             $this->load->view("dashboard_content_handler", $data);
         }   
@@ -703,7 +802,7 @@ class Netball extends CI_Controller {
     {
             $model_data = array(
                 'id' => $this->input->post('id'),
-                'image' => $data1['upload_data']['file_name'], 
+                'image' => $this->input->post('image'), 
                 'title' => $this->input->post('title'),
                 'date' => $this->input->post('date'),
                 'venue' => $this->input->post('venue'),
@@ -715,9 +814,23 @@ class Netball extends CI_Controller {
             );
 
             $this->Netballmodel->addeventdata($model_data);
-
             $this->session->set_flashdata('success_msg','Event Added successfully');
             redirect('netball/currentEvent');
+    } 
+
+
+      // player registration
+     public function addeventproposal()
+    {
+            $model_data = array(
+                'eventid' => $this->input->post('eventid'),
+                'club_id' => $this->input->post('club_id'),
+                'playerid' => $this->input->post('playerid'), 
+            );
+
+            $this->Netballmodel->addeventproposal($model_data);
+            $this->session->set_flashdata('success_msg','successfully');
+            redirect('netball/clubdetails?no='.$model_data['club_id']);
     }
 
 
@@ -772,8 +885,10 @@ class Netball extends CI_Controller {
                 'mobile' => $this->input->post('mobile'),
             );
 
-            $this->Netballmodel->updateclubdatawithoutimgInfo($model_data);
-            $this->session->set_flashdata('success_msg', ' Updated Successfully...');
+           $status = $this->Netballmodel->updateclubdatawithoutimgInfo($model_data);
+           if ($status == false) {
+               $this->session->set_flashdata('error_msg', ' Same UserName Type is already exists');
+           }
             redirect('netball/clubProfile');
 
         } else {
@@ -785,7 +900,7 @@ class Netball extends CI_Controller {
 
             $this->Netballmodel->updateclubdata($model_data);
             $this->session->set_flashdata('success_msg', 'Info Updated Successfully...');
-            redirect('netball/clubProfile');
+            redirect('netball/clubProfile/picture');
 
          }
     }
@@ -806,9 +921,8 @@ class Netball extends CI_Controller {
         if (!$this->upload->do_upload('image')) {
             $model_data = array(
                 'id' => $this->input->post('id'),
-                'username' => $this->input->post('username'),
+                'username' => $this->input->post('username12'),
                 'email' => $this->input->post('email'),
-                'username' => $this->input->post('username'),
                 'dateofbirth' => $this->input->post('dateofbirth'),
                 'address' => $this->input->post('address'),
                 'city' => $this->input->post('city'),
@@ -822,8 +936,10 @@ class Netball extends CI_Controller {
                 'position3' => $this->input->post('position3'),
             );
 
-            $this->Netballmodel->updateplayerdatawithoutimgInfo($model_data);
-            $this->session->set_flashdata('success_msg', ' Updated Successfully...');
+            $status = $this->Netballmodel->updateplayerdatawithoutimgInfo($model_data);
+            if ($status == false) {
+                $this->session->set_flashdata('error_msg', 'Same UserName Type is already exists');
+            }
             redirect('netball/playerdashboard');
 
         } else {
@@ -840,7 +956,59 @@ class Netball extends CI_Controller {
          }
     }
 
+     public function updateclubpassword()
+    {
+        $model_data = array(
+            'id' => $this->input->post('id'),
+            'password' => $this->input->post('password'),
+            'password_two' => $this->input->post('password_two'),
+        );
+        $this->Netballmodel->updateclubpassword($model_data);
+        $this->session->set_flashdata('error_msg', 'Password and Confirm Password Does Not Match');
+        redirect('netball/clubProfile/password');
+    }
 
+     public function updateplayerpassword()
+    {
+        $model_data = array(
+            'id' => $this->input->post('id'),
+            'password' => $this->input->post('password'),
+            'password_two' => $this->input->post('password_two'),
+        );
+
+        $this->Netballmodel->updateplayerpassword($model_data);
+        $this->session->set_flashdata('error_msg', 'Password and Confirm Password Does Not Match');
+        redirect('netball/playerdashboard/password');
+    }
+
+
+
+
+
+    //============================== ajax request ====================
+
+    // Ajax Inline Update
+    public function updateInline($task="")
+    {
+        $model_data = array(
+            'val' => $_POST['val'],
+            'index' => $_POST['index'],
+            'id' => $_POST['id'],
+        );
+
+        if ($task == "position") 
+            $status = $this->Netballmodel->updateregplayerposition($model_data);
+        if ($task == "currenteventstatus") 
+            $status = $this->Netballmodel->updatecurrenteventstatus($model_data);
+
+
+        if ($status == true) {
+            $msg = array('msg' => 'success');
+        } else {
+            $msg = array('msg' => 'error');
+        }
+        echo json_encode($msg);
+    }  
 
 
 

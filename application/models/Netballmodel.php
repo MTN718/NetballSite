@@ -32,9 +32,32 @@ Class Netballmodel extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_event');
         $this->db->where('club_no',$id);
-        $this->db->order_by('date','DESC');
+        $this->db->order_by('date','ASC');
         return $this->db->get()->result();
     }
+
+    // Get Top Clubs
+     public function gettopclubs()
+    {  
+        $this->db->select('*');
+        $this->db->from('tbl_club');
+        $this->db->order_by('reg_count','desc');
+        $this->db->limit(4);
+        return $this->db->get()->result();
+    } 
+
+    // Get Top Clubs
+     public function gettopevents()
+    {  
+        $currentdate = date('m/d/Y');
+
+        $this->db->select('*');
+        $this->db->from('tbl_event');
+        $this->db->join('tbl_club', 'tbl_club.no = tbl_event.club_no');
+        $this->db->where('tbl_event.date >=',$currentdate);
+        $this->db->order_by('reg_player_count','desc');
+        return $this->db->get()->result();
+    } 
 
 
     // Get Project data
@@ -42,6 +65,7 @@ Class Netballmodel extends CI_Model
     {  
         $this->db->select('*');
         $this->db->from('tbl_club');
+        $this->db->where('status',1 );
         return $this->db->get()->result();
     } 
 
@@ -57,19 +81,177 @@ Class Netballmodel extends CI_Model
     }
 
     // Get Project data
-     public function getcountrylist()
+    public function getcountrylist()
     {  
         $this->db->select('*');
         $this->db->from('tbl_countries');
         return $this->db->get()->result();
     } 
 
-      public function getpostionlist()
+    public function getpostionlist()
     {  
         $this->db->select('*');
         $this->db->from('tbl_position');
         return $this->db->get()->result();
     } 
+
+    public function geteventinfo($model_data)
+    {  
+        $id = $model_data['id'];
+
+        $this->db->select('*');
+        $this->db->from('tbl_event');
+        $this->db->where('no',$id);
+        // $this->db->where('status',1); 
+        return $this->db->get()->row();
+    }
+
+    public function geteventregisterplayerinfos($model_data)
+    {  
+        $id = $model_data['id'];
+
+        $this->db->select('*');
+        $this->db->from('tbl_event_player_register');
+        $this->db->join('tbl_player', 'tbl_player.no = tbl_event_player_register.player_id');
+        $this->db->where('tbl_event_player_register.event_id',$id);
+        return $this->db->get()->result();
+    }
+
+    public function geteventclubdata($eventid)
+    {  
+        $this->db->select('*');
+        $this->db->from('tbl_event');
+        $this->db->join('tbl_club', 'tbl_club.no = tbl_event.club_no');
+        $this->db->where('tbl_event.no',$eventid);
+        return $this->db->get()->row();
+    } 
+
+    public function geteventpackagelist()
+    {  
+        $this->db->select('*');
+        $this->db->from('tbl_package');
+        return $this->db->get()->result();
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getediteventpositioninfo($model_data)
+    {  
+        $id = $model_data['id'];
+
+        $this->db->select('*');
+        $this->db->from('tbl_event');
+        $this->db->where('no',$id);
+        return $this->db->get()->result();
+    } 
+
+    public function getediteventpackageinfo($model_data)
+    {  
+        $package_id = $model_data['package_id'];
+
+        $this->db->select('*');
+        $this->db->from('tbl_package');
+        $this->db->where('no',$id);
+        return $this->db->get()->result();
+    } 
+
+    public function getediteventclubinfo($model_data)
+    {  
+        $club_no = $model_data['club_no'];
+
+        $this->db->select('*');
+        $this->db->from('tbl_event');
+        $this->db->where('no',$id);
+        return $this->db->get()->result();
+    } 
+
+
+    //  Get About us data
+     public function getaboutusinfo()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_about_us');
+        return $this->db->get()->row();
+    }
+
+    //  Get About us data
+     public function getcontactusinfo()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_contact_us');
+        return $this->db->get()->row();
+    }
+
+    //  Get About us data
+     public function gettermconditioninfo()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_term_condition');
+        return $this->db->get()->row();
+    }
+
+    //  Get About us data
+     public function getpricinginfo()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_pricing_policy');
+        return $this->db->get()->row();
+    }
+
+    //  Get About us data
+     public function getprivacyinfo()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_privacy_policy');
+        return $this->db->get()->row();
+    }
+
+    //  Get About us data
+     public function getfaqsinfolist()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_faqs');
+        return $this->db->get()->result();
+    }
+
+     //  Get About us data
+     public function getplayereventlist($model_data)
+    {
+        $id = $model_data['id'];
+
+        $this->db->select('*');
+        $this->db->from('tbl_event_player_register');
+        $this->db->where('player_id',$id);
+        $this->db->join('tbl_event', 'tbl_event.no = tbl_event_player_register.event_id'); 
+        return $this->db->get()->result();
+    }
+
+     //  Get About us data
+     public function getsociallinkdatalist()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_social_link');
+        $this->db->where('status',1);
+        return $this->db->get()->result();
+    }
+
+     //  Get About us data
+     public function gethowitworkinfo()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_how_its_work');
+        return $this->db->get()->row();
+    }
+
 
 
 
@@ -100,6 +282,7 @@ Class Netballmodel extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_player');
         $this->db->where('name', $model_data['username']);
+        $this->db->where('status', '1');
         $resultp = $this->db->get()->row();
         if (!empty($resultp)) { 
             if (password_verify($model_data['password'], $resultp->password)) {
@@ -111,6 +294,7 @@ Class Netballmodel extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_club');
         $this->db->where('name', $model_data['username']);
+        $this->db->where('status', '1');
         $result = $this->db->get()->row();
         if (!empty($result)) { 
             if (password_verify($model_data['password'], $result->password)) {
@@ -343,6 +527,24 @@ Class Netballmodel extends CI_Model
         $result = $this->db->query($sql);
         return $this->db->insert_id();
     }
+    
+
+      // Add club Registration Form data 
+     public function addeventproposal($model_data)
+    {
+        $eventid = $model_data['eventid'];
+        $playerid = $model_data['playerid'];
+       
+        $sql = "INSERT INTO tbl_event_player_register(`event_id`,`player_id`)  VALUES('$eventid','$playerid')";
+        $result = $this->db->query($sql);
+        $this->db->insert_id();
+
+        $club_data = $this->geteventclubdata($eventid);
+        $count = $club_data->reg_count + 1;
+        $sql = "UPDATE `tbl_club` SET `reg_count` = '$count' WHERE no = '$club_data->no'";
+        $this->db->query($sql);
+
+    }
 
 
 
@@ -367,9 +569,22 @@ Class Netballmodel extends CI_Model
         $phone = $model_data['phone'];
         $mobile = $model_data['mobile'];
 
-         $sql = "UPDATE `tbl_club` SET `name` = '$username', `email` = '$email',`stablishes_date` = '$dateofbirth',`address` = '$address',`city` = '$city',
+
+        $this->db->select('*');
+        $this->db->from('tbl_club');
+        $this->db->where('name', $username);
+        $result = $this->db->get();
+        $numrows =$result->num_rows();
+        if ($numrows == 1) {
+           return false;
+        }
+
+        else {
+            $sql = "UPDATE `tbl_club` SET `name` = '$username', `email` = '$email',`stablishes_date` = '$dateofbirth',`address` = '$address',`city` = '$city',
             `state` = '$state',`postcode` = '$postcode',`country` = '$country',`club_name` = '$clubname',`association_afiliated` = '$association',`phone` = '$phone',`mobile` = '$mobile' WHERE no = '$id'";
-        $this->db->query($sql);
+             $result = $this->db->query($sql); 
+            return true;
+        }    
     }
 
       // Update club Form data 
@@ -402,9 +617,23 @@ Class Netballmodel extends CI_Model
         $position2 = $model_data['position2'];
         $position3 = $model_data['position3'];
 
-         $sql = "UPDATE `tbl_player` SET `name` = '$username', `email` = '$email',`birthday` = '$dateofbirth',`address` = '$address',`city` = '$city',
-            `state` = '$state',`postcode` = '$postcode',`country` = '$country',`position1` = '$position1',`position2` = '$position2',`position3` = '$position3',`phone` = '$phone',`mobile` = '$mobile' WHERE no = '$id'";
-        $this->db->query($sql);
+
+        $this->db->select('*');
+        $this->db->from('tbl_player');
+        $this->db->where('name', $username);
+        $result = $this->db->get();
+        $numrows =$result->num_rows();
+        if ($numrows == 1) {
+           return false;
+        }
+        else{
+
+            $sql = "UPDATE `tbl_player` SET `name` = '$username', `email` = '$email',`birthday` = '$dateofbirth',`address` = '$address',`city` = '$city',
+                `state` = '$state',`postcode` = '$postcode',`country` = '$country',`position1` = '$position1',`position2` = '$position2',`position3` = '$position3',`phone` = '$phone',`mobile` = '$mobile' WHERE no = '$id'";
+            $result = $this->db->query($sql); 
+            return true;
+        }    
+
     }
 
      // Update club Form data 
@@ -417,10 +646,99 @@ Class Netballmodel extends CI_Model
         $this->db->query($sql);
     }
 
+    // change password of user
+    public function updateclubpassword($model_data) {
+
+        $id = $model_data['id'];
+        $temppassword = $model_data['password'];
+        $password = password_hash($temppassword, PASSWORD_BCRYPT);
+
+        $sql = "UPDATE `tbl_club` SET `password` = '$password' WHERE no = '$id'";
+        $result = $this->db->query($sql); 
+        return true;
+    }
+
+    // change password of user
+    public function updateplayerpassword($model_data) {
+
+        $id = $model_data['id'];
+        $temppassword = $model_data['password'];
+        $password = password_hash($temppassword, PASSWORD_BCRYPT);
+
+        $sql = "UPDATE `tbl_player` SET `password` = '$password' WHERE no = '$id'";
+        $result = $this->db->query($sql); 
+        return true;
+    }
 
 
 
 
+
+
+
+
+
+    // ===================================== ajax operation ===============================
+
+
+    // Update event reg Inline data
+    public function updateregplayerposition($model_data) {
+        $columns = array(
+            0 => 'position',
+        );
+        $colVal = '';
+        $colIndex = $rowid = 0;
+         
+        if(isset($model_data)){
+            if(isset($model_data['val']) && !empty($model_data['val'])) {
+                $colVal =  preg_replace('/\s+/S', " ", $model_data['val']);
+            }
+
+            if(isset($model_data['index']) && $model_data['index'] >= 0) {
+              $colIndex = $model_data['index'];
+            }
+
+            if(isset($model_data['id']) && $model_data['id'] != NULL) {
+              $rowid = $model_data['id'];
+            }
+
+
+            $sql = "UPDATE `tbl_event_player_register` SET ".$columns[$colIndex]." = '".$colVal."' WHERE no='".$rowid."'";
+
+            $this->db->query($sql);
+            return true;
+        }
+        return false;
+    }
+
+     // Update clients Inline data
+    public function updatecurrenteventstatus($model_data) {
+        $columns = array(
+            1 => 'reg_status',
+        );
+        $colVal = '';
+        $colIndex = $rowid = 0;
+         
+        if(isset($model_data)){
+            if(isset($model_data['val']) && !empty($model_data['val'])) {
+                $colVal =  preg_replace('/\s+/S', " ", $model_data['val']);
+            }
+
+            if(isset($model_data['index']) && $model_data['index'] >= 0) {
+              $colIndex = $model_data['index'];
+            }
+
+            if(isset($model_data['id']) && $model_data['id'] != NULL) {
+              $rowid = $model_data['id'];
+            }
+
+                $sql = "UPDATE  `tbl_event_player_register` SET ".$columns[$colIndex]." = '".$colVal."' WHERE  no='".$rowid."'";
+
+            $this->db->query($sql);
+            return true;
+        }
+        return false;
+    }
 
 
 

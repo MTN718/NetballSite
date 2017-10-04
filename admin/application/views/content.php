@@ -21,6 +21,30 @@ switch($pageName) {
     case "SETTINGS":
     include('contents/settings.php');
     break;
+    case "ADDPOSITION":
+    include('contents/addposition.php');
+    break;
+    case "ADDFAQS":
+    include('contents/addfaqs.php');
+    break;
+    case "UPDATEFAQS":
+    include('contents/updatefaqs.php');
+    break;
+    case "PACKAGE":
+    include('contents/package.php');
+    break;
+    case "ADDPACKAGE":
+    include('contents/addpackage.php');
+    break;
+    case "UPDATEPACKAGE":
+    include('contents/updatepackage.php');
+    break;
+    case "ADDSOCIALLINK":
+    include('contents/addsociallink.php');
+    break;
+    case "CLUBOVERVIEW":
+    include('contents/cluboverview.php');
+    break;
 
 
 

@@ -83,7 +83,7 @@
             <a href="<?php echo site_url('admin/userManagement');?>"> Players management</a>
           </li>
           <?php
-            if ($pageName == "CLUB")
+            if ($pageName == "CLUB" || $pageName == "CLUBOVERVIEW")
               echo "<li class='active'>";
             else
               echo "<li>";
@@ -107,12 +107,20 @@
             <a href="<?php echo site_url('admin/transaction');?>">Transaction History</a>
           </li>
           <?php
-            if ($pageName == "SETTINGS")
+            if ($pageName == "SETTINGS" || $pageName == "ADDPOSITION" || $pageName == "ADDFAQS" || $pageName == "UPDATEFAQS")
               echo "<li class='active'>";
             else
               echo "<li>";
           ?>  
             <a href="<?php echo site_url('admin/settings');?>">Settings</a>
+          </li>
+            <?php
+            if ($pageName == "PACKAGE" || $pageName == "ADDPACKAGE" || $pageName == "UPDATEPACKAGE")
+              echo "<li class='active'>";
+            else
+              echo "<li>";
+          ?>  
+            <a href="<?php echo site_url('admin/package');?>">Package</a>
           </li>
         </ul>
       </div>
