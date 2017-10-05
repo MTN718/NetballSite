@@ -550,15 +550,8 @@ class Netball extends CI_Controller {
 //=====================================Ajax Request =====================
     public function eventfee()
     {   
-<<<<<<< HEAD
 
         $event_id = $_POST["event_id"];
-
-=======
-
-        $event_id = $_POST["event_id"];
-
->>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
         $this->db->select('*');
         $this->db->where('no',$event_id);
         $this->db->from('tbl_event');
@@ -973,7 +966,6 @@ class Netball extends CI_Controller {
         $this->session->set_flashdata('error_msg', 'Password and Confirm Password Does Not Match');
         redirect('netball/clubProfile/password');
     }
-<<<<<<< HEAD
 
      public function updateplayerpassword()
     {
@@ -992,7 +984,6 @@ class Netball extends CI_Controller {
 
 
 
-    //============================== ajax request ====================
 
     // Ajax Inline Update
     public function updateInline($task="")
@@ -1081,51 +1072,6 @@ class Netball extends CI_Controller {
         }
         return $rstArray;
     }
-=======
-
-     public function updateplayerpassword()
-    {
-        $model_data = array(
-            'id' => $this->input->post('id'),
-            'password' => $this->input->post('password'),
-            'password_two' => $this->input->post('password_two'),
-        );
-
-        $this->Netballmodel->updateplayerpassword($model_data);
-        $this->session->set_flashdata('error_msg', 'Password and Confirm Password Does Not Match');
-        redirect('netball/playerdashboard/password');
-    }
-
-
-
-
-
-    //============================== ajax request ====================
-
-    // Ajax Inline Update
-    public function updateInline($task="")
-    {
-        $model_data = array(
-            'val' => $_POST['val'],
-            'index' => $_POST['index'],
-            'id' => $_POST['id'],
-        );
-
-        if ($task == "position") 
-            $status = $this->Netballmodel->updateregplayerposition($model_data);
-        if ($task == "currenteventstatus") 
-            $status = $this->Netballmodel->updatecurrenteventstatus($model_data);
-
-
-        if ($status == true) {
-            $msg = array('msg' => 'success');
-        } else {
-            $msg = array('msg' => 'error');
-        }
-        echo json_encode($msg);
-    }  
->>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
-
 
 
 
