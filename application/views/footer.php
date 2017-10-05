@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
  <!-- Footer
 ================================================== -->
   <div id="footer"> 
@@ -7,22 +10,22 @@
         <div class="col-md-5 col-sm-6"> 
           <img class="footer-logo" src="<?php echo base_url('assets/images/logoinspire.jpg');?>" alt=""> <br>
           <br>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+          <p><?php if (!empty($aboutusinfo->description)) echo $aboutusinfo->description; ?>.</p>
         </div>
         <div class="col-md-4 col-sm-6 ">
           <h4>Helpful Links</h4>
           <ul class="footer-links">
             <!-- <li><a id="footerlogin">Login</a></li> -->
             <li><a href="<?php echo site_url('netball/registerAccType');?>">Sign Up</a></li>
-            <li><a href="#">My Account</a></li>
-            <li><a href="#">Add Listing</a></li>
+            <!-- <li><a href="#">My Account</a></li> -->
             <li><a href="<?php echo site_url('netball/pricing');?>">Pricing</a></li>
             <li><a href="<?php echo site_url('netball/privacy');?>">Privacy Policy</a></li>
           </ul>
           <ul class="footer-links">
             <li><a href="<?php echo site_url('netball/faq');?>">FAQ</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="<?php echo site_url('netball/partner');?>">Our Partners</a></li>
+            <!-- <li><a href="#">Events</a></li> -->
+            <!-- <li><a href="<?php echo site_url('netball/partner');?>">Our Partners</a></li> -->
+            <li><a href="<?php echo site_url('netball/terms_condition');?>">Terms & Condition</a></li>
             <li><a href="<?php echo site_url('netball/working');?>">How It Works</a></li>
             <li><a href="<?php echo site_url('netball/contact');?>">Contact</a></li>
           </ul>
@@ -30,15 +33,44 @@
         </div>
         <div class="col-md-3  col-sm-12">
           <h4>Contact Us</h4>
-          <div class="text-widget"> <span>12345 address line1, country. </span> <br>
-            Phone: <span>(123) 456-789 </span><br>
-            E-Mail:<span> <a href="#">info@gmail.com</a> </span><br>
+          <div class="text-widget"> <span><?php if (!empty($contactusinfo->address)) echo $contactusinfo->address; ?></span> <br>
+            Phone: <span><?php if (!empty($contactusinfo->phone)) echo $contactusinfo->phone; ?></span><br>
+            E-Mail:<span> <a href="#"><?php if (!empty($contactusinfo->email)) echo $contactusinfo->email; ?></a> </span><br>
           </div>
           <ul class="social-icons margin-top-20">
-            <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-            <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-            <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-            <li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
+
+
+
+             <?php
+              $fade = "";
+              $service = "";
+              $index = 0;
+              foreach ($sociallinkdatalist as $sociallinkdata) { 
+
+                if($index == 0) {
+                  $service = "facebook";
+                  $fade = "icon-facebook";
+                }
+                else if($index == 1) {
+                  $service = "twitter";
+                  $fade = "icon-twitter";
+                }
+                else if($index == 2) {
+                  $service = "gplus";
+                  $fade = "icon-gplus";
+                }
+                else if($index == 3) {
+                  $service = "vimeo";
+                  $fade = "icon-vimeo";
+                }
+                 else if($index == 4) {
+                 break;
+                }
+              ?>
+
+                <li><a class="<?php echo $service; ?>" href="<?php if (!empty($sociallinkdata->link)) echo $sociallinkdata->link; ?>" target="new"><i class="<?php echo $fade; ?>"></i></a></li>
+            <?php $index++; } ?>
+
           </ul>
         </div>
       </div>
@@ -188,10 +220,127 @@
 
  
 
+<!-- paypal payment gateway js -->
+<script>
+    paypal.Button.render({
+
+        env: 'sandbox', // sandbox | production
+
+        // PayPal Client IDs - replace with your own
+        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+        client: {
+            sandbox: 'AV1YGASG-bn2kb-Yvu2_yFBVoa7q_IjBPVCbzdS4g1b3xCorRoAHvorFwYMwHqoNvxcdQv4phxhkxAyb',
+            production: '<insert production client id>'
+        },
+
+        // Show the buyer a 'Pay Now' button in the checkout flow
+        commit: true,
+
+        // payment() is called when the button is clicked
+        payment: function (data, actions) {
+            var finalamount = $("#finalamount").text();
+            var inputamount = $("#inputamount").val();
+            
+            if(finalamount >= inputamount) 
+            {
+                if(inputamount > 1) {
+                    // Make a call to the REST api to create the payment
+                    return actions.payment.create({
+                        transactions: [
+                            {
+                                amount: {total: inputamount, currency: 'USD'}
+                            }
+                        ]
+                    });
+                } else {
+                    window.alert('Error');
+                    exit();
+                }
+            }
+        },
+
+        // onAuthorize() is called when the buyer approves the payment
+        onAuthorize: function (data, actions) {
+            // Make a call to the REST api to execute the payment
+            return actions.payment.execute().then(function (data) {
+                console.log(data);
+
+                var invoice_id = $("#invoice_id").text();
+                var id = data.id;
+                var cart = data.cart;
+                var create_time = data.create_time;
+                var payment_method = data.payer.payment_method;
+                var email = data.payer.payer_info.email;
+                var first_name = data.payer.payer_info.first_name;
+                var middle_name = data.payer.payer_info.middle_name;
+                var last_name = data.payer.payer_info.last_name;
+                var country_code = data.payer.payer_info.country_code;
+                var line1 = data.payer.payer_info.shipping_address.line1;
+                var city = data.payer.payer_info.shipping_address.city;
+                var state = data.payer.payer_info.shipping_address.state;
+                var postal_code = data.payer.payer_info.shipping_address.postal_code;
+                var country_code = data.payer.payer_info.shipping_address.country_code;
+                var total = data.transactions[0].amount.total;
+                var currency = data.transactions[0].amount.currency;
+
+                console.log(invoice_id);
+                console.log(id);
+                console.log(cart);
+                console.log(create_time);
+                console.log(payment_method);
+                console.log(email);
+                console.log(first_name);
+                console.log(middle_name);
+                console.log(last_name);
+                console.log(country_code);
+                console.log(line1);
+                console.log(city);
+                console.log(state);
+                console.log(postal_code);
+                console.log(country_code);
+                console.log(total);
+                console.log(currency);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'savetransaction',
+                    data: {
+                        'invoice_id': invoice_id,
+                        'id': id,
+                        'cart': cart,
+                        'create_time': create_time,
+                        'payment_method': payment_method,
+                        'email': email,
+                        'first_name': first_name,
+                        'middle_name': middle_name,
+                        'last_name': last_name,
+                        'country_code': country_code,
+                        'line1': line1,
+                        'city': city,
+                        'state': state,
+                        'postal_code': postal_code,
+                        'country_code': country_code,
+                        'total': total,
+                        'currency': currency,
+                    },
+                    success: function (data) {
+                        window.alert('Payment Complete!');
+                        location.reload();
+                    }
+                });
+            });
+        }
+
+    }, '#paypal-button-container');
+</script>
 
 
 
-
+<script type="text/javascript">            
+    $(document).on('click', '#errorcheckout', function () {
+        $('#errorcheckoutdata').css("display", "block");
+    });
+</script>
 
 
 <!-- REVOLUTION SLIDER SCRIPT --> 

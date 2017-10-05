@@ -156,18 +156,18 @@
     <p class="login-box-msg">Sign in to start your session</p>
     <form method="post" action="<?php echo site_url('admin/loginfrom'); ?>" name="loginform">
       <div class="form-group has-feedback">
-        <input type="text" name="username" class="form-control" placeholder="username" required="required"/>
+        <input type="text" name="username" class="form-control" placeholder="Username" required="required"/>
        <!--  <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
       </div>
       <div class="form-group has-feedback">
-        <input id="password" class="form-control" type="password" name="password" placeholder="password"
+        <input id="password" class="form-control" type="password" name="password" placeholder="Password"
                required="required"/>
         <!-- <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
       </div>
       <div>
         <!-- /.col -->
         <div>
-          <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-key"></i>&nbsp;login</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">&nbsp;login</button>
         </div>
         <!-- /.col -->
       </div>

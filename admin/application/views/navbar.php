@@ -83,7 +83,7 @@
             <a href="<?php echo site_url('admin/userManagement');?>"> Players management</a>
           </li>
           <?php
-            if ($pageName == "CLUB")
+            if ($pageName == "CLUB" || $pageName == "CLUBOVERVIEW")
               echo "<li class='active'>";
             else
               echo "<li>";
@@ -107,87 +107,20 @@
             <a href="<?php echo site_url('admin/transaction');?>">Transaction History</a>
           </li>
           <?php
-            if ($pageName == "SETTINGS")
+            if ($pageName == "SETTINGS" || $pageName == "ADDPOSITION" || $pageName == "ADDFAQS" || $pageName == "UPDATEFAQS")
               echo "<li class='active'>";
             else
               echo "<li>";
           ?>  
             <a href="<?php echo site_url('admin/settings');?>">Settings</a>
           </li>
-        </ul>
-
-
-
-
-
-
-
-
-
-        <ul data-submenu-title="Settings"> 
-        <?php
-            if ($pageName == "POSITION")
-              echo "<li class='active'>";
-            else
-              echo "<li>";
-          ?>    
-            <a href="<?php echo site_url('admin');?>">Position </a>
-          </li>
-          <?php
-            if ($pageName == "ABOUTUS")
-              echo "<li class='active'>";
-            else
-              echo "<li>";
-          ?>    
-            <a href="<?php echo site_url('admin/userManagement');?>">About Us</a>
-          </li>
-          <?php
-            if ($pageName == "CONTACTUS")
-              echo "<li class='active'>";
-            else
-              echo "<li>";
-          ?>
-            <a href="<?php echo site_url('admin/clubManagement');?>">Contact Us</a>
-          </li>
-          <?php
-            if ($pageName == "PRIVACYPOLICY")
-              echo "<li class='active'>";
-            else
-              echo "<li>";
-          ?>
-            <a href="<?php echo site_url('admin/eventManagement');?>">Privacy Policy</a>
-          </li>
-          <?php
-            if ($pageName == "PRICINGPOLICY")
+            <?php
+            if ($pageName == "PACKAGE" || $pageName == "ADDPACKAGE" || $pageName == "UPDATEPACKAGE")
               echo "<li class='active'>";
             else
               echo "<li>";
           ?>  
-            <a href="<?php echo site_url('admin/transaction');?>">Pricing Policy</a>
-          </li>
-          <?php
-            if ($pageName == "TERMCONDITION")
-              echo "<li class='active'>";
-            else
-              echo "<li>";
-          ?>  
-            <a href="<?php echo site_url('admin/settings');?>">Term & Condition</a>
-          </li>
-          <?php
-            if ($pageName == "HOWITSWORK")
-              echo "<li class='active'>";
-            else
-              echo "<li>";
-          ?>  
-            <a href="<?php echo site_url('admin/settings');?>">How its work</a>
-          </li>
-          <?php
-            if ($pageName == "FAQS")
-              echo "<li class='active'>";
-            else
-              echo "<li>";
-          ?>  
-            <a href="<?php echo site_url('admin/settings');?>">Faq's</a>
+            <a href="<?php echo site_url('admin/package');?>">Package</a>
           </li>
         </ul>
       </div>

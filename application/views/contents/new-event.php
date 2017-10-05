@@ -6,13 +6,11 @@
  			<div class="col-md-12">
  				<h2>Inspire Sports Group :: Add New Event Detail</h2>
  				<!-- Breadcrumbs -->
- 				<nav id="breadcrumbs">
+ 				<!-- <nav id="breadcrumbs">
  					<ul>
- 						<li><a href="#">Home</a></li>
- 						<li><a href="#">Add New Event Detail</a></li>
 
  					</ul>
- 				</nav>
+ 				</nav> -->
  			</div>
  		</div>
  	</div>

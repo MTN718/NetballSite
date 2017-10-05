@@ -64,15 +64,7 @@
 						<div class="checkbox">
 							<input type="submit" id="submit-action" class="button border fw margin-top-30 margin-bottom-20" name="register" value="Submit"  />
 						</div>
-					</div>
-					<div class="col-xs-12 col-sm-5 control-btn">
-
-					</div>
-					<input type="hidden" name="option" value="com_contact" />
-					<input type="hidden" name="task" value="contact.submit" />
-					<input type="hidden" name="return" value="" />
-					<input type="hidden" name="id" value="1:transporter-contact" />
-					<input type="hidden" name="6b919dadc0531a99187692d43e4ab9f5" value="1" />        
+					</div>     
 				</div>
 			</fieldset>
 		</form>
