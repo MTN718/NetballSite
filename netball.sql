@@ -633,8 +633,12 @@ CREATE TABLE `tbl_social_link` (
   `social_link_id` int(11) NOT NULL,
   `title` varchar(225) NOT NULL,
   `icon` varchar(255) NOT NULL,
+<<<<<<< HEAD
   `link` varchar(255) NOT NULL,
   `status` int(11) NOT NULL
+=======
+  `link` varchar(255) NOT NULL
+>>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -873,7 +877,11 @@ ALTER TABLE `tbl_event`
 -- AUTO_INCREMENT for table `tbl_event_player_register`
 --
 ALTER TABLE `tbl_event_player_register`
+<<<<<<< HEAD
   MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+=======
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+>>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
 --
 -- AUTO_INCREMENT for table `tbl_faqs`
 --

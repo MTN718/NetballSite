@@ -18,14 +18,22 @@
             <!-- <li><a id="footerlogin">Login</a></li> -->
             <li><a href="<?php echo site_url('netball/registerAccType');?>">Sign Up</a></li>
             <!-- <li><a href="#">My Account</a></li> -->
+<<<<<<< HEAD
+=======
+            <li><a href="<?php echo site_url('netball/terms_condition');?>">Terms & Condition</a></li>
+>>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
             <li><a href="<?php echo site_url('netball/pricing');?>">Pricing</a></li>
             <li><a href="<?php echo site_url('netball/privacy');?>">Privacy Policy</a></li>
           </ul>
           <ul class="footer-links">
             <li><a href="<?php echo site_url('netball/faq');?>">FAQ</a></li>
             <!-- <li><a href="#">Events</a></li> -->
+<<<<<<< HEAD
             <!-- <li><a href="<?php echo site_url('netball/partner');?>">Our Partners</a></li> -->
             <li><a href="<?php echo site_url('netball/terms_condition');?>">Terms & Condition</a></li>
+=======
+            <li><a href="<?php echo site_url('netball/partner');?>">Our Partners</a></li>
+>>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
             <li><a href="<?php echo site_url('netball/working');?>">How It Works</a></li>
             <li><a href="<?php echo site_url('netball/contact');?>">Contact</a></li>
           </ul>
@@ -229,7 +237,11 @@
         // PayPal Client IDs - replace with your own
         // Create a PayPal app: https://developer.paypal.com/developer/applications/create
         client: {
+<<<<<<< HEAD
             sandbox: 'AV1YGASG-bn2kb-Yvu2_yFBVoa7q_IjBPVCbzdS4g1b3xCorRoAHvorFwYMwHqoNvxcdQv4phxhkxAyb',
+=======
+            sandbox: 'AXvmWjS8gLnp9WomdZ6pKB9e1eAOX1ExYqvO70vNx40qIIND8YFj4evRJX5o5K4KpPSInT1QjJ2yVvr3',
+>>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
             production: '<insert production client id>'
         },
 

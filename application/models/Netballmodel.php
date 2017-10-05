@@ -42,7 +42,10 @@ Class Netballmodel extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_club');
         $this->db->order_by('reg_count','desc');
+<<<<<<< HEAD
         $this->db->where('status', 1);
+=======
+>>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
         $this->db->limit(4);
         return $this->db->get()->result();
     } 
