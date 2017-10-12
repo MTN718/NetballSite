@@ -102,7 +102,7 @@
                         
                         $player_id = $userInfo->no;
                     ?>
-                    <input type="hidden" name="playerid" value="<?php if (!empty($player_id)) echo $player_id; ?>">
+                    <input type="hidden" id="playerid" name="playerid" value="<?php if (!empty($player_id)) echo $player_id; ?>">
                     <input type="hidden" name="club_id" value="<?php if (!empty($clubdatainfo->no)) echo $clubdatainfo->no; ?>">
                     <?php } ?>
 
@@ -135,22 +135,26 @@
                         <div class="row with-forms"> 
                             <!-- Type -->
                             <div class="col-md-12">
-                                <input type="text" id="event_fee" placeholder="Proposal" disabled="disabled" value="" required="required">
+                                <input type="text" id="event_fee" name="event_fee" placeholder="Proposal" disabled="disabled" value="" required="required">
                             </div>
                         </div>
                         <!-- Row / End -->  <br>
-                         <div id="paypal-button-container"></div>
                         <div class="col-md-12">
                             <?php if(!$this->session->userdata('login_data')) { ?>
                                 <a href="#sign-in-dialog" class="button border fw margin-top-10 popup-with-zoom-anim" style="width: 100%; text-align: center;">Login</a>
                             <?php } else { ?>
                                 <?php if($userInfo->user_type == "player") { ?>                                
-                                    <input type="submit" class="button border fw margin-top-10" name="button" value="Checkout" style="width: 100%;" />
+                                    <!-- <input type="submit" class="button border fw margin-top-10" name="button" value="Checkout" style="width: 100%;" /> -->
+
+                                    <div id="paypal-button-container"></div>
+
                                 <?php } else { ?>                                    
                                     <input type="button" id="errorcheckout" class="button border fw margin-top-10" name="button" value="Checkout" style="width: 100%;" />
                                 <?php } ?>
                             <?php } ?>
                         </div>
+
+                        
 
                     </form>
                 </div>
@@ -173,7 +177,7 @@
                     data:'event_id='+event_id,
                     success:function(fee){
                         fee = JSON.parse("["+fee+"]");
-                        $('#event_fee').val('$'+fee);
+                        $('#event_fee').val(fee);
                     }
                 }); 
             }else{

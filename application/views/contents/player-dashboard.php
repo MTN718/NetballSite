@@ -67,6 +67,7 @@
 						<li class="<?php if ($tab == "event") echo "active"; ?>"><a href="#event" data-toggle="tab"> My Events </a></li>
 						<li class="<?php if ($tab == "payment") echo "active"; ?>"><a href="#payment" data-toggle="tab"> Payments </a></li>
 						<li class="<?php if ($tab == "password") echo "active"; ?>"><a href="#password" data-toggle="tab"> Change Password </a></li>
+						<li class="<?php if ($tab == "notification") echo "active"; ?>"><a href="#notification" data-toggle="tab"> Player Notification </a></li>
 					</ul>
 
 					<!-- Tabs Content -->
@@ -403,8 +404,28 @@
 
 
 
+ 					<div class="tab-pane fade <?php if ($tab == "password") echo "active in"; ?>" id="notification">
+ 						<div class="col-lg-10 col-md-12">
+							<div class="dashboard-list-box with-icons margin-top-20">
+								<h4> Notification </h4>
+								<ul>
+									<?php foreach ($playernotificationdatalist as $playernotificationdata) { ?>
+										<li>
+											<i class="list-box-icon sl sl-icon-layers"></i>  <?php if (!empty($playernotificationdata->message)) echo $playernotificationdata->message; ?>
+											<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
+										</li>
+									<?php } ?>  
 
-
+									<?php foreach ($playernotificationdatalistbyid as $playernotificationdatabyid) { ?>
+										<li>
+											<i class="list-box-icon sl sl-icon-layers"></i>  <?php if (!empty($playernotificationdatabyid->message)) echo $playernotificationdatabyid->message; ?>
+											<a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
+										</li>
+									<?php } ?>  
+								</ul>
+							</div>
+						</div>
+					</div>
 
 
 					</div>

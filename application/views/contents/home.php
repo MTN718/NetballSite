@@ -3,13 +3,13 @@
 
 
  <?php if ($this->session->flashdata('success_msg') != "") { ?>
-    <div class="alert alert-success alert-dismissable" style="background-color: #00a65a !important;border-radius: 3px;color: #000;padding: 15px;border: 1px solid transparent;">
+    <div class="alert alert-success alert-dismissable"  style="background-color: #00a65a !important;border-radius: 3px;color: #000;padding: 15px;border: 1px solid transparent;">
         <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: #000;opacity: .2;position: relative;top: -2px;right: 0px;float: right;font-size: 21px;font-weight: 700;line-height: 1;color: #000;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: .2;">&times;</a>
         <strong style="color: #000;">Successfully</strong> <?php echo $this->session->flashdata('success_msg'); ?>
     </div>
     <?php } ?>
     <?php if ($this->session->flashdata('error_msg') != "") { ?>
-    <div class="alert alert-warning alert-dismissable" style="background-color: #00a65a !important;border-radius: 3px;color: #000;padding: 15px;border: 1px solid transparent;">
+    <div class="alert alert-warning alert-dismissable success-alert" style="background-color: #00a65a !important;border-radius: 3px;color: #000;padding: 15px;border: 1px solid transparent;">
         <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: #000;position: relative;top: -2px;right: 0px;float: right;font-size: 21px;font-weight: 700;line-height: 1;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: .2;">&times;</a>
         <strong style="color: #000;">Warning!</strong> <?php echo $this->session->flashdata('error_msg'); ?>
     </div>
@@ -288,3 +288,10 @@
   </div>
   </a>
   <!-- Flip banner / End -->
+
+<script>
+  $(".success-alert").fadeTo(2000, 500).slideUp(500, function()
+  {
+    $(".success-alert").slideUp(500);
+  });   
+ </script>

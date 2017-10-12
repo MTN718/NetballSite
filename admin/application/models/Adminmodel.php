@@ -183,6 +183,15 @@ Class Adminmodel extends CI_Model
         return $this->db->get()->row();
     } 
 
+    //  Get Club data
+     public function getnotificationdatalist()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_notification');
+        $this->db->where('to_id', 'admin');
+        return $this->db->get()->result();
+    } 
+
 
 
 

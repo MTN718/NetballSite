@@ -40,8 +40,8 @@
 						<div class="user-name"><span><img src="<?php echo base_url('assets/images/user-avatar.jpg');?>" alt=""></span>Test User</div>
 						<ul>
 							<li><a href="<?php echo site_url('netball');?>"><i class="sl sl-icon-settings"></i> Front End </a></li>
-							<li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
-							<li><a href="#"><i class="sl sl-icon-user"></i> My Profile</a></li>
+							<li><a href="<?php echo site_url('netball/club_notification');?>"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
+							<li><a href="<?php echo site_url('netball/clubProfile');?>"><i class="sl sl-icon-user"></i> My Profile</a></li>
 							<li><a href="<?php echo site_url('netball/logout');?>"><i class="sl sl-icon-power"></i> Logout</a></li>
 						</ul>
 					</div>

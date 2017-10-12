@@ -216,11 +216,9 @@
   </script> 
 <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
   (Load Extensions only on Local File Systems ! 
-  The following part can be removed on Server for On Demand Loading) --> 
+  The following part can be removed on Server for On Demand Loading) -->
 
- 
 
-<!-- paypal payment gateway js -->
 <script>
     paypal.Button.render({
 
@@ -229,7 +227,7 @@
         // PayPal Client IDs - replace with your own
         // Create a PayPal app: https://developer.paypal.com/developer/applications/create
         client: {
-            sandbox: 'AV1YGASG-bn2kb-Yvu2_yFBVoa7q_IjBPVCbzdS4g1b3xCorRoAHvorFwYMwHqoNvxcdQv4phxhkxAyb',
+            sandbox:    'AWXVdwBotoO8HEpfc7-yeYJceYuSjtOGhcDFKtthXlBRVuf0_giYBYSk8Yqs49pL0rYXR4-iWbOThXgS',
             production: '<insert production client id>'
         },
 
@@ -237,35 +235,30 @@
         commit: true,
 
         // payment() is called when the button is clicked
-        payment: function (data, actions) {
-            var finalamount = $("#finalamount").text();
-            var inputamount = $("#inputamount").val();
-            
-            if(finalamount >= inputamount) 
-            {
-                if(inputamount > 1) {
-                    // Make a call to the REST api to create the payment
-                    return actions.payment.create({
-                        transactions: [
-                            {
-                                amount: {total: inputamount, currency: 'USD'}
-                            }
-                        ]
-                    });
-                } else {
-                    window.alert('Error');
-                    exit();
-                }
-            }
+        payment: function(data, actions) {
+           var finalamount = $("#event_fee").val();
+        
+            // Make a call to the REST api to create the payment
+            return actions.payment.create({
+             //   payment: {
+                    transactions: [
+                        {
+                            amount: { total: finalamount, currency: 'USD' }
+                        }
+                    ]
+               // }
+            });
         },
 
         // onAuthorize() is called when the buyer approves the payment
-        onAuthorize: function (data, actions) {
+        onAuthorize: function(data, actions) {
+
             // Make a call to the REST api to execute the payment
             return actions.payment.execute().then(function (data) {
-                console.log(data);
+               console.log(data);
 
-                var invoice_id = $("#invoice_id").text();
+                var event_id = $("#event").val();
+                var playerid = $("#playerid").val();
                 var id = data.id;
                 var cart = data.cart;
                 var create_time = data.create_time;
@@ -283,7 +276,8 @@
                 var total = data.transactions[0].amount.total;
                 var currency = data.transactions[0].amount.currency;
 
-                console.log(invoice_id);
+                console.log(event_id);
+                console.log(playerid); 
                 console.log(id);
                 console.log(cart);
                 console.log(create_time);
@@ -303,9 +297,10 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: 'savetransaction',
+                    url:'<?php echo base_url();?>index.php/netball/savetransaction',
                     data: {
-                        'invoice_id': invoice_id,
+                        'event_id': event_id,
+                        'playerid': playerid,
                         'id': id,
                         'cart': cart,
                         'create_time': create_time,
@@ -325,13 +320,15 @@
                     },
                     success: function (data) {
                         window.alert('Payment Complete!');
-                        location.reload();
+                        //location.reload();
                     }
                 });
+
             });
         }
 
     }, '#paypal-button-container');
+
 </script>
 
 
@@ -356,9 +353,7 @@
 
 <link href="<?php echo base_url('assets/css/plugins/datedropper.css');?>" rel="stylesheet" type="text/css">
 <script src="<?php echo base_url('assets/scripts/datedropper.js');?>"></script>
-<script>$('#booking-date').dateDropper();</script> 
-</body>
-
+<script>$('#booking-date').dateDropper();</script>
 
 </body>
 </html>

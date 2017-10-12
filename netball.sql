@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.1.6
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 05, 2017 at 05:21 PM
--- Server version: 10.1.24-MariaDB
--- PHP Version: 7.1.6
+-- Host: 127.0.0.1
+-- Generation Time: Oct 10, 2017 at 05:36 PM
+-- Server version: 5.5.36
+-- PHP Version: 5.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `netball`
@@ -28,17 +26,18 @@ SET time_zone = "+00:00";
 -- Table structure for table `tbl_about_us`
 --
 
-CREATE TABLE `tbl_about_us` (
-  `about_id` int(11) NOT NULL,
-  `description` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `tbl_about_us` (
+  `about_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  PRIMARY KEY (`about_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_about_us`
 --
 
 INSERT INTO `tbl_about_us` (`about_id`, `description`) VALUES
-(1, '$description \"sudeep\"<br>');
+(1, 'Lorem Ipsum is simply dummy text of the printing and typesetting \r\nindustry. Lorem Ipsum has been the industry''s standard dummy text ever \r\nsince the 1500s, when an unknown printer took a galley.<br><br>');
 
 -- --------------------------------------------------------
 
@@ -46,18 +45,19 @@ INSERT INTO `tbl_about_us` (`about_id`, `description`) VALUES
 -- Table structure for table `tbl_base_admin`
 --
 
-CREATE TABLE `tbl_base_admin` (
-  `no` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_base_admin` (
+  `no` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user` varchar(45) NOT NULL,
-  `pw` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `pw` varchar(100) NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_base_admin`
 --
 
 INSERT INTO `tbl_base_admin` (`no`, `user`, `pw`) VALUES
-(1, 'admin', '$2y$10$bcIT5kiOD2tjeM79KvCueex671Iwm9uLdaLbymHuXw38NbOcMF/Sa');
+(1, 'admin', '$2y$10$t9Tmijmw4ClRxEZpJB0uw.lHtV/H4WJqBBDO5rkmEqcTbpmWxYrxG');
 
 -- --------------------------------------------------------
 
@@ -65,11 +65,12 @@ INSERT INTO `tbl_base_admin` (`no`, `user`, `pw`) VALUES
 -- Table structure for table `tbl_base_setting`
 --
 
-CREATE TABLE `tbl_base_setting` (
-  `no` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_base_setting` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
   `fee` float DEFAULT NULL,
-  `paypal` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `paypal` text,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -77,12 +78,12 @@ CREATE TABLE `tbl_base_setting` (
 -- Table structure for table `tbl_club`
 --
 
-CREATE TABLE `tbl_club` (
-  `no` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_club` (
+  `no` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `createdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `payment` int(10) UNSIGNED NOT NULL COMMENT 'id of tbl_club_payment',
+  `payment` int(10) unsigned NOT NULL COMMENT 'id of tbl_club_payment',
   `password` text NOT NULL,
   `club_name` varchar(255) NOT NULL,
   `association_afiliated` varchar(255) NOT NULL,
@@ -97,17 +98,20 @@ CREATE TABLE `tbl_club` (
   `user_type` varchar(255) NOT NULL,
   `photo` text,
   `status` int(11) NOT NULL DEFAULT '1',
-  `reg_count` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `reg_count` int(11) NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `tbl_club`
 --
 
 INSERT INTO `tbl_club` (`no`, `email`, `name`, `createdate`, `payment`, `password`, `club_name`, `association_afiliated`, `stablishes_date`, `address`, `city`, `state`, `postcode`, `country`, `phone`, `mobile`, `user_type`, `photo`, `status`, `reg_count`) VALUES
-(2, 'sudeepgandhi540@gmail.com', 'club', '2017-10-05 06:56:49', 2, '$2y$10$TUedUa5VGjP1KxiWlfevgOatY0rLd6/mbY4nlQTBb4ksHew6CKkpO', 'Asdf', 'sdfg', '0000-00-00', 'Mig indore', 'indore', 'mpdfgdfg', '457933', '', '8794', '8795', 'club', 'slider-bg-01.jpg', 0, 20),
-(3, 'sub@gmail.com', 'subclub', '2017-10-03 14:10:28', 3, '$2y$10$HOJnfeUuibyDnoPn2mdmzO/SijxRb5v7UDI8/pGEiWiYx3Jnoo7Ga', 'Jhabhu', 'Dhar', '2017-02-02', 'lig', 'indore', 'mpdfgdfg', '45200100001', 'India', '1258', '236565325', 'club', 'slider-bg-01.jpg', 1, 10),
-(4, 'qq@gmail.com', 'qq', '2017-10-03 14:16:26', 4, '$2y$10$zEUWtUehGywN030dRVzS9u.Kta3lOyuMSAYIiKJ7Fu4jzhPCPSMxe', 'qq', 'qq', '0000-00-00', '34232', 'qq', 'qq', 'qq', 'American Samoa', '2323', '232323', 'club', 'slider-bg-0221.jpg', 1, 0);
+(2, 'sudeepgandhi540@gmail.com', 'club', '2017-10-10 15:31:29', 2, '$2y$10$2DYJ4c8vYp6Yia8d9A3TqOzuux5o48bViJ2DGq/URUDFkQnIItIS.', 'Asdf', 'sdfg', '0000-00-00', 'Mig indore', 'indore', 'mpdfgdfg', '457933', '', '8794', '8795', 'club', 'slider-bg-01.jpg', 1, 20),
+(3, 'sub@gmail.com', 'subclub', '2017-10-10 15:34:14', 3, '$2y$10$2DYJ4c8vYp6Yia8d9A3TqOzuux5o48bViJ2DGq/URUDFkQnIItIS.', 'Jhabhu', 'Dhar', '2017-02-02', 'lig', 'indore', 'mp', '452001', 'India', '1258', '236565325', 'club', 'slider-bg-01.jpg', 1, 10),
+(4, 'qq@gmail.com', 'qq', '2017-10-04 06:36:35', 4, '$2y$10$zEUWtUehGywN030dRVzS9u.Kta3lOyuMSAYIiKJ7Fu4jzhPCPSMxe', 'qq', 'qq', '0000-00-00', '34232', 'qq', 'qq', 'qq', 'American Samoa', '2323', '232323', 'club', 'slider-bg-0221.jpg', 1, 0),
+(5, 'democlub@gmail.com', 'democlub', '2017-10-04 11:09:59', 5, '$2y$10$XE32UCg.01kMzO/m5D.3du2bXTDg/QuGb6FLPzx/..oV.UM3XeMWq', 'Abcd', 'Other', '0000-00-00', 'Mig indore', 'Indore', 'mp', '452001', 'India', '326545', '23546', 'club', 'slider-bg-0223.jpg', 1, 0),
+(6, 'admin@gmail.com', 'adminclub', '2017-10-06 05:31:36', 6, '$2y$10$jBmcXvWY75vdy9Q24Ozbl.E5wg6JxGg73j8EtZTh1d/R.U93Nm9iq', 'ABC', 'Abc', '0000-00-00', 'ligasda', 'indore', 'mp', '452001', 'Indonesia', '235689', '2356', 'club', 'thumbnail_win_distr9.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -115,15 +119,16 @@ INSERT INTO `tbl_club` (`no`, `email`, `name`, `createdate`, `payment`, `passwor
 -- Table structure for table `tbl_club_payment`
 --
 
-CREATE TABLE `tbl_club_payment` (
-  `no` int(10) UNSIGNED NOT NULL,
-  `type` int(10) UNSIGNED NOT NULL COMMENT '0:paypal,1:bank',
+CREATE TABLE IF NOT EXISTS `tbl_club_payment` (
+  `no` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` int(10) unsigned NOT NULL COMMENT '0:paypal,1:bank',
   `name` varchar(45) NOT NULL,
   `bsb` varchar(45) NOT NULL,
   `number` varchar(45) NOT NULL,
   `branch` varchar(45) NOT NULL,
-  `paypal` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `paypal` varchar(45) NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `tbl_club_payment`
@@ -133,7 +138,9 @@ INSERT INTO `tbl_club_payment` (`no`, `type`, `name`, `bsb`, `number`, `branch`,
 (1, 0, '', '', '', '', 'aaa@gmail.com'),
 (2, 0, '', '', '', '', 'ssabc@gmail.com'),
 (3, 0, '', '', '', '', 'sada@gmail.com'),
-(4, 0, '', '', '', '', 'ab12c11111@gmail.com');
+(4, 0, '', '', '', '', 'ab12c11111@gmail.com'),
+(5, 0, '', '', '', '', 'democlub@gmail.com'),
+(6, 0, '', '', '', '', 'admin@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -141,19 +148,20 @@ INSERT INTO `tbl_club_payment` (`no`, `type`, `name`, `bsb`, `number`, `branch`,
 -- Table structure for table `tbl_contact_us`
 --
 
-CREATE TABLE `tbl_contact_us` (
-  `contact_us_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_contact_us` (
+  `contact_us_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
-  `address` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `address` longtext NOT NULL,
+  PRIMARY KEY (`contact_us_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_contact_us`
 --
 
 INSERT INTO `tbl_contact_us` (`contact_us_id`, `email`, `phone`, `address`) VALUES
-(1, 'info@gmail.com', '12345678944', '12345 address line1, country.');
+(1, 'info@gmail.com', '1234567111', '12345 address line1'', country.');
 
 -- --------------------------------------------------------
 
@@ -161,11 +169,12 @@ INSERT INTO `tbl_contact_us` (`contact_us_id`, `email`, `phone`, `address`) VALU
 -- Table structure for table `tbl_countries`
 --
 
-CREATE TABLE `tbl_countries` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `country_code` varchar(2) NOT NULL DEFAULT '',
-  `country_name` varchar(100) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `country_name` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=246 ;
 
 --
 -- Dumping data for table `tbl_countries`
@@ -286,12 +295,12 @@ INSERT INTO `tbl_countries` (`id`, `country_code`, `country_name`) VALUES
 (112, 'KZ', 'Kazakhstan'),
 (113, 'KE', 'Kenya'),
 (114, 'KI', 'Kiribati'),
-(115, 'KP', 'Korea, Democratic People\'s Republic of'),
+(115, 'KP', 'Korea, Democratic People''s Republic of'),
 (116, 'KR', 'Korea, Republic of'),
 (117, 'XK', 'Kosovo'),
 (118, 'KW', 'Kuwait'),
 (119, 'KG', 'Kyrgyzstan'),
-(120, 'LA', 'Lao People\'s Democratic Republic'),
+(120, 'LA', 'Lao People''s Democratic Republic'),
 (121, 'LV', 'Latvia'),
 (122, 'LB', 'Lebanon'),
 (123, 'LS', 'Lesotho'),
@@ -424,8 +433,8 @@ INSERT INTO `tbl_countries` (`id`, `country_code`, `country_name`) VALUES
 -- Table structure for table `tbl_event`
 --
 
-CREATE TABLE `tbl_event` (
-  `no` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_event` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
   `title` text,
   `venue` text,
   `date` text,
@@ -437,19 +446,23 @@ CREATE TABLE `tbl_event` (
   `club_no` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   `package_id` int(11) NOT NULL,
-  `reg_player_count` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `reg_player_count` int(11) NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `tbl_event`
 --
 
 INSERT INTO `tbl_event` (`no`, `title`, `venue`, `date`, `starttime`, `endtime`, `special`, `fee`, `photo`, `club_no`, `status`, `package_id`, `reg_player_count`) VALUES
-(10, 'Club_football', 'demo demo', '10/04/2017', '2:02 am', '6:02 pm', 'no', 123, '', 2, 0, 2, 0),
-(11, 'Cricket', 'Apna graden', '9/03/2017', '7:30 am', '2:00 pm', 'Nothing', 100, '', 3, 0, 2, 0),
-(12, 'abcxds', 'ghgv', '9/03/2017', '7:25 pm', '7:25 pm', 'Nothing', 5487, 'slider-bg-0222.jpg', 2, 0, 3, 0),
-(13, 'demo', 'demo', '9/03/2017', '12:38 pm', '12:38 pm', 'no', 12, '', 3, 0, 1, 0),
-(14, 'demo212121212121', 'dfhgfdhdfhdfhdfhhdfhh', '9/03/2017', '8:24 pm', '8:24 pm', 'no', 11, '', 3, 0, 1, 20);
+(10, 'Club_football', 'demo demo', '10/04/2017', '2:02 am', '6:02 pm', 'no', 123, '', 2, 1, 2, 0),
+(11, 'Cricket', 'Apna graden', '9/03/2017', '7:30 am', '2:00 pm', 'Nothing', 100, '', 3, 1, 2, 0),
+(12, 'abcxds', 'ghgv', '9/03/2017', '7:25 pm', '7:25 pm', 'Nothing', 5487, 'slider-bg-0222.jpg', 2, 1, 3, 0),
+(13, 'demo', 'demo', '9/03/2017', '12:38 pm', '12:38 pm', 'no', 12, '', 3, 1, 1, 0),
+(14, 'demo212121212121', 'dfhgfdhdfhdfhdfhhdfhh', '9/03/2017', '8:24 pm', '8:24 pm', 'no', 11, '', 3, 1, 1, 20),
+(15, 'Abcef', 'Apna graden', '10/06/2017', '11:15 am', '5:15 pm', 'no', 500, 'slider-bg-0129.jpg', 6, 1, 1, 0),
+(16, 'vimeo', 'Indore', '10/21/2017', '10:21 am', '4:15 pm', 'Nothing', 100, 'slider-bg-01.jpg', 6, 1, 1, 0),
+(17, 'Testing', 'Bhopal', '10/20/2017', '7:00 am', '2:00 pm', 'Nothing', 1, 'thumbnail_win115.jpg', 3, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -457,13 +470,14 @@ INSERT INTO `tbl_event` (`no`, `title`, `venue`, `date`, `starttime`, `endtime`,
 -- Table structure for table `tbl_event_player_register`
 --
 
-CREATE TABLE `tbl_event_player_register` (
-  `no` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_event_player_register` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL,
   `player_id` int(11) NOT NULL,
   `reg_status` int(11) NOT NULL DEFAULT '0',
-  `position` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `position` varchar(200) NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=314 ;
 
 --
 -- Dumping data for table `tbl_event_player_register`
@@ -474,7 +488,8 @@ INSERT INTO `tbl_event_player_register` (`no`, `event_id`, `player_id`, `reg_sta
 (5, 10, 3, 0, ''),
 (6, 10, 3, 0, ''),
 (7, 10, 3, 0, ''),
-(312, 13, 3, 1, '1');
+(312, 13, 3, 1, '1'),
+(313, 16, 3, 0, '');
 
 -- --------------------------------------------------------
 
@@ -482,12 +497,21 @@ INSERT INTO `tbl_event_player_register` (`no`, `event_id`, `player_id`, `reg_sta
 -- Table structure for table `tbl_faqs`
 --
 
-CREATE TABLE `tbl_faqs` (
-  `faq_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_faqs` (
+  `faq_id` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(255) NOT NULL,
   `answer` longtext NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`faq_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_faqs`
+--
+
+INSERT INTO `tbl_faqs` (`faq_id`, `question`, `answer`, `status`) VALUES
+(1, 'Frequetly ask question?', '<p>\r\nLorem Ipsum is simply dummy text of the printing and typesetting \r\nindustry. Lorem Ipsum has been the industry''s standard dummy text ever \r\nsince the 1500s, when an unknown printer took a galley.</p><p>\r\nLorem Ipsum \r\nis simply dummy text of the printing and typesetting industry. Lorem \r\nIpsum has been the industry''s standard dummy text ever since the 1500s, \r\nwhen an unknown printer took a galley.			\r\n\r\n\r\n\r\n<br></p>', 0),
+(2, 'Frequetly ask question?', '<p>\r\nLorem Ipsum is simply dummy text of the printing and typesetting \r\nindustry. Lorem Ipsum has been the industry''s standard dummy text ever \r\nsince the 1500s, when an unknown printer took a galley.<br>Lorem Ipsum \r\nis simply dummy text of the printing and typesetting industry. Lorem \r\nIpsum has been the industry''s standard dummy text ever since the 1500s, \r\nwhen an unknown printer took a galley.			\r\n\r\n\r\n\r\n<br></p>', 0);
 
 -- --------------------------------------------------------
 
@@ -495,21 +519,55 @@ CREATE TABLE `tbl_faqs` (
 -- Table structure for table `tbl_how_its_work`
 --
 
-CREATE TABLE `tbl_how_its_work` (
-  `how_its_work_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_how_its_work` (
+  `how_its_work_id` int(11) NOT NULL AUTO_INCREMENT,
   `description` longtext NOT NULL,
   `image1` varchar(255) NOT NULL,
   `image2` varchar(255) NOT NULL,
   `image3` varchar(255) NOT NULL,
-  `description1` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `description1` longtext NOT NULL,
+  PRIMARY KEY (`how_its_work_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_how_its_work`
 --
 
 INSERT INTO `tbl_how_its_work` (`how_its_work_id`, `description`, `image1`, `image2`, `image3`, `description1`) VALUES
-(1, ' dsfdccsdfadsxsddcsvdsvd ', 'thumbnail_win2.jpg', 'thumbnail_win2.jpg', 'thumbnail_win2.jpg', 'ewfsdcxz');
+(1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley.<br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley.', 'slider-bg-01221.jpg', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_notification`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_notification` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `to_id` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` longtext NOT NULL,
+  `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `club_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `tbl_notification`
+--
+
+INSERT INTO `tbl_notification` (`id`, `to_id`, `subject`, `message`, `date_time`, `club_id`, `status`) VALUES
+(1, 'admin', 'Player Registered', 'A New Player Registered', '2017-10-04 11:19:52', 0, 1),
+(2, 'admin', 'Club Registered', 'A New Club Registered', '2017-10-06 04:32:55', 0, 1),
+(3, '6', 'New Event', 'A New Event Registered', '2017-10-06 04:52:29', 0, 1),
+(4, '6', 'Club update profile', 'Club update Profile', '2017-10-06 05:10:58', 0, 1),
+(5, 'admin', 'Player update profile', 'Player demoplayer update Profile', '2017-10-06 08:02:42', 0, 1),
+(6, 'admin', 'Club update profile', 'Club Jhabhu update Profile', '2017-10-06 08:29:21', 0, 1),
+(7, 'admin', 'Add a New Event', 'Club Jhabhu has add a new event', '2017-10-06 08:42:24', 0, 1),
+(8, 'player', 'Add a New Event', 'Club Jhabhu has add a new event', '2017-10-06 08:42:24', 0, 1),
+(9, 'admin', 'changed password ', 'Club Asdf changed password', '2017-10-10 15:30:59', 0, 1),
+(10, 'admin', 'changed password ', 'Club Asdf changed password', '2017-10-10 15:31:29', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -517,14 +575,15 @@ INSERT INTO `tbl_how_its_work` (`how_its_work_id`, `description`, `image1`, `ima
 -- Table structure for table `tbl_package`
 --
 
-CREATE TABLE `tbl_package` (
-  `package_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_package` (
+  `package_id` int(11) NOT NULL AUTO_INCREMENT,
   `package_name` varchar(255) NOT NULL,
   `number_of_player` varchar(200) NOT NULL,
   `per_event_fee` varchar(200) NOT NULL,
   `player_regisatration_fee` varchar(200) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`package_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_package`
@@ -539,8 +598,8 @@ INSERT INTO `tbl_package` (`package_id`, `package_name`, `number_of_player`, `pe
 -- Table structure for table `tbl_player`
 --
 
-CREATE TABLE `tbl_player` (
-  `no` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_player` (
+  `no` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `password` varchar(100) NOT NULL,
@@ -557,8 +616,9 @@ CREATE TABLE `tbl_player` (
   `position3` varchar(45) NOT NULL,
   `user_type` varchar(255) NOT NULL,
   `photo` text,
-  `status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tbl_player`
@@ -566,8 +626,9 @@ CREATE TABLE `tbl_player` (
 
 INSERT INTO `tbl_player` (`no`, `email`, `name`, `password`, `birthday`, `address`, `city`, `state`, `postcode`, `country`, `phone`, `mobile`, `position1`, `position2`, `position3`, `user_type`, `photo`, `status`) VALUES
 (1, 'cashier@test.com', 'player', '$2y$10$gXgPB3QAOVOa3BP6b0fzQOHu/SLRJtfubZDThf', '12/12/2017', 'ligg ', 'indore', 'mp', '452001', '', '1234', '235', 'GK', 'GK', 'GK', 'player', NULL, 1),
-(2, 'adminsdsd@gmail.com', 'adminplayer', '$2y$10$WGLjWyrww57iIhpqRbDXk.Y6mHCH/vZZADGdrsxue1grS9xY1iyey', '2017/02/02', 'mig', 'indore', 'mp', '457933', 'Austraila', '2356123596', '235615465325', 'GK', 'GK', 'GK', 'player', 'slider-bg-011.jpg', 0),
-(3, 'demoplayer@gmail.com', 'demoplayer', '$2y$10$LKtXawiJgcarL.tgXTO1ueJ3j8lAnAzFPWxllr5nOkFpxyHnQFR1.', '', 'indore', 'indore', 'mp', '45877', 'Anguilla', '235687', '32587', '1', '2', '3', 'player', '', 1);
+(2, 'adminsdsd@gmail.com', 'adminplayer', '$2y$10$WGLjWyrww57iIhpqRbDXk.Y6mHCH/vZZADGdrsxue1grS9xY1iyey', '2017/02/02', 'mig', 'indore', 'mp', '457933', 'Austraila', '2356123596', '235615465325', 'GK', 'GK', 'GK', 'player', 'slider-bg-011.jpg', 1),
+(3, 'demoplayer@gmail.com', 'demoplayer', '$2y$10$LKtXawiJgcarL.tgXTO1ueJ3j8lAnAzFPWxllr5nOkFpxyHnQFR1.', '', 'Dhar', 'indore', 'mp', '45877', 'Anguilla', '235687', '32587', 'first', 'first', 'first', 'player', 'slider-bg-0222.jpg', 1),
+(4, 'subplayer@gmail.com', 'subplayer', '$2y$10$cSW881/R/BpLK9BaO5acjeTSy4LMEFYkJw1ilzeYG0mFUyHFZEqJ6', '10/01/2017', 'Mig indore', 'indore', 'mp', '452001', 'India', '235687', '598787996', 'first', 'first', 'first', 'player', 'slider-bg-014.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -575,17 +636,18 @@ INSERT INTO `tbl_player` (`no`, `email`, `name`, `password`, `birthday`, `addres
 -- Table structure for table `tbl_position`
 --
 
-CREATE TABLE `tbl_position` (
-  `position_id` int(11) NOT NULL,
-  `position_title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `tbl_position` (
+  `position_id` int(11) NOT NULL AUTO_INCREMENT,
+  `position_title` varchar(255) NOT NULL,
+  PRIMARY KEY (`position_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_position`
 --
 
 INSERT INTO `tbl_position` (`position_id`, `position_title`) VALUES
-(1, 'Firsts');
+(1, 'first');
 
 -- --------------------------------------------------------
 
@@ -593,17 +655,18 @@ INSERT INTO `tbl_position` (`position_id`, `position_title`) VALUES
 -- Table structure for table `tbl_pricing_policy`
 --
 
-CREATE TABLE `tbl_pricing_policy` (
-  `pricing_policy_id` int(11) NOT NULL,
-  `description` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `tbl_pricing_policy` (
+  `pricing_policy_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  PRIMARY KEY (`pricing_policy_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_pricing_policy`
 --
 
 INSERT INTO `tbl_pricing_policy` (`pricing_policy_id`, `description`) VALUES
-(1, 'asdasdas,, ds, ads, da  dsfdsadsca,. dsacd');
+(1, 'Lorem Ipsum is simply dummy text of the printing and typesetting \r\nindustry. Lorem Ipsum has been the industry''s standard dummy text ever \r\nsince the 1500s, when an unknown printer took a galley.<br>Lorem Ipsum \r\nis simply dummy text of the printing and typesetting industry. Lorem \r\nIpsum has been the industry''s standard dummy text ever since the 1500s, \r\nwhen an unknown printer took a galley.');
 
 -- --------------------------------------------------------
 
@@ -611,17 +674,18 @@ INSERT INTO `tbl_pricing_policy` (`pricing_policy_id`, `description`) VALUES
 -- Table structure for table `tbl_privacy_policy`
 --
 
-CREATE TABLE `tbl_privacy_policy` (
-  `privacy_policy_id` int(11) NOT NULL,
-  `description` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `tbl_privacy_policy` (
+  `privacy_policy_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  PRIMARY KEY (`privacy_policy_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_privacy_policy`
 --
 
 INSERT INTO `tbl_privacy_policy` (`privacy_policy_id`, `description`) VALUES
-(1, 'dasdasdasd.   tttryrtye sdsasa,,  vccxbfbvb,gf,, ffbdsf, sdfsd \"sudee\"<br>');
+(1, 'Lorem Ipsum is simply dummy text of the printing and typesetting \r\nindustry. Lorem Ipsum has been the industry''s standard dummy text ever \r\nsince the 1500s, when an unknown printer took a galley.<br>Lorem Ipsum \r\nis simply dummy text of the printing and typesetting industry. Lorem \r\nIpsum has been the industry''s standard dummy text ever since the 1500s, \r\nwhen an unknown printer took a galley.			\r\n\r\n<br>');
 
 -- --------------------------------------------------------
 
@@ -629,13 +693,24 @@ INSERT INTO `tbl_privacy_policy` (`privacy_policy_id`, `description`) VALUES
 -- Table structure for table `tbl_social_link`
 --
 
-CREATE TABLE `tbl_social_link` (
-  `social_link_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_social_link` (
+  `social_link_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(225) NOT NULL,
   `icon` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` int(11) DEFAULT '0',
+  PRIMARY KEY (`social_link_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `tbl_social_link`
+--
+
+INSERT INTO `tbl_social_link` (`social_link_id`, `title`, `icon`, `link`, `status`) VALUES
+(1, 'Facebook', 'fa fa-facebook', 'https://www.facebook.com/', 1),
+(2, 'Twitter', 'fa fa-twitter', 'https://twitter.com/', 1),
+(3, 'Google Plus', 'fa fa-google-plus', 'https://plus.google.com/', 1),
+(4, 'vimeo', 'fa fa-vimeo', 'https://vimeo.com/', 1);
 
 -- --------------------------------------------------------
 
@@ -643,17 +718,18 @@ CREATE TABLE `tbl_social_link` (
 -- Table structure for table `tbl_term_condition`
 --
 
-CREATE TABLE `tbl_term_condition` (
-  `term_condition_id` int(11) NOT NULL,
-  `description` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `tbl_term_condition` (
+  `term_condition_id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` longtext NOT NULL,
+  PRIMARY KEY (`term_condition_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_term_condition`
 --
 
 INSERT INTO `tbl_term_condition` (`term_condition_id`, `description`) VALUES
-(1, 'sadaaaaaaaadsadas sadasdsadas  fdagervdsvaevsdsc                                    ');
+(1, 'Lorem Ipsum is simply dummy text of the printing and typesetting \r\nindustry. Lorem Ipsum has been the industry''s standard dummy text ever \r\nsince the 1500s, when an unknown printer took a galley.<br>Lorem Ipsum \r\nis simply dummy text of the printing and typesetting industry. Lorem \r\nIpsum has been the industry''s standard dummy text ever since the 1500s, \r\nwhen an unknown printer took a galley.');
 
 -- --------------------------------------------------------
 
@@ -661,7 +737,7 @@ INSERT INTO `tbl_term_condition` (`term_condition_id`, `description`) VALUES
 -- Table structure for table `tbl_transaction`
 --
 
-CREATE TABLE `tbl_transaction` (
+CREATE TABLE IF NOT EXISTS `tbl_transaction` (
   `transaction_id` varchar(200) NOT NULL,
   `card_type_id` varchar(200) DEFAULT NULL,
   `card_no` int(20) DEFAULT NULL,
@@ -669,12 +745,10 @@ CREATE TABLE `tbl_transaction` (
   `expiry_date` date DEFAULT NULL,
   `trasaction_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `card_holder_name` varchar(50) DEFAULT NULL,
-  `invoice_id` int(20) DEFAULT NULL,
-  `user_id` int(10) DEFAULT NULL,
+  `event_id` int(20) DEFAULT NULL,
+  `player_id` int(10) DEFAULT NULL,
   `amount` varchar(200) DEFAULT NULL,
-  `payment_method_type_id` int(11) DEFAULT NULL,
   `address_line_1` varchar(60) DEFAULT NULL,
-  `address_line_2` varchar(80) DEFAULT NULL,
   `city` varchar(30) DEFAULT NULL,
   `state` varchar(30) DEFAULT NULL,
   `zip` varchar(20) DEFAULT NULL,
@@ -685,16 +759,16 @@ CREATE TABLE `tbl_transaction` (
   `bank_account_number` varchar(50) DEFAULT NULL,
   `account_holder_name` varchar(50) DEFAULT NULL,
   `ifsc` varchar(40) DEFAULT NULL,
-  `micr` varchar(40) DEFAULT NULL
+  PRIMARY KEY (`transaction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_transaction`
 --
 
-INSERT INTO `tbl_transaction` (`transaction_id`, `card_type_id`, `card_no`, `check_dd_no`, `expiry_date`, `trasaction_date`, `card_holder_name`, `invoice_id`, `user_id`, `amount`, `payment_method_type_id`, `address_line_1`, `address_line_2`, `city`, `state`, `zip`, `phone`, `email`, `primary_method`, `bank_name`, `bank_account_number`, `account_holder_name`, `ifsc`, `micr`) VALUES
-('0011', NULL, NULL, NULL, NULL, '2017-10-01 13:24:37', 'here ac name', NULL, NULL, 'xxxxxx', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'here bank name', 'xxxx-xxxx-xxx', 'here ac name', NULL, NULL),
-('23AA', NULL, NULL, NULL, NULL, '2017-10-01 13:25:16', 'here ac name', NULL, NULL, 'xxxxxx', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'here bank name', 'xxxx-xxxx-xxx', 'here ac name', NULL, NULL);
+INSERT INTO `tbl_transaction` (`transaction_id`, `card_type_id`, `card_no`, `check_dd_no`, `expiry_date`, `trasaction_date`, `card_holder_name`, `event_id`, `player_id`, `amount`, `address_line_1`, `city`, `state`, `zip`, `phone`, `email`, `primary_method`, `bank_name`, `bank_account_number`, `account_holder_name`, `ifsc`) VALUES
+('0011', NULL, NULL, NULL, NULL, '2017-10-01 13:24:37', 'here ac name', NULL, NULL, 'xxxxxx', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'here bank name', 'xxxx-xxxx-xxx', 'here ac name', NULL),
+('23AA', NULL, NULL, NULL, NULL, '2017-10-01 13:25:16', 'here ac name', NULL, NULL, 'xxxxxx', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'here bank name', 'xxxx-xxxx-xxx', 'here ac name', NULL);
 
 -- --------------------------------------------------------
 
@@ -702,224 +776,10 @@ INSERT INTO `tbl_transaction` (`transaction_id`, `card_type_id`, `card_no`, `che
 -- Table structure for table `token`
 --
 
-CREATE TABLE `token` (
+CREATE TABLE IF NOT EXISTS `token` (
   `token` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `tbl_about_us`
---
-ALTER TABLE `tbl_about_us`
-  ADD PRIMARY KEY (`about_id`);
-
---
--- Indexes for table `tbl_base_admin`
---
-ALTER TABLE `tbl_base_admin`
-  ADD PRIMARY KEY (`no`);
-
---
--- Indexes for table `tbl_base_setting`
---
-ALTER TABLE `tbl_base_setting`
-  ADD PRIMARY KEY (`no`);
-
---
--- Indexes for table `tbl_club`
---
-ALTER TABLE `tbl_club`
-  ADD PRIMARY KEY (`no`);
-
---
--- Indexes for table `tbl_club_payment`
---
-ALTER TABLE `tbl_club_payment`
-  ADD PRIMARY KEY (`no`);
-
---
--- Indexes for table `tbl_contact_us`
---
-ALTER TABLE `tbl_contact_us`
-  ADD PRIMARY KEY (`contact_us_id`);
-
---
--- Indexes for table `tbl_countries`
---
-ALTER TABLE `tbl_countries`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tbl_event`
---
-ALTER TABLE `tbl_event`
-  ADD PRIMARY KEY (`no`);
-
---
--- Indexes for table `tbl_event_player_register`
---
-ALTER TABLE `tbl_event_player_register`
-  ADD PRIMARY KEY (`no`);
-
---
--- Indexes for table `tbl_faqs`
---
-ALTER TABLE `tbl_faqs`
-  ADD PRIMARY KEY (`faq_id`);
-
---
--- Indexes for table `tbl_how_its_work`
---
-ALTER TABLE `tbl_how_its_work`
-  ADD PRIMARY KEY (`how_its_work_id`);
-
---
--- Indexes for table `tbl_package`
---
-ALTER TABLE `tbl_package`
-  ADD PRIMARY KEY (`package_id`);
-
---
--- Indexes for table `tbl_player`
---
-ALTER TABLE `tbl_player`
-  ADD PRIMARY KEY (`no`);
-
---
--- Indexes for table `tbl_position`
---
-ALTER TABLE `tbl_position`
-  ADD PRIMARY KEY (`position_id`);
-
---
--- Indexes for table `tbl_pricing_policy`
---
-ALTER TABLE `tbl_pricing_policy`
-  ADD PRIMARY KEY (`pricing_policy_id`);
-
---
--- Indexes for table `tbl_privacy_policy`
---
-ALTER TABLE `tbl_privacy_policy`
-  ADD PRIMARY KEY (`privacy_policy_id`);
-
---
--- Indexes for table `tbl_social_link`
---
-ALTER TABLE `tbl_social_link`
-  ADD PRIMARY KEY (`social_link_id`);
-
---
--- Indexes for table `tbl_term_condition`
---
-ALTER TABLE `tbl_term_condition`
-  ADD PRIMARY KEY (`term_condition_id`);
-
---
--- Indexes for table `tbl_transaction`
---
-ALTER TABLE `tbl_transaction`
-  ADD PRIMARY KEY (`transaction_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_about_us`
---
-ALTER TABLE `tbl_about_us`
-  MODIFY `about_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_base_admin`
---
-ALTER TABLE `tbl_base_admin`
-  MODIFY `no` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_base_setting`
---
-ALTER TABLE `tbl_base_setting`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_club`
---
-ALTER TABLE `tbl_club`
-  MODIFY `no` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `tbl_club_payment`
---
-ALTER TABLE `tbl_club_payment`
-  MODIFY `no` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `tbl_contact_us`
---
-ALTER TABLE `tbl_contact_us`
-  MODIFY `contact_us_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_countries`
---
-ALTER TABLE `tbl_countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
---
--- AUTO_INCREMENT for table `tbl_event`
---
-ALTER TABLE `tbl_event`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `tbl_event_player_register`
---
-ALTER TABLE `tbl_event_player_register`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
->>>>>>> 8b5d58b578d7af9fbaf2db0e862f274d7496dc01
---
--- AUTO_INCREMENT for table `tbl_faqs`
---
-ALTER TABLE `tbl_faqs`
-  MODIFY `faq_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_how_its_work`
---
-ALTER TABLE `tbl_how_its_work`
-  MODIFY `how_its_work_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_package`
---
-ALTER TABLE `tbl_package`
-  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_player`
---
-ALTER TABLE `tbl_player`
-  MODIFY `no` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tbl_position`
---
-ALTER TABLE `tbl_position`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_pricing_policy`
---
-ALTER TABLE `tbl_pricing_policy`
-  MODIFY `pricing_policy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_privacy_policy`
---
-ALTER TABLE `tbl_privacy_policy`
-  MODIFY `privacy_policy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_social_link`
---
-ALTER TABLE `tbl_social_link`
-  MODIFY `social_link_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_term_condition`
---
-ALTER TABLE `tbl_term_condition`
-  MODIFY `term_condition_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

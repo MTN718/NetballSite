@@ -45,6 +45,9 @@ switch($pageName) {
     case "CLUBOVERVIEW":
     include('contents/cluboverview.php');
     break;
+    case "NOTIFICATION":
+    include('contents/notification.php');
+    break;
 
 
 

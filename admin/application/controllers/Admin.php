@@ -74,68 +74,77 @@ class Admin extends CI_Controller {
 
 
 
-    public function position($tab="")
+    // public function position($tab="")
+    // {
+    //     $this->is_logged_in();
+    //     $data['pageName'] = "POSITION";
+    //     $data['tab'] = $tab;
+    //     $this->load->view("content_handler", $data); 
+    // }
+
+    // public function aboutUs($tab="")
+    // {
+    //     $this->is_logged_in();
+    //     $data['pageName'] = "ABOUTUS";
+    //     $data['tab'] = $tab;
+    //     $this->load->view("content_handler", $data); 
+    // }
+
+    // public function contactUs($tab="")
+    // {
+    //     $this->is_logged_in();
+    //     $data['pageName'] = "CONTACTUS";
+    //     $this->load->view("content_handler", $data); 
+    // }
+
+    // public function privacyPolicy($tab="")
+    // {
+    //     $this->is_logged_in();
+    //     $data['pageName'] = "PRIVACYPOLICY";
+    //     $data['tab'] = $tab;
+    //     $this->load->view("content_handler", $data); 
+    // }
+
+    // public function pricingPolicy($tab="")
+    // {
+    //     $this->is_logged_in();
+    //     $data['pageName'] = "PRICINGPOLICY";
+    //     $data['tab'] = $tab;
+    //     $this->load->view("content_handler", $data); 
+    // }
+
+    // public function termAndCondition($tab="")
+    // {
+    //     $this->is_logged_in();
+    //     $data['pageName'] = "TERMCONDITION";
+    //     $data['tab'] = $tab;
+    //     $this->load->view("content_handler", $data); 
+    // }
+
+    // public function howItsWork($tab="")
+    // {
+    //     $this->is_logged_in();
+    //     $data['pageName'] = "HOWITSWORK";
+    //     $data['tab'] = $tab;
+    //     $this->load->view("content_handler", $data); 
+    // }
+
+    // public function faqs($tab="")
+    // {
+    //     $this->is_logged_in();
+    //     $data['pageName'] = "FAQS";
+    //     $data['tab'] = $tab;
+    //     $this->load->view("content_handler", $data); 
+    // } notification
+
+    public function notification()
     {
         $this->is_logged_in();
-        $data['pageName'] = "POSITION";
-        $data['tab'] = $tab;
+        $data['pageName'] = "NOTIFICATION";
+        $data['notificationdatalist'] = $this->adminmodel->getnotificationdatalist();
         $this->load->view("content_handler", $data); 
     }
 
-    public function aboutUs($tab="")
-    {
-        $this->is_logged_in();
-        $data['pageName'] = "ABOUTUS";
-        $data['tab'] = $tab;
-        $this->load->view("content_handler", $data); 
-    }
-
-    public function contactUs($tab="")
-    {
-        $this->is_logged_in();
-        $data['pageName'] = "CONTACTUS";
-        $this->load->view("content_handler", $data); 
-    }
-
-    public function privacyPolicy($tab="")
-    {
-        $this->is_logged_in();
-        $data['pageName'] = "PRIVACYPOLICY";
-        $data['tab'] = $tab;
-        $this->load->view("content_handler", $data); 
-    }
-
-    public function pricingPolicy($tab="")
-    {
-        $this->is_logged_in();
-        $data['pageName'] = "PRICINGPOLICY";
-        $data['tab'] = $tab;
-        $this->load->view("content_handler", $data); 
-    }
-
-    public function termAndCondition($tab="")
-    {
-        $this->is_logged_in();
-        $data['pageName'] = "TERMCONDITION";
-        $data['tab'] = $tab;
-        $this->load->view("content_handler", $data); 
-    }
-
-    public function howItsWork($tab="")
-    {
-        $this->is_logged_in();
-        $data['pageName'] = "HOWITSWORK";
-        $data['tab'] = $tab;
-        $this->load->view("content_handler", $data); 
-    }
-
-    public function faqs($tab="")
-    {
-        $this->is_logged_in();
-        $data['pageName'] = "FAQS";
-        $data['tab'] = $tab;
-        $this->load->view("content_handler", $data); 
-    }
 
     public function addposition()
     {

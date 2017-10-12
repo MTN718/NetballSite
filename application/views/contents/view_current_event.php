@@ -109,7 +109,7 @@
                                     } ?>
                                 </td>
                                 <td>  
-                                    <?php if($playerinfo->reg_status == 1) { ?>                          
+                                    <?php if($playerinfo->reg_status == 0) { ?>                          
                                         <a href="javascript:void(0)" class="button gray editable-action" col-index='1' data="0"><i class="sl sl-icon-note"></i> Confirmed </a>
                                     <?php } else { ?>                          
                                         <a href="javascript:void(0)" class="button gray editable-action" col-index='1' data="1"><i class="sl sl-icon-note"></i> Cancel Confirmation </a>

@@ -43,7 +43,7 @@
                                             <?php if($this->session->userdata('login_data')) { ?>
 
                                                 <?php if($this->session->userdata('login_data')->user_type == "club") { ?>
-                                                    <li><a href="<?php echo site_url('netball/clubdashboard');?>">Dashboard</a></li>
+                                                    <li><a href="<?php echo site_url('netball/newEvent');?>">Dashboard</a></li>
                                                     <li><a href="<?php echo site_url('netball/logout');?>">Logout</a></li>
                                                 <?php } else { ?>
                                                     <li><a href="<?php echo site_url('netball/playerdashboard');?>">Dashboard</a></li>

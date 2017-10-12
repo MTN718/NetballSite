@@ -35,8 +35,8 @@
             <div class="user-name"><span><img src="<?php echo base_url('assets/images/profile_img.jpg');?>" alt=""></span>Test User</div>
             <ul>
               <!-- <li><a href="#"><i class="sl sl-icon-settings"></i> Dashboard</a></li> -->
-             <!--  <li><a href="#"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
-              <li><a href="#"><i class="sl sl-icon-user"></i> My Profile</a></li> -->
+              <li><a href="<?php echo site_url('admin/settings');?>"><i class="sl sl-icon-user"></i> My Profile</a></li>
+              <li><a href="<?php echo site_url('admin/notification');?>"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
               <li><a href="<?php echo site_url('admin/logout');?>"><i class="sl sl-icon-power"></i> Logout</a></li>
             </ul>
           </div>

@@ -77,6 +77,9 @@ switch($pageName) {
     case "VIEW_CURRENT_EVENT":
     include('contents/view_current_event.php');
     break;
+    case "CLUBNOTIFICATION":
+    include('contents/club-notification.php');
+    break;
 
 
 

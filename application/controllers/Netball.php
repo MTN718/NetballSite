@@ -296,6 +296,19 @@ class Netball extends CI_Controller {
         $this->load->view("dashboard_content_handler", $data);
     }
 
+    public function club_notification() 
+    {
+        $this->is_logged_in();
+        $userInfo = $this->session->userdata('login_data');
+        $model_data = array(
+            'id' => $userInfo->no
+        );
+
+        $data['pageName'] = "CLUBNOTIFICATION";
+        $data['clubnotificationdatalist'] = $this->Netballmodel->getclubnotificationdatalist($model_data);
+        $this->load->view("dashboard_content_handler", $data);
+    }
+
 
 
 
@@ -319,6 +332,8 @@ class Netball extends CI_Controller {
         $data['playerdatainfo'] = $this->Netballmodel->getplayersdatainfo($model_data);
         $data['playereventlist'] = $this->Netballmodel->getplayereventlist($model_data);
         $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist(); 
+        $data['playernotificationdatalist'] = $this->Netballmodel->getplayernotificationdatalist($model_data);
+        $data['playernotificationdatalistbyid'] = $this->Netballmodel->getplayernotificationdatalistbyid($model_data);
         $data['pageName'] = "PLAYER_DASHBOARD";
         $this->load->view("dashboard_player_content_handler", $data);
     }
@@ -552,6 +567,7 @@ class Netball extends CI_Controller {
     {   
 
         $event_id = $_POST["event_id"];
+
         $this->db->select('*');
         $this->db->where('no',$event_id);
         $this->db->from('tbl_event');
@@ -963,7 +979,6 @@ class Netball extends CI_Controller {
             'password_two' => $this->input->post('password_two'),
         );
         $this->Netballmodel->updateclubpassword($model_data);
-        $this->session->set_flashdata('error_msg', 'Password and Confirm Password Does Not Match');
         redirect('netball/clubProfile/password');
     }
 
@@ -976,7 +991,6 @@ class Netball extends CI_Controller {
         );
 
         $this->Netballmodel->updateplayerpassword($model_data);
-        $this->session->set_flashdata('error_msg', 'Password and Confirm Password Does Not Match');
         redirect('netball/playerdashboard/password');
     }
 
@@ -984,6 +998,7 @@ class Netball extends CI_Controller {
 
 
 
+    //============================== ajax request ====================
 
     // Ajax Inline Update
     public function updateInline($task="")
@@ -993,7 +1008,6 @@ class Netball extends CI_Controller {
             'index' => $_POST['index'],
             'id' => $_POST['id'],
         );
-
         if ($task == "position") 
             $status = $this->Netballmodel->updateregplayerposition($model_data);
         if ($task == "currenteventstatus") 
@@ -1072,6 +1086,49 @@ class Netball extends CI_Controller {
         }
         return $rstArray;
     }
+
+
+
+
+
+    // save transaction details
+    public function savetransaction()
+    {
+
+        $model_data = array(
+            'event_id' => $this->input->post('event_id'),
+            'playerid' => $this->input->post('playerid'),
+            'id' => $this->input->post('id'),
+            'cart' => $this->input->post('cart'),
+            'create_time' => $this->input->post('create_time'),
+            'payment_method' => $this->input->post('payment_method'),
+            'email' => $this->input->post('email'),
+            'first_name' => $this->input->post('first_name'),
+            'middle_name' => $this->input->post('middle_name'),
+            'last_name' => $this->input->post('last_name'),
+            'country_code' => $this->input->post('country_code'),
+            'line1' => $this->input->post('line1'),
+            'city' => $this->input->post('city'),
+            'state' => $this->input->post('state'),
+            'postal_code' => $this->input->post('postal_code'),
+            'country_code' => $this->input->post('country_code'),
+            'total' => $this->input->post('total'),
+            'currency' => $this->input->post('currency'),
+        );
+
+    print_r($model_data);
+    exit();        
+
+
+        $this->Netballmodel->savetransaction($model_data);
+        return true;
+    }
+
+
+
+
+
+
 
 
 
