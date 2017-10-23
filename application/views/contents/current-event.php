@@ -38,7 +38,7 @@
 								<th> Requirements </th>
 								<th> Action </th>
 							</tr>
-							<?php foreach ($eventinfos as $eventinfo) { ?>
+							<?php foreach ($results as $eventinfo) { ?>
 								<tr>
 									<td> <img src='<?php echo base_url(); ?>images/event/<?php echo $eventinfo->photo; ?>' style="width: 100px;"> </td>
 									<td> <?php if (!empty($eventinfo->title)) echo $eventinfo->title; ?> </td>
@@ -63,6 +63,15 @@
 				<!-- Section / End -->
 			</div>
 		</div>
+		<div class="pagination-container text-center margin-top-30 margin-bottom-0">
+          <nav class="pagination">
+            <ul>
+              <?php foreach ($links as $link) {
+            echo "<li>". $link."</li>";
+            } ?>
+            </ul>
+          </nav>
+      </div>
 
 		<!-- Copyrights -->
 		<div class="col-md-12">

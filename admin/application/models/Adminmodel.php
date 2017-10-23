@@ -11,28 +11,63 @@ Class Adminmodel extends CI_Model
 //=======================================================Get Data Model  Method ==========================================//
 
     // Get Project data
-    public function getplayerdatalist()
+   /* public function getplayerdatalist()
     {  
         $this->db->select('*');
         $this->db->from('tbl_player');
         return $this->db->get()->result();
+    }*/
+
+    // Get Project data AND
+            //Pagination for user management
+    public function record_count_club_data() {
+    return $this->db->count_all("tbl_club");
     }
 
-    // Get Project data
-    public function getclubdatalist()
+    // Fetch data according to per_page limit.
+    public function getclubdatalist($limit, $start) {
+    $this->db->limit($limit, $start);
+    $query = $this->db->get("tbl_club");
+    if ($query->num_rows() > 0) {
+    foreach ($query->result() as $row) {
+    $data[] = $row;
+    }
+
+    return $data;
+    }
+    return false;
+    }
+    /*public function getclubdatalist()
     {  
         $this->db->select('*');
         $this->db->from('tbl_club');
         return $this->db->get()->result();
-    }
+    }*/
 
     // function get list of events
-    public function geteventLists()
+    public function record_count_event_mngmnt() {
+    return $this->db->count_all("tbl_event");
+    }
+
+    // Fetch data according to per_page limit.
+    public function geteventLists($limit, $start) {
+    $this->db->limit($limit, $start);
+    $query = $this->db->get("tbl_event");
+    if ($query->num_rows() > 0) {
+    foreach ($query->result() as $row) {
+    $data[] = $row;
+    }
+
+    return $data;
+    }
+    return false;
+    }
+    /*public function geteventLists()
     {
         $this->db->select('*');
         $this->db->from('tbl_event');
         return $this->db->get()->result();
-    }
+    }*/
 
     // function get list of events
     public function getclubdata($club_no)
@@ -126,20 +161,87 @@ Class Adminmodel extends CI_Model
     } 
 
     //  Get About us data
-     public function gettransactioninfolist()
+    /* public function gettransactioninfolist()
     {
         $this->db->select('*');
         $this->db->from('tbl_transaction');
         return $this->db->get()->result();
+    }*/
+
+    //Pagination for transaction
+    public function record_count() {
+    return $this->db->count_all("tbl_transaction");
     }
 
+    // Fetch data according to per_page limit.
+    public function fetch_data($limit, $start) {
+    $this->db->limit($limit, $start);
+    $query = $this->db->get("tbl_transaction");
+    if ($query->num_rows() > 0) {
+    foreach ($query->result() as $row) {
+    $data[] = $row;
+    }
+
+    return $data;
+    }
+    return false;
+    }
+
+
+
+
+
+
+    //Pagination for package
+    public function record_count_package() {
+    return $this->db->count_all("tbl_package");
+    }
+
+    // Fetch data according to per_page limit.
+    public function fetch_data_package($limit, $start) {
+    $this->db->limit($limit, $start);
+    $query = $this->db->get("tbl_package");
+    if ($query->num_rows() > 0) {
+    foreach ($query->result() as $row) {
+    $data[] = $row;
+    }
+
+    return $data;
+    }
+    return false;
+    }
+
+
+
+
+
+
+
+        //Pagination for user management
+    public function record_count_user_management() {
+    return $this->db->count_all("tbl_player");
+    }
+
+    // Fetch data according to per_page limit.
+    public function getplayerdatalist($limit, $start) {
+    $this->db->limit($limit, $start);
+    $query = $this->db->get("tbl_player");
+    if ($query->num_rows() > 0) {
+    foreach ($query->result() as $row) {
+    $data[] = $row;
+    }
+
+    return $data;
+    }
+    return false;
+    }
      //  Get About us data
-     public function getpackagedatalist()
+    /* public function getpackagedatalist()
     {
         $this->db->select('*');
         $this->db->from('tbl_package');
         return $this->db->get()->result();
-    }
+    }*/
 
      // Get Services data
      public function getpackageupadatedata($model_data)

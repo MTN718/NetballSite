@@ -25,7 +25,28 @@ Class Netballmodel extends CI_Model
     }
 
     // Get Event data
-     public function geteventinfolist($model_data)
+
+    public function record_count_crnt_event() {
+    return $this->db->count_all("tbl_event");
+    }
+
+    // Fetch data according to per_page limit.
+    public function geteventinfolist($model_data,$limit, $start) {
+        $id = $model_data['id'];
+
+
+            $this->db->limit($limit, $start);
+            $query = $this->db->get("tbl_event");
+            if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+            $data[] = $row;
+            }
+
+        return $data;
+        }
+    return false;
+    }
+     /*public function geteventinfolist($model_data)
     {
         $id = $model_data['id'];
 
@@ -34,7 +55,7 @@ Class Netballmodel extends CI_Model
         $this->db->where('club_no',$id);
         $this->db->order_by('date','ASC');
         return $this->db->get()->result();
-    }
+    }*/
 
     // Get Top Clubs
      public function gettopclubs()
@@ -58,6 +79,15 @@ Class Netballmodel extends CI_Model
         $this->db->where('tbl_event.date >=',$currentdate);
         $this->db->order_by('reg_player_count','desc');
         return $this->db->get()->result();
+    } 
+
+    // Get club details
+     public function getclubdetail($club_id="")
+    {  
+        $this->db->select('*');
+        $this->db->from('tbl_club');
+        $this->db->where('no',$club_id);
+        return $this->db->get()->row();
     } 
 
 
@@ -437,7 +467,8 @@ Class Netballmodel extends CI_Model
         $value_type = $model_data['value_type'];
         $username = $model_data['username'];
         $dateofbirth = $model_data['dateofbirth'];
-        $address = $model_data['address'];
+        $address1 = $model_data['address1'];
+        $address2 = $model_data['address2'];
         $city = $model_data['city'];
         $state = $model_data['state'];
         $postcode = $model_data['postcode'];
@@ -449,7 +480,7 @@ Class Netballmodel extends CI_Model
         $position3 = $model_data['position3'];
         $password = password_hash($temppassword, PASSWORD_BCRYPT);
        
-    	$sql = "INSERT INTO tbl_player(`name`,`password`,`email`,`birthday`,`address`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`position1`,`position2`,`position3`,`user_type`,`photo`)  VALUES('$username','$password','$email','$dateofbirth','$address','$city','$state','$postcode','$country','$phone','$mobile','$position1','$position2','$position3','$value_type','$image')";
+    	$sql = "INSERT INTO tbl_player(`name`,`password`,`email`,`birthday`,`address1`,`address2`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`position1`,`position2`,`position3`,`user_type`,`photo`)  VALUES('$username','$password','$email','$dateofbirth','$address1','$address2','$city','$state','$postcode','$country','$phone','$mobile','$position1','$position2','$position3','$value_type','$image')";
     	$result = $this->db->query($sql);
 
         $sql = "INSERT INTO tbl_notification(`to_id`,`subject`,`message`) 
@@ -468,7 +499,8 @@ Class Netballmodel extends CI_Model
         $association = $model_data['association'];
         $username = $model_data['username'];
         $dateofbirth = $model_data['dateofbirth'];
-        $address = $model_data['address'];
+        $address1 = $model_data['address1'];
+        $address2 = $model_data['address2'];
         $city = $model_data['city'];
         $state = $model_data['state'];
         $postcode = $model_data['postcode'];
@@ -479,7 +511,7 @@ Class Netballmodel extends CI_Model
         $temppassword = $model_data['newpwd'];
         $password = password_hash($temppassword, PASSWORD_BCRYPT);
        
-        $sql = "INSERT INTO tbl_club(`name`,`password`,`email`,`stablishes_date`,`address`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`club_name`,`association_afiliated`,`user_type`,`photo`)  VALUES('$username','$password','$email','$dateofbirth','$address','$city','$state','$postcode','$country','$phone','$mobile','$clubname','$association','$value_type','$image')";
+        $sql = "INSERT INTO tbl_club(`name`,`password`,`email`,`stablishes_date`,`address1`,`address2`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`club_name`,`association_afiliated`,`user_type`,`photo`)  VALUES('$username','$password','$email','$dateofbirth','$address1','$address2','$city','$state','$postcode','$country','$phone','$mobile','$clubname','$association','$value_type','$image')";
         $result = $this->db->query($sql);
         return $this->db->insert_id();
 
@@ -687,7 +719,8 @@ Class Netballmodel extends CI_Model
         $association = $model_data['association'];
         $username = $model_data['username'];
         $dateofbirth = $model_data['dateofbirth'];
-        $address = $model_data['address'];
+        $address1 = $model_data['address1'];
+        $address2 = $model_data['address2'];
         $city = $model_data['city'];
         $state = $model_data['state'];
         $postcode = $model_data['postcode'];
@@ -707,7 +740,7 @@ Class Netballmodel extends CI_Model
         }
 
         else {
-            $sql = "UPDATE `tbl_club` SET `name` = '$username', `email` = '$email',`stablishes_date` = '$dateofbirth',`address` = '$address',`city` = '$city',
+            $sql = "UPDATE `tbl_club` SET `name` = '$username', `email` = '$email',`stablishes_date` = '$dateofbirth',`address1` = '$address1',`address2` = '$address2',`city` = '$city',
             `state` = '$state',`postcode` = '$postcode',`country` = '$country',`club_name` = '$clubname',`association_afiliated` = '$association',`phone` = '$phone',`mobile` = '$mobile' WHERE no = '$id'";
              $result = $this->db->query($sql);
 
@@ -746,7 +779,8 @@ Class Netballmodel extends CI_Model
         $email = $model_data['email'];
         $username = $model_data['username'];
         $dateofbirth = $model_data['dateofbirth'];
-        $address = $model_data['address'];
+        $address1 = $model_data['address1'];
+        $address2 = $model_data['address2'];
         $city = $model_data['city'];
         $state = $model_data['state'];
         $postcode = $model_data['postcode'];
@@ -769,7 +803,7 @@ Class Netballmodel extends CI_Model
         }
         else{
 
-            $sql = "UPDATE `tbl_player` SET `name` = '$username', `email` = '$email',`birthday` = '$dateofbirth',`address` = '$address',`city` = '$city',
+            $sql = "UPDATE `tbl_player` SET `name` = '$username', `email` = '$email',`birthday` = '$dateofbirth',`address1` = '$address1',`address2` = '$address2',`city` = '$city',
                 `state` = '$state',`postcode` = '$postcode',`country` = '$country',`position1` = '$position1',`position2` = '$position2',`position3` = '$position3',`phone` = '$phone',`mobile` = '$mobile' WHERE no = '$id'";
             $result = $this->db->query($sql); 
 

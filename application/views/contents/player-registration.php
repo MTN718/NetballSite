@@ -1,15 +1,15 @@
- <?php if ($this->session->flashdata('success_msg') != "") { ?>
-    <div class="alert alert-success alert-dismissable" style="background-color: #00a65a !important;border-color: #008d4c;border-radius: 3px;padding-right: 35px;padding: 15px;margin-bottom: 20px;border: 1px solid transparent;">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: #000;opacity: .2;position: relative;top: -2px;right: 0px;float: right;font-size: 21px;font-weight: 700;line-height: 1;color: #000;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: .2;">&times;</a>
-        <strong>Successfully</strong> <?php echo $this->session->flashdata('success_msg'); ?>
-    </div>
-    <?php } ?>
-    <?php if ($this->session->flashdata('error_msg') != "") { ?>
-    <div class="alert alert-warning alert-dismissable" style="background-color: #00a65a !important;border-color: #008d4c;border-radius: 3px;padding-right: 35px;padding: 15px;margin-bottom: 20px;border: 1px solid transparent;">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: #000;opacity: .2;position: relative;top: -2px;right: 0px;float: right;font-size: 21px;font-weight: 700;line-height: 1;color: #000;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: .2;">&times;</a>
-        <strong style="color: #000;">Warning!</strong> <?php echo $this->session->flashdata('error_msg'); ?>
-    </div>
-    <?php } ?>
+<?php if ($this->session->flashdata('reg_success_msg') != "") { ?>
+<div class="alert alert-success alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Successfully</strong> <?php echo $this->session->flashdata('reg_success_msg'); ?>
+</div>
+<?php } ?>
+<?php if ($this->session->flashdata('error_msg') != "") { ?>
+<div class="alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Warning!</strong> <?php echo $this->session->flashdata('error_msg'); ?>
+</div>
+<?php } ?>
 <!-- Content
 ================================================== -->
 <div class="fullwidth-box padding-bottom-35" id="services">
@@ -70,7 +70,7 @@
 							 </select>
                             </label>
                             </p>
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <p class="col-md-6 ">
                                     <label class=""> Upload Image: </label>
                                 </p>    
@@ -80,7 +80,7 @@
                                         <input type="file" name="image" class="upload">
                                     </div>
                                 </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="col-md-4 col-md-offset-2">
                             <h4 class="headline centered margin-bottom-15 padding-top-25">Personal Details</h4>
@@ -92,30 +92,44 @@
 							</p>
 								
                             <p class="form-row form-row-wide">
-								<label for="dateofbirth_player">date of Birth:
+								<label for="dateofbirth_player">Date Of Birth:
 									<i class="im im-icon-Calendar"></i>
-                                  <input type="text" name="dateofbirth" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="1800" data-max-year="2020">
+                                  <input type="text" name="dateofbirth" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="1800" data-max-year="2020" data-format="d/m/Y">
 								</label>
 							</p>
+                            <p class="form-row form-row-wide">
+                                <label for="address">Address1:
+                                    <i class="im im-icon-Location-2"></i>
+                                    <input type="text" name="address1" id="address1" placeholder="e.g. 964 School Street1 street2" required>
+                                </label>
+                            </p>
 
-							<p class="form-row form-row-wide">
-								<label for="address_player">Address:
-									<i class="im im-icon-Location-2"></i>
-									<input type="text" id="address_player" placeholder="e.g. 964 School Street1 street2" name="address" required>
-								</label>
-							</p>
+                            <p class="form-row form-row-wide">
+                                <label for="address">Address2:
+                                    <i class="im im-icon-Location-2"></i>
+                                    <input type="text" name="address2" id="address2" placeholder="e.g. 964 School Street1 street2" required>
+                                </label>
+                            </p>
 							 <p class="form-row form-row-wide">
 								<label for="city_player">City:
 									<i class="im im-icon-City-Hall"></i>
 									<input type="text" class="input-text" name="city" id="city_player" required />
 								</label>
 							</p>
-                             <p class="form-row form-row-wide">
-								<label for="state_player">State:
-									<i class="im im-icon-Globe"></i>
-									<input type="text" class="input-text" name="state" id="state_player" required/>
-								</label>
-							</p>
+                        <p class="form-row form-row-wide">
+                            <label for="select1">State</label>
+                            <select name="state" id="state" class="chosen-select-no-single"  required>
+                                <option value="Australia" selected>Australia</option>
+                                <option value="New South Wales">New South Wales</option>
+                                <option value="Victoria">Victoria</option>
+                                <option value="Tasmania">Tasmania</option>
+                                <option value="Queensland">Queensland</option>
+                                <option value="Western Australia">Western Australia</option>
+                                <option value="South Australia">South Australia</option>
+                                <option value="Northern Territory">Northern Territory</option>
+                                <option value="Australian Capital Territory">Australian Capital Territory</option>
+                            </select>
+                        </p>
                             <p class="form-row form-row-wide">
 								<label for="postcode_player">Postcode:
 									<i class="im im-icon-Post-Office"></i>
@@ -131,18 +145,18 @@
 							  </select>
                             </label>
                             </p>
-                             <p class="form-row form-row-wide">
-								<label for="phone_player">Phone Number:
-									<i class="im im-icon-Phone"></i>
-									<input type="tel" name="phone" type="text" id="phone_player" required>
-								</label>
-							</p>
-                            <p class="form-row form-row-wide">
-								<label for="mobile_player">Mobile Number:
-									<i class="im im-icon-Phone-4G"></i>
-									<input type="tel" name="mobile" type="text" id="mobile_player" required>
-								</label>
-							</p>
+                        <p class="form-row form-row-wide">
+                            <label for="phonenumber">Phone Number:
+                                <i class="im im-icon-Phone"></i>
+                                <input id="phone" type="tel" name="phone" value="(__) ____-____" pattern="^\(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{4}-?[0-9]{4}$" required>
+                            </label>
+                        </p>
+                        <p class="form-row form-row-wide">
+                            <label for="mobilenumber">Mobile Number:
+                                <i class="im im-icon-Phone-4G"></i>
+                                <input id="phone2" type="tel" name="mobile" value="____-___-___" pattern="[0-9]{4}-?[0-9]{3}-?[0-9]{3}$" required>
+                            </label>
+                        </p>
                             </div>
                             
                             <div class="clearfix"></div>
@@ -222,10 +236,16 @@
         		$('#booking-date').css("border-color", "green");
 
 
-        	if(address_player == '')
-        		$('#address_player').css("border-color", "red");
-        	else
-        		$('#address_player').css("border-color", "green");
+            if(address1 == '')
+                $('#address1').css("border-color", "red");
+            else
+                $('#address1').css("border-color", "green");
+
+
+            if(address2 == '')
+                $('#address2').css("border-color", "red");
+            else
+                $('#address2').css("border-color", "green");
 
 
         	if(city_player == '')
@@ -263,10 +283,31 @@
         	
 
         	if( email_player != '' && password_player != '' && position1_player != '' && position2_player != '' && position3_player != '' && username_player != '' && dateofbirth_player != '' &&
-        		address_player != '' && city_player != '' && state_player != '' && postcode_player != '' && country_player != '' && phone_player != '' && mobile_player != '') {
+        		address1 != '' && address2 != '' && city_player != '' && state_player != '' && postcode_player != '' && country_player != '' && phone_player != '' && mobile_player != '') {
         		$('#player_reg').submit();
         	}
 
         });
   });
+
+
+
+
+window.onload = function() {
+   MaskedInput({
+      elm: document.getElementById('phone'), // select only by id
+      format: '(__) ____-____',
+      separator: ' ()-'
+   });
+  
+     MaskedInput({
+      elm: document.getElementById('phone2'), // select only by id
+      format: '____-___-___',
+      separator: ' ()-'
+   });
+};
+
+
+
+
 </script>

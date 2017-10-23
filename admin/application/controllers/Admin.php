@@ -20,16 +20,55 @@ class Admin extends CI_Controller {
     public function userManagement()
     {
         $this->is_logged_in();
-        $data['playerdatalists'] = $this->adminmodel->getplayerdatalist();
+        //$data['playerdatalists'] = $this->adminmodel->getplayerdatalist();
         $data['pageName'] = "USER";
+
+
+        $this->load->library('pagination');
+        $config = array();
+        $config["base_url"] = base_url() . "index.php/Admin/userManagement";
+        
+        $config["total_rows"] = $this->adminmodel->record_count_user_management();
+        $config["per_page"] = 2;
+        $config["uri_segment"]=3;
+
+
+
+        $this->pagination->initialize($config);
+        $page =($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        
+        $data["results"] = $this->adminmodel->getplayerdatalist($config["per_page"], $page);
+        $str_links = $this->pagination->create_links();
+        $data["links"] = explode('&nbsp;',$str_links );
+
+
+
         $this->load->view("content_handler", $data); 
     }
 
     public function clubManagement()
     {
         $this->is_logged_in();
-        $data['clubdatalists'] = $this->adminmodel->getclubdatalist();
+        //$data['clubdatalists'] = $this->adminmodel->getclubdatalist();
         $data['pageName'] = "CLUB";
+
+        $this->load->library('pagination');
+        $config = array();
+        $config["base_url"] = base_url() . "index.php/Admin/clubManagement";
+        
+        $config["total_rows"] = $this->adminmodel->record_count_club_data();
+        $config["per_page"] = 2;
+        $config["uri_segment"]=3;
+
+
+
+        $this->pagination->initialize($config);
+        $page =($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        
+        $data["results"] = $this->adminmodel->getclubdatalist($config["per_page"], $page);
+        $str_links = $this->pagination->create_links();
+        $data["links"] = explode('&nbsp;',$str_links );
+
         $this->load->view("content_handler", $data); 
     }
 
@@ -37,7 +76,23 @@ class Admin extends CI_Controller {
     {
         $this->is_logged_in();
         $data['pageName'] = "EVENT";
-        $data['eventList'] = $this->adminmodel->geteventLists();
+        //$data['eventList'] = $this->adminmodel->geteventLists();
+                $this->load->library('pagination');
+        $config = array();
+        $config["base_url"] = base_url() . "index.php/Admin/eventManagement";
+        
+        $config["total_rows"] = $this->adminmodel->record_count_event_mngmnt();
+        $config["per_page"] = 4;
+        $config["uri_segment"]=3;
+
+
+
+        $this->pagination->initialize($config);
+        $page =($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        
+        $data["eventList"] = $this->adminmodel->geteventLists($config["per_page"], $page);
+        $str_links = $this->pagination->create_links();
+        $data["links"] = explode('&nbsp;',$str_links );
         $this->load->view("content_handler", $data); 
     }
 
@@ -45,7 +100,29 @@ class Admin extends CI_Controller {
     {
         $this->is_logged_in();
         $data['pageName'] = "TRANSACTION";
-        $data['transactioninfolist'] = $this->adminmodel->gettransactioninfolist();
+        //$data['transactioninfolist'] = $this->adminmodel->gettransactioninfolist();
+
+
+
+
+
+        $this->load->library('pagination');
+        $config = array();
+        $config["base_url"] = base_url() . "index.php/Admin/transaction";
+        
+        $config["total_rows"] = $this->adminmodel->record_count();
+        $config["per_page"] = 4;
+        $config["uri_segment"]=3;
+
+
+
+        $this->pagination->initialize($config);
+        $page =($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        
+        $data["results"] = $this->adminmodel->fetch_data($config["per_page"], $page);
+        $str_links = $this->pagination->create_links();
+        $data["links"] = explode('&nbsp;',$str_links );
+
         $this->load->view("content_handler", $data); 
     }
 
@@ -174,8 +251,25 @@ class Admin extends CI_Controller {
     public function package()
     {
         $this->is_logged_in();
-        $data['packagedatalist'] = $this->adminmodel->getpackagedatalist();
+        //$data['packagedatalist'] = $this->adminmodel->getpackagedatalist();
         $data['pageName'] = "PACKAGE";
+
+         $this->load->library('pagination');
+        $config = array();
+        $config["base_url"] = base_url() . "index.php/Admin/package";
+        
+        $config["total_rows"] = $this->adminmodel->record_count_package();
+        $config["per_page"] = 1;
+        $config["uri_segment"]=3;
+
+
+
+        $this->pagination->initialize($config);
+        $page =($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        
+        $data["results"] = $this->adminmodel->fetch_data_package($config["per_page"], $page);
+        $str_links = $this->pagination->create_links();
+        $data["links"] = explode('&nbsp;',$str_links );
         $this->load->view("content_handler", $data); 
     }
 

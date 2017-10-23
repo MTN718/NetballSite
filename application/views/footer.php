@@ -20,6 +20,7 @@
             <!-- <li><a href="#">My Account</a></li> -->
             <li><a href="<?php echo site_url('netball/pricing');?>">Pricing</a></li>
             <li><a href="<?php echo site_url('netball/privacy');?>">Privacy Policy</a></li>
+            <li><a href="<?php echo site_url('netball/help_password');?>">Help Password</a></li>
           </ul>
           <ul class="footer-links">
             <li><a href="<?php echo site_url('netball/faq');?>">FAQ</a></li>
@@ -353,7 +354,12 @@
 
 <link href="<?php echo base_url('assets/css/plugins/datedropper.css');?>" rel="stylesheet" type="text/css">
 <script src="<?php echo base_url('assets/scripts/datedropper.js');?>"></script>
-<script>$('#booking-date').dateDropper();</script>
+<script>
+  $('#booking-date').dateDropper();
+</script>
 
 </body>
 </html>
+
+
+

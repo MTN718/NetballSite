@@ -57,8 +57,6 @@ switch($pageName) {
 
 
 
-
-
     case "CLUB_DASHBOARD":
     include('contents/club-dashboard.php');
     break;

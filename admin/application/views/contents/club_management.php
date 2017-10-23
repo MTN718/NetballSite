@@ -32,7 +32,7 @@
                                 <th>Club Name</th>
                                 <th>Association Afiliated</th>
                             </tr>
-                            <?php foreach ($clubdatalists as $clubdatalist) { ?>
+                            <?php foreach ($results as $clubdatalist) { ?>
                                 <tr data-row-id="<?php echo $clubdatalist->no;?>"  id="clubemailAction<?php echo $clubdatalist->no;?>">
                                     <td> <?php if (!empty($clubdatalist->name)) echo $clubdatalist->name; ?> </td>
                                     <td> <?php if (!empty($clubdatalist->email)) echo $clubdatalist->email; ?> </td>
@@ -55,7 +55,7 @@
                                 <th> Mobile Number </th>
                                 <th> Action </th>
                             </tr>
-                            <?php foreach ($clubdatalists as $clubdatalist) { ?>
+                            <?php foreach ($results as $clubdatalist) { ?>
                                 <tr data-row-id="<?php echo $clubdatalist->no;?>"  id="clubAction<?php echo $clubdatalist->no;?>">
                                     <td> <?php if (!empty($clubdatalist->name)) echo $clubdatalist->name; ?> </td>
                                     <td> <?php if (!empty($clubdatalist->stablishes_date)) echo $clubdatalist->stablishes_date; ?> </td>
@@ -86,16 +86,14 @@
         </div>
         <div class="clearfix"></div>
         <div class="pagination-container text-center margin-top-30 margin-bottom-0">
-            <nav class="pagination">
-                <ul>
-                    <li><a href="#" class="current-page">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-                </ul>
-            </nav>
-        </div>
+          <nav class="pagination">
+            <ul>
+              <?php foreach ($links as $link) {
+            echo "<li>". $link."</li>";
+            } ?>
+            </ul>
+          </nav>
+      </div>
 
 
 <script type="text/javascript">

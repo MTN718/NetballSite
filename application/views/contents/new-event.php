@@ -38,14 +38,14 @@
 
                                 <!-- Title -->
                                 <div class="col-md-6">
-                                  <h5>Title</h5>
+                                  <h5>Event Name</h5>
                                   <input type="text" id="title" name="title" required>
                               </div>
 
                               <!-- date -->
                               <div class="col-md-6">
                                   <h5>Date</h5>
-                                  <input type="text" id="eventdate" name="date" required data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="3000">
+                                  <input type="text" id="eventdate" name="date" data-format="d/m/Y" required data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="3000">
                               </div>
 
                               <!-- Venue -->
@@ -65,20 +65,20 @@
                                   <h5>Finish Time</h5>
                                   <input type="text" id="finishtime" name="finishtime" class="booking-time" required>
                               </div>
-                              <!-- City -->
-                              <div class="col-md-6">
-                                  <h5>Special Requirements</h5>
-                                  <input type="text" id="requirements" name="requirements" >
-                              </div>
 
-                              <!-- Zip-Code -->
                               <div class="col-md-6">
                                   <h5>Player Co-Contribution Amount</h5>
-                                  <input type="number" id="fee" name="fee" required>
+                                  <input type="number" id="fee" name="fee" value="5" min="5" required>
+                                   <span>*Mininm contribution amount $5 </span>
+                              </div>
+
+                              <div class="col-md-6">
+                                  <h5>Special Requirements</h5>
+                                  <textarea id="requirements" name="requirements"></textarea>
                               </div>
 
                               <!-- Image  -->
-                              <div class="col-md-6">
+                              <div class="col-md-6" style="margin-top: 50px;">
                                   <div class="col-md-6">
                                      <h5>Image </h5>
                                  </div>

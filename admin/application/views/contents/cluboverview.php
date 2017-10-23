@@ -63,7 +63,7 @@
                             <tr>
                                 <td> <?php if (!empty($cluboverviewclubinfo->name)) echo $cluboverviewclubinfo->name; ?> </td>
                                 <td> <?php if (!empty($cluboverviewclubinfo->stablishes_date)) echo $cluboverviewclubinfo->stablishes_date; ?> </td>
-                                <td> <?php if (!empty($cluboverviewclubinfo->address)) echo $cluboverviewclubinfo->address; ?> </td>
+                                <td> <?php if (!empty($cluboverviewclubinfo->address1)) echo $cluboverviewclubinfo->address1; ?> <?php if (!empty($cluboverviewclubinfo->address2)) echo $cluboverviewclubinfo->address2; ?> </td>
                                 <td> <?php if (!empty($cluboverviewclubinfo->city)) echo $cluboverviewclubinfo->city; ?> </td>
                                 <td> <?php if (!empty($cluboverviewclubinfo->state)) echo $cluboverviewclubinfo->state; ?> </td>
                                 <td> <?php if (!empty($cluboverviewclubinfo->postcode)) echo $cluboverviewclubinfo->postcode; ?> </td>

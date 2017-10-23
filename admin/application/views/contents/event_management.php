@@ -74,6 +74,15 @@
             </ul>
           </nav>
         </div> -->
+        <div class="pagination-container text-center margin-top-30 margin-bottom-0">
+          <nav class="pagination">
+            <ul>
+              <?php foreach ($links as $link) {
+            echo "<li>". $link."</li>";
+            } ?>
+            </ul>
+          </nav>
+      </div>
 
 <script type="text/javascript">
     $(document).ready(function(){      

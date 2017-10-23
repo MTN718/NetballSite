@@ -1,13 +1,13 @@
 <?php if ($this->session->flashdata('reg_success_msg') != "") { ?>
-<div class="alert alert-success alert-dismissable" style="background-color: #00a65a !important;border-color: #008d4c;border-radius: 3px;padding-right: 35px;padding: 15px;margin-bottom: 20px;border: 1px solid transparent;">
-	<a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: #000;opacity: .2;position: relative;top: -2px;right: 0px;float: right;font-size: 21px;font-weight: 700;line-height: 1;color: #000;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: .2;">&times;</a>
+<div class="alert alert-success alert-dismissable">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 	<strong>Successfully</strong> <?php echo $this->session->flashdata('reg_success_msg'); ?>
 </div>
 <?php } ?>
 <?php if ($this->session->flashdata('error_msg') != "") { ?>
-<div class="alert alert-warning alert-dismissable" style="background-color: #00a65a !important;border-color: #008d4c;border-radius: 3px;padding-right: 35px;padding: 15px;margin-bottom: 20px;border: 1px solid transparent;">
-	<a href="#" class="close" data-dismiss="alert" aria-label="close" style="color: #000;opacity: .2;position: relative;top: -2px;right: 0px;float: right;font-size: 21px;font-weight: 700;line-height: 1;color: #000;text-shadow: 0 1px 0 #fff;filter: alpha(opacity=20);opacity: .2;">&times;</a>
-	<strong style="color:#000;">Warning!</strong> <?php echo $this->session->flashdata('error_msg'); ?>
+<div class="alert alert-danger alert-dismissable">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Warning!</strong> <?php echo $this->session->flashdata('error_msg'); ?>
 </div>
 <?php } ?>
 <!-- Content
@@ -58,7 +58,7 @@
 							</label>
 						</p>
 						<!-- Widget -->
-						<div class="col-md-12">
+						<!-- <div class="col-md-12">
 						<p class="col-md-6 ">
 							<label class=""> Upload Image: </label>
 						</p>	
@@ -68,7 +68,7 @@
 								<input type="file" name="image" class="upload">
 							</div>
 						</div>
-						</div>		
+						</div>	 -->	
  						<!-- Widget / End --> 
 					</div>
 
@@ -83,29 +83,37 @@
 						</p>
 
 						<p class="form-row form-row-wide">
-							<label for="dateofbirth">Stablishes Date:
+							<label for="dateofbirth">Date Of Birth:
 								<i class="im im-icon-Calendar"></i>
-								<input type="text" name="dateofbirth" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="1800" data-max-year="2020">
+								<input type="text" name="dateofbirth" id="booking-date" data-lang="en" data-large-mode="true" data-min-year="1800" data-max-year="2020" data-format="d/m/Y">
+							</label>
+						</p>
+						<p class="form-row form-row-wide">
+							<label for="address">Address1:
+								<i class="im im-icon-Location-2"></i>
+								<input type="text" name="address1" id="address1" placeholder="e.g. 964 School Street1 street2" required>
 							</label>
 						</p>
 
 						<p class="form-row form-row-wide">
-							<label for="address">Address:
+							<label for="address">Address2:
 								<i class="im im-icon-Location-2"></i>
-								<input type="text" name="address" id="address" placeholder="e.g. 964 School Street1 street2" required>
+								<input type="text" name="address2" id="address2" placeholder="e.g. 964 School Street1 street2" required>
 							</label>
 						</p>
 						<p class="form-row form-row-wide">
-							<label for="city1">City:
-								<i class="im im-icon-City-Hall"></i>
-								<input type="text" class="input-text" name="city" id="city" required/>
-							</label>
-						</p>
-						<p class="form-row form-row-wide">
-							<label for="state">State:
-								<i class="im im-icon-Globe"></i>
-								<input type="text" class="input-text" name="state" id="state" required/>
-							</label>
+							<label for="select1">State</label>
+							<select name="state" id="state" class="chosen-select-no-single"  required>
+								<option value="Australia" selected>Australia</option>
+								<option value="New South Wales">New South Wales</option>
+								<option value="Victoria">Victoria</option>
+								<option value="Tasmania">Tasmania</option>
+								<option value="Queensland">Queensland</option>
+								<option value="Western Australia">Western Australia</option>
+								<option value="South Australia">South Australia</option>
+								<option value="Northern Territory">Northern Territory</option>
+								<option value="Australian Capital Territory">Australian Capital Territory</option>
+							</select>
 						</p>
 						<p class="form-row form-row-wide">
 							<label for="postcode">Postcode:
@@ -124,13 +132,13 @@
 						<p class="form-row form-row-wide">
 							<label for="phonenumber">Phone Number:
 								<i class="im im-icon-Phone"></i>
-								<input type="tel" name="phone" id="phone" type="text" required>
+								<input id="phone" type="tel" name="phone" value="(__) ____-____" pattern="^\(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{4}-?[0-9]{4}$" required>
 							</label>
 						</p>
 						<p class="form-row form-row-wide">
 							<label for="mobilenumber">Mobile Number:
 								<i class="im im-icon-Phone-4G"></i>
-								<input type="tel" name="mobile" id="mobile" type="text" required>
+								<input id="phone2" type="tel" name="mobile" value="____-___-___" pattern="[0-9]{4}-?[0-9]{3}-?[0-9]{3}$" required>
 							</label>
 						</p>
 					</div>
@@ -159,7 +167,8 @@
         	association = $('#association').val();
         	username2 	= $('#username2').val();
         	dateofbirth = $('#booking-date').val();
-        	address 	= $('#address').val();
+        	address1 	= $('#address1').val();
+        	address2 	= $('#address2').val();
         	city 		= $('#city').val();
         	state 		= $('#state').val();
         	postcode 	= $('#postcode').val();
@@ -200,10 +209,17 @@
         		$('#booking-date').css("border-color", "green");
 
 
-        	if(address == '')
-        		$('#address').css("border-color", "red");
+        	if(address1 == '')
+        		$('#address1').css("border-color", "red");
         	else
-        		$('#address').css("border-color", "green");
+        		$('#address1').css("border-color", "green");
+
+
+
+        	if(address2 == '')
+        		$('#address2').css("border-color", "red");
+        	else
+        		$('#address2').css("border-color", "green");
 
 
         	if(city == '')
@@ -241,10 +257,35 @@
         	
 
         	if( email2 != '' && password != '' && clubname != '' && association != '' && username != '' && dateofbirth != '' &&
-        		address != '' && city != '' && state != '' && postcode != '' && country != '' && phone != '' && mobile != '') {
+        		address1 != '' && address2 != '' && city != '' && state != '' && postcode != '' && country != '' && phone != '' && mobile != '') {
         		$('#club_reg').submit();
         	}
 
         });
   });
+
+
+
+
+
+window.onload = function() {
+   MaskedInput({
+      elm: document.getElementById('phone'), // select only by id
+      format: '(__) ____-____',
+      separator: ' ()-'
+   });
+  
+     MaskedInput({
+      elm: document.getElementById('phone2'), // select only by id
+      format: '____-___-___',
+      separator: ' ()-'
+   });
+};
+
+
+
+
 </script>
+
+
+

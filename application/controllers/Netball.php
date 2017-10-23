@@ -17,14 +17,8 @@ class Netball extends CI_Controller {
     public function index()
     {
         $data['pageName'] = "HOME";
-
-
         $data['topclubs'] = $this->Netballmodel->gettopclubs();
         $data['topevents'] = $this->Netballmodel->gettopevents();
-
-
-
-
         $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
         $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
         $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
@@ -95,7 +89,7 @@ class Netball extends CI_Controller {
         $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
         $data['clubdatainfo'] = $this->Netballmodel->getclubdatainfo($model_data);
         $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
-        $data['eventinfos'] = $this->Netballmodel->geteventinfolist($model_data);
+        // $data['eventinfos'] = $this->Netballmodel->geteventinfolist($model_data);
         $data['pageName'] = "CLUB_DETAILS";
         $this->load->view("content_handler", $data);
     }
@@ -227,6 +221,37 @@ class Netball extends CI_Controller {
         $this->load->view("content_handler", $data);
     }
 
+     public function reset_password_complete()
+    {
+        $data['pageName'] = "RESET_PASS_COMPLETE";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['termconditioninfo'] = $this->Netballmodel->gettermconditioninfo(); 
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
+        $this->load->view("content_handler", $data);
+    }
+
+     public function account_signup()
+    {
+        $data['pageName'] = "ACCOUNT_SIGNUP";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['termconditioninfo'] = $this->Netballmodel->gettermconditioninfo(); 
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
+        $this->load->view("content_handler", $data);
+    }
+
+
+     public function help_password()
+    {
+        $data['pageName'] = "HELP_PASSWORD";
+        $data['aboutusinfo'] = $this->Netballmodel->getaboutusinfo();
+        $data['contactusinfo'] = $this->Netballmodel->getcontactusinfo();
+        $data['termconditioninfo'] = $this->Netballmodel->gettermconditioninfo(); 
+        $data['sociallinkdatalist'] = $this->Netballmodel->getsociallinkdatalist();
+        $this->load->view("content_handler", $data);
+    }
+
 
 
 
@@ -266,7 +291,29 @@ class Netball extends CI_Controller {
          $model_data = array(
             'id' => $userInfo->no
         );
-        $data['eventinfos'] = $this->Netballmodel->geteventinfolist($model_data);
+       //$data['eventinfos'] = $this->Netballmodel->geteventinfolist($model_data);
+
+
+
+
+
+
+
+         $this->load->library('pagination');
+        $config = array();
+        $config["base_url"] = base_url() . "index.php/Netball/currentEvent";
+        
+        $config["total_rows"] = $this->Netballmodel->record_count_crnt_event();
+        $config["per_page"] = 4;
+        $config["uri_segment"]=3;
+
+        $this->pagination->initialize($config);
+        $page =($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        
+        $data["results"] = $this->Netballmodel->geteventinfolist($model_data, $config["per_page"], $page);
+        $str_links = $this->pagination->create_links();
+        $data["links"] = explode('&nbsp;',$str_links );
+
         $data['pageName'] = "CURRENT_EVENT";
         $this->load->view("dashboard_content_handler", $data);
     }
@@ -353,7 +400,7 @@ class Netball extends CI_Controller {
         $this->upload->initialize($config);
         if (!$this->upload->do_upload('image')) {
             $model_data = array(
-                'image' => $data1['upload_data']['file_name'], 
+                'image' => "", 
                 'username' => $this->input->post('username'),
                 'email' => $this->input->post('email'),
                 'newpwd' => $this->input->post('password'),
@@ -361,7 +408,8 @@ class Netball extends CI_Controller {
                 'value_type' => $this->input->post('value_type'),
                 'username' => $this->input->post('username'),
                 'dateofbirth' => $this->input->post('dateofbirth'),
-                'address' => $this->input->post('address'),
+                'address1' => $this->input->post('address1'),
+                'address2' => $this->input->post('address2'),
                 'city' => $this->input->post('city'),
                 'state' => $this->input->post('state'),
                 'postcode' => $this->input->post('postcode'),
@@ -384,10 +432,19 @@ class Netball extends CI_Controller {
                 redirect('netball/playerRegistration');
             }
 
+
+            $to_email = $model_data['email'];
+            $subject = "Registration confirmation";
+            $url = site_url('netball');
+            $message = "Registration is successfully please login by clicking on link<br/>".$url;
+            $this->sendEmail($to_email,$subject,$message);
+
+    
             $this->Netballmodel->playerRegistrationFormdata($model_data);
-            $this->session->set_flashdata('reg_success_msg','Thank you for registering with us');
-            redirect('netball');
+            redirect('netball/account_signup');
+
         } else {
+
             $data1 = array('upload_data' => $this->upload->data());
             $model_data = array(
                 'image' => $data1['upload_data']['file_name'], 
@@ -398,7 +455,8 @@ class Netball extends CI_Controller {
                 'value_type' => $this->input->post('value_type'),
                 'username' => $this->input->post('username'),
                 'dateofbirth' => $this->input->post('dateofbirth'),
-                'address' => $this->input->post('address'),
+                'address1' => $this->input->post('address1'),
+                'address2' => $this->input->post('address2'),
                 'city' => $this->input->post('city'),
                 'state' => $this->input->post('state'),
                 'postcode' => $this->input->post('postcode'),
@@ -422,8 +480,16 @@ class Netball extends CI_Controller {
             }
 
             $this->Netballmodel->playerRegistrationFormdata($model_data);
-            $this->session->set_flashdata('reg_success_msg','Thank you for registering with us');
-            redirect('netball');
+
+            $to_email = $model_data['email'];
+            $subject = "Registration confirmation";
+            $url = site_url('netball');
+            $message = "Registration is successfully please login by clicking on link<br/>".$url;
+            $this->sendEmail($to_email,$subject,$message);
+
+    
+            $this->Netballmodel->playerRegistrationFormdata($model_data);
+            redirect('netball/account_signup');
         }    
     }
 
@@ -448,7 +514,8 @@ class Netball extends CI_Controller {
              'association' => $this->input->post('association'),
              'username' => $this->input->post('username'),
              'dateofbirth' => $this->input->post('dateofbirth'),
-             'address' => $this->input->post('address'),
+             'address1' => $this->input->post('address1'),
+             'address2' => $this->input->post('address2'),
              'city' => $this->input->post('city'),
              'state' => $this->input->post('state'),
              'postcode' => $this->input->post('postcode'),
@@ -485,7 +552,8 @@ class Netball extends CI_Controller {
              'association' => $this->input->post('association'),
              'username' => $this->input->post('username'),
              'dateofbirth' => $this->input->post('dateofbirth'),
-             'address' => $this->input->post('address'),
+             'address1' => $this->input->post('address2'),
+             'address2' => $this->input->post('address2'),
              'city' => $this->input->post('city'),
              'state' => $this->input->post('state'),
              'postcode' => $this->input->post('postcode'),
@@ -497,13 +565,13 @@ class Netball extends CI_Controller {
 
             $email_check = $this->Netballmodel->checkEmail($model_data['email']);
             if($email_check) {
-                $this->session->set_flashdata('error_msg','Email already exits');
+                $this->session->set_flashdata('error_msg','Email is already exits');
                 redirect('netball/clubRegistrationForm');
             }
 
             $username_check = $this->Netballmodel->checkUsername($model_data['username']);
             if($username_check) {
-                $this->session->set_flashdata('error_msg','User Name already exits');
+                $this->session->set_flashdata('error_msg','User Name is already exits');
                 redirect('netball/clubRegistrationForm');
             }
 
@@ -552,8 +620,17 @@ class Netball extends CI_Controller {
          'type' => $this->input->post('type'),
         );
 
-        $this->Netballmodel->clubRegistrationBankAccount($model_data); 
-        redirect('netball');
+        $club_data = $this->Netballmodel->getclubdetail($model_data['club_id']);
+
+            $to_email = $club_data->email;
+            $subject = "Registration confirmation";
+            $url = site_url('netball');
+            $message = "Registration is successfully please login by clicking on link<br/>".$url;
+            $this->sendEmail($to_email,$subject,$message);
+
+    
+            $this->Netballmodel->playerRegistrationFormdata($model_data);
+            redirect('netball/account_signup');
 
     }
 
@@ -685,7 +762,13 @@ class Netball extends CI_Controller {
             $url = site_url('netball/resetNewPassword'."?token=".$token);
             $message = "Reset your password of Netball by clicking on link<br/>".$url;
 
-            $this->sendEmail($to_email,$subject,$message);            
+            $status = $this->sendEmail($to_email,$subject,$message);  
+
+            if ($status){
+                redirect('netball/reset_password_complete');
+            }else{
+                redirect('netball');
+            }           
         }
     }
 
@@ -709,9 +792,9 @@ class Netball extends CI_Controller {
         $this->email->subject($subject);
         $this->email->message($message);
         if ($this->email->send()){
-            redirect('netball');
+            return true;
         }else{
-            redirect('netbasdfsfsdfsdfsll');
+            return false;
         }       
     }
 
@@ -739,24 +822,17 @@ class Netball extends CI_Controller {
         if($status == "notmatched") {
 
             $data['errormsg'] = "Password not matched";
-            $data['token'] = $model_data['token'];
-            $data['open_reset'] = "true";
-            $data['pageName'] = "HOME";
-            $this->load->view("content_handler", $data); 
+            redirect('netball');
 
         } else if($status == "true") {
 
             $data['successmsg'] = "password has been changed successfully Please Login";
-            $data['open_login'] = "true";
-            $data['pageName'] = "HOME";
-            $this->load->view("content_handler", $data); 
+            redirect('netball');
 
         } else {
 
             $data['errormsg'] = "Reset password link is expried! Please try again";
-            $data['open_forget'] = "true";
-            $data['pageName'] = "HOME";
-            $this->load->view("content_handler", $data); 
+            redirect('netball');
 
         }
     }
@@ -891,7 +967,8 @@ class Netball extends CI_Controller {
                 'association' => $this->input->post('association'),
                 'username' => $this->input->post('username'),
                 'dateofbirth' => $this->input->post('dateofbirth'),
-                'address' => $this->input->post('address'),
+                'address1' => $this->input->post('address1'),
+                'address2' => $this->input->post('address2'),
                 'city' => $this->input->post('city'),
                 'state' => $this->input->post('state'),
                 'postcode' => $this->input->post('postcode'),
@@ -939,7 +1016,8 @@ class Netball extends CI_Controller {
                 'username' => $this->input->post('username12'),
                 'email' => $this->input->post('email'),
                 'dateofbirth' => $this->input->post('dateofbirth'),
-                'address' => $this->input->post('address'),
+                'address1' => $this->input->post('address1'),
+                'address2' => $this->input->post('address2'),
                 'city' => $this->input->post('city'),
                 'state' => $this->input->post('state'),
                 'postcode' => $this->input->post('postcode'),

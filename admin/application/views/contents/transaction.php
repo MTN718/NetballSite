@@ -42,7 +42,7 @@
           <th> Transaction Date </th>
           <th> Action </th>
          </tr>
-      <?php foreach ($transactioninfolist as $transactioninfo) { ?>
+      <?php foreach ($results as $transactioninfo) { ?>
         <tr>
           <td> <?php if (!empty($transactioninfo->transaction_id)) echo $transactioninfo->transaction_id; ?> </td>
           <td> <?php if (!empty($transactioninfo->account_holder_name)) echo $transactioninfo->account_holder_name; ?> </td>
@@ -66,14 +66,19 @@
         </div>
       </div>
       <div class="clearfix"></div>
+      
+
+
+
+
+
       <div class="pagination-container text-center margin-top-30 margin-bottom-0">
           <nav class="pagination">
             <ul>
-              <li><a href="#" class="current-page">1</a></li>
-              <li><a href="#">2</a></li>
-               <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-              <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
+              <?php foreach ($links as $link) {
+            echo "<li>". $link."</li>";
+            } ?>
             </ul>
           </nav>
-        </div>
+      </div>
+      

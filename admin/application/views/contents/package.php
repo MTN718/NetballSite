@@ -45,7 +45,7 @@
           <th> Action </th>
 
          </tr>
-         <?php foreach ($packagedatalist as $packagedata) { ?>
+         <?php foreach ($results as $packagedata) { ?>
          <tr data-row-id="<?php echo $packagedata->package_id;?>"  id="packageAction<?php echo $packagedata->package_id;?>">
            <td> <?php if (!empty($packagedata->package_name)) echo $packagedata->package_name; ?> </td>
            <td> <?php if (!empty($packagedata->number_of_player)) echo $packagedata->number_of_player; ?> </td>
@@ -68,14 +68,12 @@
       <div class="pagination-container text-center margin-top-30 margin-bottom-0">
           <nav class="pagination">
             <ul>
-              <li><a href="#" class="current-page">1</a></li>
-              <li><a href="#">2</a></li>
-               <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-              <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
+              <?php foreach ($links as $link) {
+            echo "<li>". $link."</li>";
+            } ?>
             </ul>
           </nav>
-        </div>
+      </div>
 
 
 <script type="text/javascript">

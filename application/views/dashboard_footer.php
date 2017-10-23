@@ -144,7 +144,8 @@
 
 <link href="<?php echo base_url('assets/css/plugins/datedropper.css');?>" rel="stylesheet" type="text/css">
 <script src="<?php echo base_url('assets/scripts/datedropper.js');?>"></script>
-<script>$('#eventdate').dateDropper();</script> 
+<script>$('#eventdate').dateDropper();
+</script> 
 <script>$('#dateofbirth').dateDropper();</script> 
 
 <!-- Time Picker - docs: http://www.vasterad.com/docs/listeo/#!/time_picker -->

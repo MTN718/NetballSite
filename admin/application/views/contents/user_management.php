@@ -33,7 +33,7 @@
                                 <th>Position2</th>
                                 <th>Position3</th>
                             </tr>
-                            <?php foreach ($playerdatalists as $playerdatalist) { ?>
+                            <?php foreach ($results as $playerdatalist) { ?>
                                 <tr data-row-id="<?php echo $playerdatalist->no;?>"  id="playeremailAction<?php echo $playerdatalist->no;?>">
                                     <td> <?php if (!empty($playerdatalist->name)) echo $playerdatalist->name; ?> </td>
                                     <td> <?php if (!empty($playerdatalist->email)) echo $playerdatalist->email; ?> </td>
@@ -61,11 +61,11 @@
                                 <th> Mobile Number </th>
                                 <th> Action </th>
                             </tr>
-                            <?php foreach ($playerdatalists as $playerdatalist) { ?>
+                            <?php foreach ($results as $playerdatalist) { ?>
                                 <tr data-row-id="<?php echo $playerdatalist->no;?>"  id="playerAction<?php echo $playerdatalist->no;?>">
                                     <td> <?php if (!empty($playerdatalist->name)) echo $playerdatalist->name; ?> </td>
                                     <td> <?php if (!empty($playerdatalist->birthday)) echo $playerdatalist->birthday; ?> </td>
-                                    <td> <?php if (!empty($playerdatalist->address)) echo $playerdatalist->address; ?> </td>
+                                    <td> <?php if (!empty($playerdatalist->address1)) echo $playerdatalist->address1; ?> <?php if (!empty($playerdatalist->address2)) echo $playerdatalist->address2; ?> </td>
                                     <td> <?php if (!empty($playerdatalist->city)) echo $playerdatalist->city; ?> </td>
                                     <td> <?php if (!empty($playerdatalist->state)) echo $playerdatalist->state; ?> </td>
                                     <td> <?php if (!empty($playerdatalist->postcode)) echo $playerdatalist->postcode; ?> </td>
@@ -89,17 +89,15 @@
             </div>
         </div>
         <div class="clearfix"></div>
-        <div class="pagination-container margin-top-30 margin-bottom-0">
-            <nav class="pagination">
-                <ul>
-                    <li><a href="#" class="current-page">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#"><i class="sl sl-icon-arrow-right"></i></a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="pagination-container text-center margin-top-30 margin-bottom-0">
+          <nav class="pagination">
+            <ul>
+              <?php foreach ($links as $link) {
+            echo "<li>". $link."</li>";
+            } ?>
+            </ul>
+          </nav>
+      </div>
 
 <script type="text/javascript">
     $(document).ready(function(){      
