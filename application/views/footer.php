@@ -354,8 +354,26 @@
 
 <link href="<?php echo base_url('assets/css/plugins/datedropper.css');?>" rel="stylesheet" type="text/css">
 <script src="<?php echo base_url('assets/scripts/datedropper.js');?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('assets/scripts/BootstrapPasswordStrengthMeter.js');?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('.exampleInputPassword1').bootstrapPasswordStrengthMeter({
+        minPasswordLength: 3
+      });
+    });
+</script>
+
+
+
 <script>
   $('#booking-date').dateDropper();
+</script>
+<script>
+  $('#dateofbirth').dateDropper();
 </script>
 
 </body>

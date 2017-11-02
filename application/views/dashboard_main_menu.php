@@ -74,7 +74,7 @@
 		<div class="dashboard-nav-inner">
 
 			<ul data-submenu-title="Main">
-				<li class="<?php if($pageName == "NEW_EVENT") echo "active"; ?>" ><a href="<?php echo site_url('netball/newEvent');?>"><i class="sl sl-icon-plus"></i> New Event</a></li>
+				<li class="<?php if($pageName == "NEW_EVENT" || $pageName == "EVENT_PACKAGE" || $pageName == "USER_AGREEMENT") echo "active"; ?>" ><a href="<?php echo site_url('netball/addneweventpackage');?>"><i class="sl sl-icon-plus"></i> New Event</a></li>
 				<li class="<?php if($pageName == "CURRENT_EVENT") echo "active"; ?>" ><a href="<?php echo site_url('netball/currentEvent');?>"><i class="sl sl-icon-action-redo"></i> Current Event</a></li>
 			</ul>
 			

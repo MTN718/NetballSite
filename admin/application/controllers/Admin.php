@@ -259,7 +259,7 @@ class Admin extends CI_Controller {
         $config["base_url"] = base_url() . "index.php/Admin/package";
         
         $config["total_rows"] = $this->adminmodel->record_count_package();
-        $config["per_page"] = 1;
+        $config["per_page"] = 4;
         $config["uri_segment"]=3;
 
 

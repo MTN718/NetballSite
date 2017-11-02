@@ -41,7 +41,7 @@
                                   <input type="text" name="packagename" required>
                               </div>
                               <div class="col-md-12">
-                                  <h5> Number of Player </h5>
+                                  <h5> Max Number Of Players </h5>
                                   <input type="text" name="numberofplayer" required>
                               </div>
                               <div class="col-md-12">

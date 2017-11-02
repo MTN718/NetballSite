@@ -147,6 +147,9 @@
 <script>$('#eventdate').dateDropper();
 </script> 
 <script>$('#dateofbirth').dateDropper();</script> 
+<script>
+  $('#dateofbirth').dateDropper();
+</script>
 
 <!-- Time Picker - docs: http://www.vasterad.com/docs/listeo/#!/time_picker -->
 <script src="<?php echo base_url('assets/scripts/timedropper.js');?>"></script>

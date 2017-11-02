@@ -41,7 +41,9 @@
                     </h5>
                     <h5>Venue :<span><?php if(!empty($event->venue)) echo $event->venue; ?></span></h5>  
                     <h5>Date :<span><?php if(!empty($event->date)) echo $event->date; ?></span></h5>
-                     <h5>Time :<span><?php if(!empty($event->starttime)) echo $event->starttime; ?> to <?php if(!empty($event->endtime)) echo $event->endtime; ?></span></h5>  
+                     <h5>Time :<span><?php if(!empty($event->starttime)) echo $event->starttime; ?> to <?php if(!empty($event->endtime)) echo $event->endtime; ?></span></h5> 
+                     <h5>Full Name :<span><?php if(!empty($event->full_name)) echo $event->full_name; ?></span></h5> 
+                     <h5>Ip Address :<span><?php if(!empty($event->ip_address)) echo $event->ip_address; ?></span></h5>  
                     <div class="star-rating" data-rating="2.0">
                       <div class="rating-counter">(17 reviews)</div>
                     <span class="star"></span><span class="star"></span><span class="star empty"></span><span class="star empty"></span><span class="star empty"></span></div>

@@ -109,7 +109,10 @@
 												<?php if (isset($playerdatainfo->birthday)) { ?>
 												<label for="dateofbirth">date of Birth:
 													<i class="im im-icon-Calendar"></i>
-													<input id="booking-date" data-lang="en" data-large-mode="true" value="<?php if (!empty($playerdatainfo->birthday)) echo $playerdatainfo->birthday; ?>" name="dateofbirth" data-min-year="1800" data-max-year="2020" data-id="datedropper-0" readonly class="picker-input" type="text">
+													<?php 
+					 									$dateofbirth = date("d/m/Y",strtotime($playerdatainfo->birthday));
+					 								?>
+													<input id="booking-date" data-lang="en" data-large-mode="true" value="<?php if (!empty($dateofbirth)) echo $dateofbirth; ?>" name="dateofbirth" data-min-year="1800" data-max-year="2020" data-id="datedropper-0" readonly class="picker-input" type="text">
 												</label>
 												<?php } else { ?>
 												<label for="dateofbirth">date of Birth:

@@ -466,7 +466,7 @@ Class Netballmodel extends CI_Model
         $temppassword = $model_data['newpwd']; 
         $value_type = $model_data['value_type'];
         $username = $model_data['username'];
-        $dateofbirth = $model_data['dateofbirth'];
+        $dateofbirth11 = $model_data['dateofbirth'];
         $address1 = $model_data['address1'];
         $address2 = $model_data['address2'];
         $city = $model_data['city'];
@@ -479,7 +479,8 @@ Class Netballmodel extends CI_Model
         $position2 = $model_data['position2'];
         $position3 = $model_data['position3'];
         $password = password_hash($temppassword, PASSWORD_BCRYPT);
-       
+        $dateofbirth = date("Y/d/m",strtotime($dateofbirth11));
+
     	$sql = "INSERT INTO tbl_player(`name`,`password`,`email`,`birthday`,`address1`,`address2`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`position1`,`position2`,`position3`,`user_type`,`photo`)  VALUES('$username','$password','$email','$dateofbirth','$address1','$address2','$city','$state','$postcode','$country','$phone','$mobile','$position1','$position2','$position3','$value_type','$image')";
     	$result = $this->db->query($sql);
 
@@ -498,7 +499,7 @@ Class Netballmodel extends CI_Model
         $clubname = $model_data['clubname'];
         $association = $model_data['association'];
         $username = $model_data['username'];
-        $dateofbirth = $model_data['dateofbirth'];
+        $dateofbirth11 = $model_data['dateofbirth'];
         $address1 = $model_data['address1'];
         $address2 = $model_data['address2'];
         $city = $model_data['city'];
@@ -510,6 +511,7 @@ Class Netballmodel extends CI_Model
         $value_type = $model_data['value_type'];
         $temppassword = $model_data['newpwd'];
         $password = password_hash($temppassword, PASSWORD_BCRYPT);
+        $dateofbirth = date("Y/d/m",strtotime($dateofbirth11));
        
         $sql = "INSERT INTO tbl_club(`name`,`password`,`email`,`stablishes_date`,`address1`,`address2`,`city`,`state`,`postcode`,`country`,`phone`,`mobile`,`club_name`,`association_afiliated`,`user_type`,`photo`)  VALUES('$username','$password','$email','$dateofbirth','$address1','$address2','$city','$state','$postcode','$country','$phone','$mobile','$clubname','$association','$value_type','$image')";
         $result = $this->db->query($sql);
@@ -556,6 +558,10 @@ Class Netballmodel extends CI_Model
 
         $sql1 = "UPDATE tbl_club SET payment = '$payment_id' WHERE no='$club_id'";
         $this->db->query($sql1);
+
+        $sql = "INSERT INTO tbl_notification(`to_id`,`subject`,`message`) 
+        VALUES('admin','Club Registered','A New Club Registered')";
+        $result = $this->db->query($sql);
 
         return true;
     }
@@ -620,13 +626,18 @@ Class Netballmodel extends CI_Model
         $image = $model_data['image'];
         $package = $model_data['package'];
 
+        $useragreement = $model_data['useragreement'];
+        $fullname = $model_data['fullname'];
+        $signature = $model_data['signature'];
+        $ip_address = $model_data['ip_address'];
+
         $userInfo = $this->session->userdata('login_data');
         $data = array(
             'id' => $userInfo->no
         );
         $club_id =$data['id'];
        
-        $sql = "INSERT INTO tbl_event(`club_no`,`title`,`venue`,`date`,`starttime`,`endtime`,`special`,`fee`,`photo`,`package_id`)  VALUES('$id','$title','$venue','$date','$starttime','$finishtime','$requirements','$fee','$image','$package')";
+        $sql = "INSERT INTO tbl_event(`club_no`,`title`,`venue`,`date`,`starttime`,`endtime`,`special`,`fee`,`photo`,`package_id`,`full_name`,`user_signature`,`ip_address`,`proof_of_agreement`)  VALUES('$id','$title','$venue','$date','$starttime','$finishtime','$requirements','$fee','$image','$package','$fullname','$signature','$ip_address','$useragreement')";
         $result = $this->db->query($sql);
 
         $club_notic_data = $this->getclubdatabyid($club_id);

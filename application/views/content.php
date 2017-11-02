@@ -78,6 +78,9 @@ switch($pageName) {
     case "CLUBNOTIFICATION":
     include('contents/club-notification.php');
     break;
+    case "USER_AGREEMENT":
+    include('contents/user-agreement.php');
+    break;
 
 
 

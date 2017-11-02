@@ -32,7 +32,8 @@
  					<!-- Row -->
  					<div class="submit-section">
  						<form method="post" id="event_add" action="<?php echo site_url();?>/netball/addeventdata" enctype="multipart/form-data">
- 							<input type="hidden" name="id" value="<?php if (!empty($clubdatainfo->no)) echo $clubdatainfo->no; ?>">
+              <input type="hidden" name="id" value="<?php if (!empty($id)) echo $id; ?>">
+              <input type="hidden" name="package" value="<?php if (!empty($package)) echo $package; ?>">
  							<!-- Row -->
  							<div class="row with-forms">
 
@@ -67,9 +68,9 @@
                               </div>
 
                               <div class="col-md-6">
-                                  <h5>Player Co-Contribution Amount</h5>
+                                  <h5>Player Co-Contribution Amount ($)</h5>
                                   <input type="number" id="fee" name="fee" value="5" min="5" required>
-                                   <span>*Mininm contribution amount $5 </span>
+                                   <span>*Minimum contribution amount $5 </span>
                               </div>
 
                               <div class="col-md-6">

@@ -35,29 +35,33 @@
           <tbody>
          <tr>
           <th> Transaction Id </th>
-          <th>Account Name</th>
-          <th>Account Number</th>
-           <th>Amount</th>
-          <th>Bank/Branch Name</th>
+<!--           <th>Account Name</th>
+          <th>Account Number</th> -->
+           <th> Type </th>
+           <th> Amount </th>
+           <th> Payment Gateway Method </th>
+           <th> Source </th>
+
+         <!--  <th>Bank/Branch Name</th> -->
           <th> Transaction Date </th>
           <th> Action </th>
          </tr>
       <?php foreach ($results as $transactioninfo) { ?>
         <tr>
           <td> <?php if (!empty($transactioninfo->transaction_id)) echo $transactioninfo->transaction_id; ?> </td>
-          <td> <?php if (!empty($transactioninfo->account_holder_name)) echo $transactioninfo->account_holder_name; ?> </td>
-          <td> <?php if (!empty($transactioninfo->bank_account_number)) echo $transactioninfo->bank_account_number; ?> </td>
+          <td> Credit or Debit </td>
           <td> <?php if (!empty($transactioninfo->amount)) echo $transactioninfo->amount; ?> </td>
-          <td> <?php if (!empty($transactioninfo->bank_name)) echo $transactioninfo->bank_name; ?> </td>
+          <td> PayPal / Bank Transfer </td>
+          <td> ■  Club / ■ Player </td>
           <td> <?php if (!empty($transactioninfo->trasaction_date)) echo $transactioninfo->trasaction_date; ?> </td>
-           <td style="padding: 15px 0px;"> <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a></td>
+           <td style="padding: 15px 0px;"> <a href="#" class="button gray"><i class="sl sl-icon-close"></i> Void </a></td>
         </tr>
        <?php } ?>  
        
         
     
         
-      </tbody></table>
+      </tbody></table> 
 
 
            

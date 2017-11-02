@@ -48,7 +48,7 @@
                                             <h3><?php if(!empty($eventinfo->title)) echo $eventinfo->title; ?></h3>
                                             <div><b>Date: </b> <?php if(!empty($eventinfo->date)) echo $eventinfo->date; ?></div>
                                             <div><b>Timing: </b> <?php if(!empty($eventinfo->starttime)) echo $eventinfo->starttime; ?> - <?php if(!empty($eventinfo->endtime)) echo $eventinfo->endtime; ?></div>
-                                            <div><b>Fee: </b> <?php if(!empty($eventinfo->fee)) echo $eventinfo->fee; ?></div>
+                                            <div><b>Fee: </b>$<?php if(!empty($eventinfo->fee)) echo $eventinfo->fee; ?>.00</div>
                                             <div><b>Special Requirements: </b> <?php if(!empty($eventinfo->special)) echo $eventinfo->special; ?></div>
                                         </div>
                                     </div>

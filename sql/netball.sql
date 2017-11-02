@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.18
--- https://www.phpmyadmin.net
+-- version 4.1.6
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Oct 23, 2017 at 06:33 AM
--- Server version: 5.6.26-74.0-log
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Oct 26, 2017 at 04:12 PM
+-- Server version: 5.5.36
+-- PHP Version: 5.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `a3bhacey_netball`
+-- Database: `netball`
 --
 
 -- --------------------------------------------------------
@@ -101,19 +101,23 @@ CREATE TABLE IF NOT EXISTS `tbl_club` (
   `status` int(11) NOT NULL DEFAULT '1',
   `reg_count` int(11) NOT NULL,
   PRIMARY KEY (`no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `tbl_club`
 --
 
 INSERT INTO `tbl_club` (`no`, `email`, `name`, `createdate`, `payment`, `password`, `club_name`, `association_afiliated`, `stablishes_date`, `address1`, `address2`, `city`, `state`, `postcode`, `country`, `phone`, `mobile`, `user_type`, `photo`, `status`, `reg_count`) VALUES
-(2, 'sudeepgandhi540@gmail.com', 'club', '2017-10-10 15:31:29', 2, '$2y$10$2DYJ4c8vYp6Yia8d9A3TqOzuux5o48bViJ2DGq/URUDFkQnIItIS.', 'Asdf', 'sdfg', '0000-00-00', 'Mig indore', '', 'indore', 'mpdfgdfg', '457933', '', '8794', '8795', 'club', 'slider-bg-01.jpg', 1, 20),
+(2, 'sudeepgandhi540@gmail.com', 'club', '2017-10-26 14:09:50', 2, '$2y$10$ZqSgiFWkDSuFsldogZNEr.ARAsxeEvYE6B4CrtZfMfB9Qt.hj4Uwa', 'Asdf', 'sdfg', '2017-08-07', 'Mig indore', '', 'indore', 'mpdfgdfg', '457933', '', '8794', '8795', 'club', 'slider-bg-01.jpg', 1, 20),
 (3, 'sub@gmail.com', 'subclub', '2017-10-10 15:34:14', 3, '$2y$10$2DYJ4c8vYp6Yia8d9A3TqOzuux5o48bViJ2DGq/URUDFkQnIItIS.', 'Jhabhu', 'Dhar', '2017-02-02', 'lig', '', 'indore', 'mp', '452001', 'India', '1258', '236565325', 'club', 'slider-bg-01.jpg', 1, 10),
-(4, 'qq@gmail.com', 'qq', '2017-10-04 06:36:35', 4, '$2y$10$zEUWtUehGywN030dRVzS9u.Kta3lOyuMSAYIiKJ7Fu4jzhPCPSMxe', 'qq', 'qq', '0000-00-00', '34232', '', 'qq', 'qq', 'qq', 'American Samoa', '2323', '232323', 'club', 'slider-bg-0221.jpg', 1, 0),
-(5, 'democlub@gmail.com', 'democlub', '2017-10-04 11:09:59', 5, '$2y$10$XE32UCg.01kMzO/m5D.3du2bXTDg/QuGb6FLPzx/..oV.UM3XeMWq', 'Abcd', 'Other', '0000-00-00', 'Mig indore', '', 'Indore', 'mp', '452001', 'India', '326545', '23546', 'club', 'slider-bg-0223.jpg', 1, 0),
-(6, 'admin@gmail.com', 'adminclub', '2017-10-06 05:31:36', 6, '$2y$10$jBmcXvWY75vdy9Q24Ozbl.E5wg6JxGg73j8EtZTh1d/R.U93Nm9iq', 'ABC', 'Abc', '0000-00-00', 'ligasda', '', 'indore', 'mp', '452001', 'Indonesia', '235689', '2356', 'club', 'thumbnail_win_distr9.jpg', 1, 1),
-(7, 'craig@craigmarchant.id.au', 'craig.marchant81', '2017-10-16 08:46:24', 7, '$2y$10$fi8VKL7Msg2IH6aGpVnZa.aTxskvX/ytfOrSQ82XkCnt9XJuzlx9.', 'Craigles Sports Land Inc Test', 'Donaldo Trump', '0000-00-00', '142 Harold Keys Drive', '', 'Narre Warren South', 'Victoria', '3805', 'Australia', '61432408897', '61432408897', 'club', '', 1, 0);
+(4, 'qq@gmail.com', 'qq', '2017-10-26 13:57:29', 4, '$2y$10$zEUWtUehGywN030dRVzS9u.Kta3lOyuMSAYIiKJ7Fu4jzhPCPSMxe', 'qq', 'qq', '2017-10-03', '34232', '', 'qq', 'qq', 'qq', 'American Samoa', '2323', '232323', 'club', 'slider-bg-0221.jpg', 1, 0),
+(5, 'democlub@gmail.com', 'democlub', '2017-10-26 13:57:36', 5, '$2y$10$XE32UCg.01kMzO/m5D.3du2bXTDg/QuGb6FLPzx/..oV.UM3XeMWq', 'Abcd', 'Other', '2017-09-08', 'Mig indore', '', 'Indore', 'mp', '452001', 'India', '326545', '23546', 'club', 'slider-bg-0223.jpg', 1, 0),
+(6, 'admin@gmail.com', 'adminclub', '2017-10-26 13:57:42', 6, '$2y$10$jBmcXvWY75vdy9Q24Ozbl.E5wg6JxGg73j8EtZTh1d/R.U93Nm9iq', 'ABC', 'Abc', '2017-08-09', 'ligasda', '', 'indore', 'mp', '452001', 'Indonesia', '235689', '2356', 'club', 'thumbnail_win_distr9.jpg', 1, 1),
+(7, 'su66b@gmail.com', '4657t6y', '2017-10-19 11:35:47', 0, '$2y$10$xrTu8DAxKV5U.t7FJRJFhO9q4HfNXXM4wL66Ll1FWjLgEyc64MbRy', 'ertyu', 'rtryu', '0000-00-00', '4e665t7gy', '', '', 'Victoria', 'edrft', 'Algeria', '4356-789-765', '', 'club', '', 1, 0),
+(8, 'sudeepclub@gmail.com', 'sudeep_club', '2017-10-26 13:57:48', 7, '$2y$10$03w.8qZmh0evxTYc3NPveugfnE532kBCHNX61SmFuwqmSJ2D1OPZm', 'sudeep_club', 'sudeep', '2017-08-15', 'demo address1', 'demo address2', '', 'Australia', '452001', 'Afghanistan', '(43) 5435-3453', '3343-354-353', 'club', '', 1, 0),
+(9, 'vendorclub@gmail.com', 'vendorclub', '2017-10-26 13:57:53', 8, '$2y$10$PObgMEDznjyoTCd9dIQuPOfGt/8AGgenJOGoO9sv2D69q5NRmpZX2', 'abc', 'fjdsjf', '2017-08-15', 'mig', '', '', 'Australia', '4587710', 'Australia', '(__) ____-____', '2356-874-155', 'club', '', 1, 0),
+(10, 'vendor@gmail.com', 'vendor', '2017-10-26 06:34:38', 9, '$2y$10$h7sH/kaIXQ1hcaka8vyzJOGlF5w.dGimKO18A.KE0nWFZyZOLKAxm', 'abc', 'abc', '2017-10-12', 'mig', '', '', 'Australia', '2356874', 'Australia', '(25) 4788-8286', '1258-792-458', 'club', '', 1, 0),
+(14, 'saklechar@gmail.com', 'saklecha', '2017-10-26 13:32:02', 12, '$2y$10$YdBFpBouhDtdrN3LUsF2sugx2KnzM0/JOBBef2EINiDTo1FAQFMIK', 'kjsdf', 'dmsvfkj', '1970-01-01', 'dfsgsf', '', '', 'Australia', '5432', 'Afghanistan', '(__) ____-____', '7425-724-242', 'club', '', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -130,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `tbl_club_payment` (
   `branch` varchar(45) NOT NULL,
   `paypal` varchar(45) NOT NULL,
   PRIMARY KEY (`no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `tbl_club_payment`
@@ -143,7 +147,12 @@ INSERT INTO `tbl_club_payment` (`no`, `type`, `name`, `bsb`, `number`, `branch`,
 (4, 0, '', '', '', '', 'ab12c11111@gmail.com'),
 (5, 0, '', '', '', '', 'democlub@gmail.com'),
 (6, 0, '', '', '', '', 'admin@gmail.com'),
-(7, 0, '', '', '', '', 'craig@craigmarchant.id.au');
+(7, 0, '', '', '', '', 'sudeep_club@gmail.com'),
+(8, 0, '', '', '', '', 'vendorclub@gmail.com'),
+(9, 0, '', '', '', '', 'vendor@gmail.com'),
+(10, 0, '', '', '', '', 'aaaaabc@gmail.com'),
+(11, 0, '', '', '', '', 'aaaavendor@gmail.com'),
+(12, 0, '', '', '', '', 'dabc@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -450,23 +459,29 @@ CREATE TABLE IF NOT EXISTS `tbl_event` (
   `status` int(11) NOT NULL DEFAULT '0',
   `package_id` int(11) NOT NULL,
   `reg_player_count` int(11) NOT NULL,
+  `date_of_agreement` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `full_name` varchar(255) NOT NULL,
+  `user_signature` varchar(255) NOT NULL,
+  `ip_address` varchar(255) NOT NULL,
+  `proof_of_agreement` int(11) NOT NULL,
   PRIMARY KEY (`no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `tbl_event`
 --
 
-INSERT INTO `tbl_event` (`no`, `title`, `venue`, `date`, `starttime`, `endtime`, `special`, `fee`, `photo`, `club_no`, `status`, `package_id`, `reg_player_count`) VALUES
-(10, 'Club_football', 'demo demo', '10/04/2017', '2:02 am', '6:02 pm', 'no', 123, '', 2, 1, 2, 0),
-(11, 'Cricket', 'Apna graden', '9/03/2017', '7:30 am', '2:00 pm', 'Nothing', 100, '', 3, 1, 2, 0),
-(12, 'abcxds', 'ghgv', '9/03/2017', '7:25 pm', '7:25 pm', 'Nothing', 5487, 'slider-bg-0222.jpg', 2, 1, 3, 0),
-(13, 'demo', 'demo', '9/03/2017', '12:38 pm', '12:38 pm', 'no', 12, '', 3, 1, 1, 0),
-(14, 'demo212121212121', 'dfhgfdhdfhdfhdfhhdfhh', '9/03/2017', '8:24 pm', '8:24 pm', 'no', 11, '', 3, 1, 1, 20),
-(15, 'Abcef', 'Apna graden', '10/06/2017', '11:15 am', '5:15 pm', 'no', 500, 'slider-bg-0129.jpg', 6, 1, 1, 0),
-(16, 'vimeo', 'Indore', '10/21/2017', '10:21 am', '4:15 pm', 'Nothing', 100, 'slider-bg-01.jpg', 6, 1, 1, 0),
-(17, 'Testing', 'Bhopal', '10/20/2017', '7:00 am', '2:00 pm', 'Nothing', 1, 'thumbnail_win115.jpg', 3, 0, 1, 0),
-(18, 'Tester McTest', 'THE MCG', '10/16/2017', '7:49 pm', '7:49 pm', '', 10.5, '', 7, 0, 1, 0);
+INSERT INTO `tbl_event` (`no`, `title`, `venue`, `date`, `starttime`, `endtime`, `special`, `fee`, `photo`, `club_no`, `status`, `package_id`, `reg_player_count`, `date_of_agreement`, `full_name`, `user_signature`, `ip_address`, `proof_of_agreement`) VALUES
+(10, 'Club_football', 'demo demo', '10/04/2017', '2:02 am', '6:02 pm', 'no', 123, '', 2, 1, 2, 0, '0000-00-00 00:00:00', '', '', '', 0),
+(11, 'Cricket', 'Apna graden', '9/03/2017', '7:30 am', '2:00 pm', 'Nothing', 100, '', 3, 1, 2, 0, '0000-00-00 00:00:00', '', '', '', 0),
+(12, 'abcxds', 'ghgv', '9/03/2017', '7:25 pm', '7:25 pm', 'Nothing', 5487, 'slider-bg-0222.jpg', 2, 1, 3, 0, '0000-00-00 00:00:00', '', '', '', 0),
+(13, 'demo', 'demo', '9/03/2017', '12:38 pm', '12:38 pm', 'no', 12, '', 3, 1, 1, 0, '0000-00-00 00:00:00', '', '', '', 0),
+(14, 'demo212121212121', 'dfhgfdhdfhdfhdfhhdfhh', '9/03/2017', '8:24 pm', '8:24 pm', 'no', 11, '', 3, 1, 1, 20, '0000-00-00 00:00:00', '', '', '', 0),
+(15, 'Abcef', 'Apna graden', '10/06/2017', '11:15 am', '5:15 pm', 'no', 500, 'slider-bg-0129.jpg', 6, 1, 1, 0, '0000-00-00 00:00:00', '', '', '', 0),
+(16, 'vimeo', 'Indore', '10/21/2017', '10:21 am', '4:15 pm', 'Nothing', 100, 'slider-bg-01.jpg', 6, 1, 1, 0, '0000-00-00 00:00:00', '', '', '', 0),
+(17, 'Testing', 'Bhopal', '10/20/2017', '7:00 am', '2:00 pm', 'Nothing', 1, 'thumbnail_win115.jpg', 3, 0, 1, 0, '0000-00-00 00:00:00', '', '', '', 0),
+(20, 'abcd', 'abc', '28/10/2017', '10:00 am', '3:51 pm', 'Nothing', 5, '', 5, 0, 2, 0, '2017-10-26 11:22:41', 'adfeferf', '', '::1', 1),
+(21, 'Abc', 'Indore', '26/10/2017', '5:09 pm', '5:09 pm', 'yturty', 5, '', 5, 0, 1, 0, '2017-10-26 11:43:42', 'dsfsdgfg', '', '::1', 1);
 
 -- --------------------------------------------------------
 
@@ -555,7 +570,7 @@ CREATE TABLE IF NOT EXISTS `tbl_notification` (
   `club_id` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `tbl_notification`
@@ -572,9 +587,25 @@ INSERT INTO `tbl_notification` (`id`, `to_id`, `subject`, `message`, `date_time`
 (8, 'player', 'Add a New Event', 'Club Jhabhu has add a new event', '2017-10-06 08:42:24', 0, 1),
 (9, 'admin', 'changed password ', 'Club Asdf changed password', '2017-10-10 15:30:59', 0, 1),
 (10, 'admin', 'changed password ', 'Club Asdf changed password', '2017-10-10 15:31:29', 0, 1),
-(11, 'admin', 'Club Registered', 'A New Club Registered', '2017-10-16 08:46:24', 0, 1),
-(12, 'admin', 'Add a New Event', 'Club Craigles Sports Land Inc Test has add a new event', '2017-10-16 08:58:18', 0, 1),
-(13, 'player', 'Add a New Event', 'Club Craigles Sports Land Inc Test has add a new event', '2017-10-16 08:58:18', 0, 1);
+(11, 'admin', 'Player Registered', 'A New Player Registered', '2017-10-20 02:17:31', 0, 1),
+(12, 'admin', 'Player update profile', 'Player sudeep update Profile', '2017-10-20 02:23:15', 0, 1),
+(13, 'admin', 'Club Registered', 'A New Club Registered', '2017-10-20 13:37:15', 0, 1),
+(14, 'admin', 'Club Registered', 'A New Club Registered', '2017-10-26 05:31:55', 0, 1),
+(15, 'admin', 'Club Registered', 'A New Club Registered', '2017-10-26 05:49:05', 0, 1),
+(16, 'admin', 'Add a New Event', 'Club Abcd has add a new event', '2017-10-26 06:17:36', 0, 1),
+(17, 'player', 'Add a New Event', 'Club Abcd has add a new event', '2017-10-26 06:17:36', 0, 1),
+(18, 'admin', 'Add a New Event', 'Club Abcd has add a new event', '2017-10-26 06:23:29', 0, 1),
+(19, 'player', 'Add a New Event', 'Club Abcd has add a new event', '2017-10-26 06:23:29', 0, 1),
+(20, 'admin', 'Club Registered', 'A New Club Registered', '2017-10-26 07:05:08', 0, 1),
+(21, 'admin', 'Club Registered', 'A New Club Registered', '2017-10-26 07:23:00', 0, 1),
+(22, 'admin', 'Add a New Event', 'Club Abcd has add a new event', '2017-10-26 11:22:41', 0, 1),
+(23, 'player', 'Add a New Event', 'Club Abcd has add a new event', '2017-10-26 11:22:41', 0, 1),
+(24, 'admin', 'Add a New Event', 'Club Abcd has add a new event', '2017-10-26 11:43:42', 0, 1),
+(25, 'player', 'Add a New Event', 'Club Abcd has add a new event', '2017-10-26 11:43:42', 0, 1),
+(26, 'admin', 'Player Registered', 'A New Player Registered', '2017-10-26 13:05:38', 0, 1),
+(27, 'admin', 'Club Registered', 'A New Club Registered', '2017-10-26 13:32:02', 0, 1),
+(28, 'admin', 'changed password ', 'Club Asdf changed password', '2017-10-26 14:09:50', 0, 1),
+(29, 'admin', 'changed password', 'Player player change password', '2017-10-26 14:12:00', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -598,7 +629,7 @@ CREATE TABLE IF NOT EXISTS `tbl_package` (
 
 INSERT INTO `tbl_package` (`package_id`, `package_name`, `number_of_player`, `per_event_fee`, `player_regisatration_fee`, `status`) VALUES
 (1, '1-10', 'Upto 25 Player', '$10', '$20', 0),
-(2, '21-50', '50', '29.95', '$5', 0);
+(2, '1-20', 'Upto 50 Player', '100', '100', 0);
 
 -- --------------------------------------------------------
 
@@ -611,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `tbl_player` (
   `email` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `birthday` varchar(45) NOT NULL,
+  `birthday` date NOT NULL,
   `address1` longtext NOT NULL,
   `address2` longtext NOT NULL,
   `city` varchar(45) NOT NULL,
@@ -627,17 +658,18 @@ CREATE TABLE IF NOT EXISTS `tbl_player` (
   `photo` text,
   `status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `tbl_player`
 --
 
 INSERT INTO `tbl_player` (`no`, `email`, `name`, `password`, `birthday`, `address1`, `address2`, `city`, `state`, `postcode`, `country`, `phone`, `mobile`, `position1`, `position2`, `position3`, `user_type`, `photo`, `status`) VALUES
-(1, 'cashier@test.com', 'player', '$2y$10$gXgPB3QAOVOa3BP6b0fzQOHu/SLRJtfubZDThf', '12/12/2017', 'ligg ', '', 'indore', 'mp', '452001', '', '1234', '235', 'GK', 'GK', 'GK', 'player', NULL, 1),
-(2, 'adminsdsd@gmail.com', 'adminplayer', '$2y$10$WGLjWyrww57iIhpqRbDXk.Y6mHCH/vZZADGdrsxue1grS9xY1iyey', '2017/02/02', 'mig', '', 'indore', 'mp', '457933', 'Austraila', '2356123596', '235615465325', 'GK', 'GK', 'GK', 'player', 'slider-bg-011.jpg', 1),
-(3, 'demoplayer@gmail.com', 'demoplayer', '$2y$10$LKtXawiJgcarL.tgXTO1ueJ3j8lAnAzFPWxllr5nOkFpxyHnQFR1.', '', 'Dhar', '', 'indore', 'mp', '45877', 'Anguilla', '235687', '32587', 'first', 'first', 'first', 'player', 'slider-bg-0222.jpg', 1),
-(4, 'subplayer@gmail.com', 'subplayer', '$2y$10$cSW881/R/BpLK9BaO5acjeTSy4LMEFYkJw1ilzeYG0mFUyHFZEqJ6', '10/01/2017', 'Mig indore', '', 'indore', 'mp', '452001', 'India', '235687', '598787996', 'first', 'first', 'first', 'player', 'slider-bg-014.jpg', 1);
+(1, 'cashier@test.com', 'player', '$2y$10$Ej98CMRN5Ylbr8u.tHw3AeJuX76hxWNUM98AgO060rrDUD10y9nTS', '2017-07-12', 'ligg ', '', 'indore', 'mp', '452001', '', '1234', '235', 'GK', 'GK', 'GK', 'player', NULL, 1),
+(2, 'adminsdsd@gmail.com', 'adminplayer', '$2y$10$WGLjWyrww57iIhpqRbDXk.Y6mHCH/vZZADGdrsxue1grS9xY1iyey', '2017-02-02', 'mig', '', 'indore', 'mp', '457933', 'Austraila', '2356123596', '235615465325', 'GK', 'GK', 'GK', 'player', 'slider-bg-011.jpg', 1),
+(3, 'demoplayer@gmail.com', 'demoplayer', '$2y$10$LKtXawiJgcarL.tgXTO1ueJ3j8lAnAzFPWxllr5nOkFpxyHnQFR1.', '2017-08-16', 'Dhar', '', 'indore', 'mp', '45877', 'Anguilla', '235687', '32587', 'first', 'first', 'first', 'player', 'slider-bg-0222.jpg', 1),
+(4, 'subplayer@gmail.com', 'subplayer', '$2y$10$cSW881/R/BpLK9BaO5acjeTSy4LMEFYkJw1ilzeYG0mFUyHFZEqJ6', '2017-08-09', 'Mig indore', '', 'indore', 'mp', '452001', 'India', '235687', '598787996', 'first', 'first', 'first', 'player', 'slider-bg-014.jpg', 1),
+(5, 'sudeepgandhi540@gmail.com', 'sudeep', '$2y$10$MigH60ub549Bf4UMKIDkwe/QDpUIPvDf0wg5kOC2m/7yaUCGmNTz.', '2017-07-05', 'demo address1', 'demo address2', 'demo city', 'Australia', '452001', 'Afghanistan', '(23) 4234-2342', '2423-423-423', 'first', 'first', 'first', 'player', '', 1);
 
 -- --------------------------------------------------------
 

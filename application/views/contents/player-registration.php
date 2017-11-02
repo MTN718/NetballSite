@@ -29,12 +29,15 @@
 								</label>
 							</p>
 
-							<p class="form-row form-row-wide">
+							<div class="form-row form-group form-row-wide">
 								<label for="password_player">Password:
-									<i class="im im-icon-Lock-2"></i>
-									<input class="input-text" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confrimpassword.pattern = this.value;" placeholder="Password" name="password" id="password_player"/>
+									<i class="im im-icon-Lock-2" style="top: 48px;"></i>
+									<input class="input-text exampleInputPassword1" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.confrimpassword.pattern = this.value;" placeholder="Password" name="password" id="password_player"/>
+                                    <div class="progress">
+                                        <div class="progress-bar"></div>
+                                    </div>
 								</label>
-							</p>
+							</div>
 
 							<p class="form-row form-row-wide">
 								<label for="confrimpassword">Confirm Password:
@@ -107,7 +110,7 @@
                             <p class="form-row form-row-wide">
                                 <label for="address">Address2:
                                     <i class="im im-icon-Location-2"></i>
-                                    <input type="text" name="address2" id="address2" placeholder="e.g. 964 School Street1 street2" required>
+                                    <input type="text" name="address2" id="address2" placeholder="e.g. 964 School Street1 street2">
                                 </label>
                             </p>
 							 <p class="form-row form-row-wide">
@@ -148,7 +151,7 @@
                         <p class="form-row form-row-wide">
                             <label for="phonenumber">Phone Number:
                                 <i class="im im-icon-Phone"></i>
-                                <input id="phone" type="tel" name="phone" value="(__) ____-____" pattern="^\(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{4}-?[0-9]{4}$" required>
+                                <input id="phone" type="tel" name="phone" value="(__) ____-____" >
                             </label>
                         </p>
                         <p class="form-row form-row-wide">
@@ -242,12 +245,6 @@
                 $('#address1').css("border-color", "green");
 
 
-            if(address2 == '')
-                $('#address2').css("border-color", "red");
-            else
-                $('#address2').css("border-color", "green");
-
-
         	if(city_player == '')
         		$('#city_player').css("border-color", "red");
         	else
@@ -283,8 +280,10 @@
         	
 
         	if( email_player != '' && password_player != '' && position1_player != '' && position2_player != '' && position3_player != '' && username_player != '' && dateofbirth_player != '' &&
-        		address1 != '' && address2 != '' && city_player != '' && state_player != '' && postcode_player != '' && country_player != '' && phone_player != '' && mobile_player != '') {
-        		$('#player_reg').submit();
+        		address1 != '' && city_player != '' && state_player != '' && postcode_player != '' && country_player != '' ) {
+        		if (phone_player != '' || mobile_player != '') {
+                    $('#player_reg').submit();
+                } 
         	}
 
         });

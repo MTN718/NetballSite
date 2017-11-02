@@ -272,7 +272,19 @@ class Netball extends CI_Controller {
         $this->load->view("dashboard_content_handler", $data);
     }
 
-    public function newEvent()
+    // public function newEvent() 
+    // {
+    //     $this->is_logged_in();
+    //     $userInfo = $this->session->userdata('login_data');
+    //      $model_data = array(
+    //         'id' => $userInfo->no
+    //     );
+    //     $data['clubdatainfo'] = $this->Netballmodel->getclubdatainfo($model_data);
+    //     $data['pageName'] = "NEW_EVENT";
+    //     $this->load->view("dashboard_content_handler", $data);
+    // }
+
+     public function addneweventpackage() 
     {
         $this->is_logged_in();
         $userInfo = $this->session->userdata('login_data');
@@ -280,7 +292,8 @@ class Netball extends CI_Controller {
             'id' => $userInfo->no
         );
         $data['clubdatainfo'] = $this->Netballmodel->getclubdatainfo($model_data);
-        $data['pageName'] = "NEW_EVENT";
+        $data['eventpackagelist'] = $this->Netballmodel->geteventpackagelist();
+        $data['pageName'] = "EVENT_PACKAGE";
         $this->load->view("dashboard_content_handler", $data);
     }
 
@@ -292,11 +305,6 @@ class Netball extends CI_Controller {
             'id' => $userInfo->no
         );
        //$data['eventinfos'] = $this->Netballmodel->geteventinfolist($model_data);
-
-
-
-
-
 
 
          $this->load->library('pagination');
@@ -537,6 +545,14 @@ class Netball extends CI_Controller {
                 redirect('netball/clubRegistrationForm');
             }
             $club_id = $this->Netballmodel->clubRegistrationFormdata($model_data); 
+
+            $to_email = $model_data['email'];
+            $subject = "Registration confirmation";
+            $url = site_url('netball');
+            $message = "Registration is successfully please login by clicking on link<br/>".$url;
+            $this->sendEmail($to_email,$subject,$message);
+
+
             $model_data['pageName'] = "CLUB_REGISTRATION";
             $model_data['club_id'] = $club_id;
             $this->load->view("content_handler", $model_data);
@@ -576,6 +592,16 @@ class Netball extends CI_Controller {
             }
 
             $club_id = $this->Netballmodel->clubRegistrationFormdata($model_data); 
+
+
+            $to_email = $model_data['email'];
+            $subject = "Registration confirmation";
+            $url = site_url('netball');
+            $message = "Registration is successfully please login by clicking on link<br/>".$url;
+            $this->sendEmail($to_email,$subject,$message);
+
+
+
             $model_data['pageName'] = "CLUB_REGISTRATION";
             $model_data['club_id'] = $club_id;
             $this->load->view("content_handler", $model_data); 
@@ -596,7 +622,7 @@ class Netball extends CI_Controller {
 
         if($model_data['email13'] == $model_data['confirm_email13']) {
             $this->Netballmodel->clubRegistrationPaypalAccount($model_data); 
-            redirect('netball');
+            redirect('netball/account_signup');
         } else {            
             $this->session->set_flashdata('error_msg','Paypal Email not matched');
             $data['pageName'] = "CLUB_REGISTRATION";
@@ -693,7 +719,7 @@ class Netball extends CI_Controller {
             else if($result->user_type=="club"){
                  $this->session->set_userdata('login_data', $result);
                 $this->session->set_flashdata('success_msg', 'login  ');
-                redirect('netball/newEvent');
+                redirect('netball/addneweventpackage');
             }
             else if($result->user_type=="player"){
                  $this->session->set_userdata('login_data', $result);
@@ -862,12 +888,11 @@ class Netball extends CI_Controller {
                 'finishtime' => $this->input->post('finishtime'),
                 'requirements' => $this->input->post('requirements'),
                 'fee' => $this->input->post('fee'),
+                'package' => $this->input->post('package'),
             );
-            $data['eventpackagelist'] = $this->Netballmodel->geteventpackagelist();
-            $data['pageName'] = "EVENT_PACKAGE";
+            $data['pageName'] = "USER_AGREEMENT";
             $this->load->view("dashboard_content_handler", $data);
         }   
-           
         else {
             $data1 = array('upload_data' => $this->upload->data());
             $data = array(
@@ -880,9 +905,9 @@ class Netball extends CI_Controller {
                 'finishtime' => $this->input->post('finishtime'),
                 'requirements' => $this->input->post('requirements'),
                 'fee' => $this->input->post('fee'),
+                'package' => $this->input->post('package'),
             );
-            $data['eventpackagelist'] = $this->Netballmodel->geteventpackagelist();
-            $data['pageName'] = "EVENT_PACKAGE";
+            $data['pageName'] = "USER_AGREEMENT";
             $this->load->view("dashboard_content_handler", $data);
         }   
     }
@@ -891,22 +916,12 @@ class Netball extends CI_Controller {
       // player registration
      public function addeventpackagedata()
     {
-            $model_data = array(
-                'id' => $this->input->post('id'),
-                'image' => $this->input->post('image'), 
-                'title' => $this->input->post('title'),
-                'date' => $this->input->post('date'),
-                'venue' => $this->input->post('venue'),
-                'starttime' => $this->input->post('starttime'),
-                'finishtime' => $this->input->post('finishtime'),
-                'requirements' => $this->input->post('requirements'),
-                'fee' => $this->input->post('fee'),
-                'package' => $this->input->post('package'),
-            );
-
-            $this->Netballmodel->addeventdata($model_data);
-            $this->session->set_flashdata('success_msg','Event Added successfully');
-            redirect('netball/currentEvent');
+        $data = array(
+            'id' => $this->input->post('id'),
+            'package' => $this->input->post('package'),
+        );
+        $data['pageName'] = "NEW_EVENT";
+        $this->load->view("dashboard_content_handler", $data);
     } 
 
 
@@ -923,6 +938,33 @@ class Netball extends CI_Controller {
             $this->session->set_flashdata('success_msg','successfully');
             redirect('netball/clubdetails?no='.$model_data['club_id']);
     }
+
+    
+     // player registration
+     public function addeventdataanduseragreement()
+    {
+        $model_data = array(
+            'id' => $this->input->post('id'),
+            'image' => $this->input->post('image'), 
+            'title' => $this->input->post('title'),
+            'date' => $this->input->post('date'),
+            'venue' => $this->input->post('venue'),
+            'starttime' => $this->input->post('starttime'),
+            'finishtime' => $this->input->post('finishtime'),
+            'requirements' => $this->input->post('requirements'),
+            'fee' => $this->input->post('fee'),
+            'package' => $this->input->post('package'),
+
+            'useragreement' => $this->input->post('useragreement'),
+            'fullname' => $this->input->post('fullname'),
+            'signature' => $this->input->post('signature'),
+            'ip_address' => $this->input->ip_address(),
+        );
+
+        $this->Netballmodel->addeventdata($model_data);
+        $this->session->set_flashdata('success_msg','Event Added successfully');
+        redirect('netball/currentEvent');
+    } 
 
 
 

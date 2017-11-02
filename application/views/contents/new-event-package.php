@@ -3,12 +3,12 @@
  	<div id="titlebar">
  		<div class="row">
  			<div class="col-md-12">
- 				<h2>Inspire Sports Group :: Add New Event Detail</h2>
+ 				<h2>Inspire Sports Group :: Add New Event Package Detail </h2>
  				<!-- Breadcrumbs -->
  				<nav id="breadcrumbs">
  					<ul>
  						<li><a href="#">Home</a></li>
- 						<li><a href="#">Add New Event Detail</a></li>
+ 						<li><a href="#">Add New Event Package</a></li>
 
  					</ul>
  				</nav>
@@ -23,10 +23,10 @@
  				<div class="add-listing-section">
  					<!-- Headline -->
  					<div class="add-listing-headline">
- 						<h3><i class="sl sl-icon-plus"></i> New Event</h3>
+ 						<h3><i class="sl sl-icon-plus"></i>Add New Event Package </h3>
  					</div>
  					<form method="post" id="event_add" action="<?php echo site_url();?>/netball/addeventpackagedata" enctype="multipart/form-data">
- 						<input type="hidden" name="id" value="<?php if (!empty($id)) echo $id; ?>">
+ 						<!-- <input type="hidden" name="id" value="<?php if (!empty($id)) echo $id; ?>">
  						<input type="hidden" name="image" value="<?php if (!empty($image)) echo $image; ?>">
  						<input type="hidden" name="title" value="<?php if (!empty($title)) echo $title; ?>">
  						<input type="hidden" name="date" value="<?php if (!empty($date)) echo $date; ?>">
@@ -34,7 +34,8 @@
  						<input type="hidden" name="starttime" value="<?php if (!empty($starttime)) echo $starttime; ?>">
  						<input type="hidden" name="finishtime" value="<?php if (!empty($finishtime)) echo $finishtime; ?>">
  						<input type="hidden" name="requirements" value="<?php if (!empty($requirements)) echo $requirements; ?>">
- 						<input type="hidden" name="fee" value="<?php if (!empty($fee)) echo $fee; ?>">
+ 						<input type="hidden" name="fee" value="<?php if (!empty($fee)) echo $fee; ?>"> -->
+ 						<input type="hidden" name="id" value="<?php if (!empty($clubdatainfo->no)) echo $clubdatainfo->no; ?>">
 
  						<table class="basic-table">
  							<tbody>

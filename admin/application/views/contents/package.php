@@ -39,7 +39,7 @@
           <tbody>
          <tr>
           <th> Package Name </th>
-          <th> Number of Player </th>
+          <th> Max Number Of Players </th>
           <th> Per Event Fee </th>
           <th> Player Regisatration Fee </th>
           <th> Action </th>

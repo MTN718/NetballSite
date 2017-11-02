@@ -110,12 +110,15 @@
 
  							<p class="form-row form-row-wide">
  								<?php if (isset($clubdatainfo->stablishes_date)) { ?>
- 								<label for="dateofbirth">Stablishes Date:
+ 								<label for="dateofbirth">Date Of Birth:
  									<i class="im im-icon-Calendar"></i>
- 									<input id="dateofbirth" data-lang="en" name="dateofbirth" value="<?php if (!empty($clubdatainfo->stablishes_date)) echo $clubdatainfo->stablishes_date; ?>" data-large-mode="true" data-min-year="1800" data-max-year="2020" data-id="datedropper-0" readonly class="picker-input" type="text">
+ 									<?php 
+ 									$dateofbirth = date("d/m/Y",strtotime($clubdatainfo->stablishes_date));
+ 									 ?>
+ 									<input id="dateofbirth" data-lang="en" name="dateofbirth" value="<?php if (!empty($dateofbirth)) echo $dateofbirth; ?>" data-large-mode="true" data-min-year="1800" data-max-year="2020" data-id="datedropper-0" readonly class="picker-input" type="text">
  								</label>
  								<?php } else { ?>
- 								<label for="dateofbirth">Stablishes Date:
+ 								<label for="dateofbirth">Date Of Birth:
  									<i class="im im-icon-Calendar"></i>
  									<input id="dateofbirth" data-lang="en" name="dateofbirth" data-large-mode="true" data-min-year="1800" data-max-year="2020" data-id="datedropper-0" required type="text">
  								</label>
@@ -274,13 +277,13 @@
  								<p class="form-row form-row-wide">
  									<label for="password">Password:
  										<i class="im im-icon-Lock-2"></i>
- 										<input class="input-text" name="password" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required/>
+ 										<input class="input-text" name="password" type="password" pattern="^\S{4,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 4 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required/>
  									</label>
  								</p>
  								<p class="form-row form-row-wide">
  									<label for="password_two">Confirm Password:
  										<i class="im im-icon-Lock-2"></i>
- 										<input class="input-text" name="password_two" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="Verify Password" required/>
+ 										<input class="input-text" name="password_two" type="password" pattern="^\S{4,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="Verify Password" required/>
  									</label>
  								</p>
  								<div class="clearfix"></div>
